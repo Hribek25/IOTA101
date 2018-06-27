@@ -1,6 +1,7 @@
 # IOTA Developer Essentials for Developers, Tech Enthusiasts and Beginners 
-[![Azure Notebooks](https://notebooks.azure.com/launch.png)](https://notebooks.azure.com/pzizka/libraries/iota101)
-[![Jupyter Notebook Static Viewer](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/nbviewer.png)](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-green.svg)](https://github.com/Hribek25/IOTA101)
+[![Azure Notebooks](https://img.shields.io/badge/launch-azurenb-blue.svg)](https://notebooks.azure.com/pzizka/libraries/iota101)
+[![Jupyter Notebook Static Viewer](https://img.shields.io/badge/nb-Viewer-orange.svg)](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
 
 These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on a platform and be ready to built own solutions based on it.
 
@@ -22,13 +23,13 @@ Great thing about the Python is the fact you can play with all code snippets dir
 ## Viewing and running
 Copies of the Jupyter notebooks are hosted on the Microsoft Azure Notebooks:
 
-[![Azure Notebooks](https://notebooks.azure.com/launch.png)](https://notebooks.azure.com/pzizka/libraries/iota101)
+[![Azure Notebooks](https://img.shields.io/badge/launch-azurenb-blue.svg)](https://notebooks.azure.com/pzizka/libraries/iota101)
 
 It is recommended that you use the notebooks via the above link if you would like to have an interactive experience. For the best experience, 'clone' the library to use the notebooks in the interactive mode.
 
 If you prefer a static experience (for printing for instance) you can reach the given notebooks via Jupyter Notebook Static Viewer as static html files:
 
-[![Jupyter Notebook Static Viewer](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/nbviewer.png)](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
+[![Jupyter Notebook Static Viewer](https://img.shields.io/badge/nb-Viewer-orange.svg)](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
 
 ## Feedback and corrections
 These notebooks are maintained at GitHub (https://github.com/Hribek25/IOTA101). Issues can be entered via the given issue tracker at GitHub (https://github.com/Hribek25/IOTA101/issues).
