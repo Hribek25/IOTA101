@@ -24,7 +24,7 @@ Copies of the Jupyter notebooks are hosted on the Microsoft Azure Notebooks:
 It is recommended that you use the notebooks via the above link. For the best experience, 'clone' the library to use the notebooks in a Jupyter yourself.
 
 ## Feedback and corrections
-These notebooks are maintained at GitHub.
+These notebooks are maintained at GitHub (https://github.com/Hribek25/IOTA101).
 
 ## About
 These notebooks are developed and maintained by Petr Zizka (petr@zizkovi.name).
