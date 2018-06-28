@@ -11775,6 +11775,38 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="IOTA-Developer-Essentials-for-Developers,-Tech-Enthusiasts-and-Beginners">IOTA Developer Essentials for Developers, Tech Enthusiasts and Beginners<a class="anchor-link" href="#IOTA-Developer-Essentials-for-Developers,-Tech-Enthusiasts-and-Beginners">&#182;</a></h1><p><a href="https://github.com/Hribek25/IOTA101"><img src="https://img.shields.io/badge/GitHub-Repo-green.svg" alt="GitHub Repo"></a>
+<a href="https://notebooks.azure.com/pzizka/libraries/iota101"><img src="https://img.shields.io/badge/launch-azurenb-blue.svg" alt="Azure Notebooks"></a>
+<a href="https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/"><img src="https://img.shields.io/badge/nb-Viewer-orange.svg" alt="Jupyter Notebook Static Viewer"></a>
+<a href="https://hribek25.github.io/IOTA101/"><img src="https://img.shields.io/badge/Complete-Textbook-yellow.svg" alt="Complete Textbook"></a></p>
+<p>These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on a platform and be ready to built own solutions based on it.</p>
+<blockquote><p>Motto of this tutorial: "Let's start with baby steps before we can try and fly."</p>
+</blockquote>
+<h2 id="Main-Goal">Main Goal<a class="anchor-link" href="#Main-Goal">&#182;</a></h2><p>Main goal of this guide is to provide well-balanced proportion of deep-dive technical information and essentials.</p>
+<h2 id="Getting-Started">Getting Started<a class="anchor-link" href="#Getting-Started">&#182;</a></h2><p>There are several chapters available. If you are not familiar with IOTA then it is highly recommended to follow them in the particular order to understand all important IOTA concepts properly. Otherwise you may get quickly confused later.</p>
+<h2 id="Code-Snippets">Code Snippets<a class="anchor-link" href="#Code-Snippets">&#182;</a></h2><p>Code snippets are based on the Python language since it is very descriptive language and easy to understand. So I believe the tutorial is understandable to anyone. I have described all important IOTA concepts in language-agnostic way and so you would be able to use any language of your choice.</p>
+<p>Anyway, even if you ignore code snippets completely there is still plenty info for you.</p>
+<p>Great thing about the Python is the fact you can play with all code snippets directly in your web browser, please see the next chapter. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.</p>
+<h2 id="Viewing-and-running">Viewing and running<a class="anchor-link" href="#Viewing-and-running">&#182;</a></h2><h3 id="Interactive-Mode">Interactive Mode<a class="anchor-link" href="#Interactive-Mode">&#182;</a></h3><p>Copies of the Jupyter notebooks are hosted on the Microsoft Azure Notebooks:</p>
+<p><a href="https://notebooks.azure.com/pzizka/libraries/iota101"><img src="https://img.shields.io/badge/launch-azurenb-blue.svg" alt="Azure Notebooks"></a></p>
+<p>It is recommended that you use the notebooks via the above link if you would like to have an interactive experience. For the best experience, 'clone' the library to use the notebooks in the interactive mode.</p>
+<h3 id="Static-Mode">Static Mode<a class="anchor-link" href="#Static-Mode">&#182;</a></h3><p>If you prefer a static experience (for printing purposes, for instance) you can reach the given notebooks via Jupyter Notebook Static Viewer as static html files, or reach for Complete Textbook that is compiled from source materials on regular basis:</p>
+<p><a href="https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/"><img src="https://img.shields.io/badge/nb-Viewer-orange.svg" alt="Jupyter Notebook Static Viewer"></a>
+<a href="https://hribek25.github.io/IOTA101/"><img src="https://img.shields.io/badge/Complete-Textbook-yellow.svg" alt="Complete Textbook"></a></p>
+<h2 id="Feedback-and-corrections">Feedback and corrections<a class="anchor-link" href="#Feedback-and-corrections">&#182;</a></h2><p>These notebooks are maintained at GitHub (<a href="https://github.com/Hribek25/IOTA101">https://github.com/Hribek25/IOTA101</a>). Issues can be entered via the given issue tracker at GitHub (<a href="https://github.com/Hribek25/IOTA101/issues">https://github.com/Hribek25/IOTA101/issues</a>).</p>
+<h2 id="About">About<a class="anchor-link" href="#About">&#182;</a></h2><p>These notebooks are developed and maintained by Petr Zizka (petr@zizkovi.name).</p>
+<p>It basically summarizes my baby steps with IOTA protocol. It is ongoing process since IOTA is still under heavy development and rapidly emerging every day. So stay tuned - my plan is to keep adding fresh content on regular basis.</p>
+<p>Feel free to contact me at <code>petr@zizkovi.name</code> or IOTA Discord Channel <code>@hribek25#2683</code>. (New to Discord? Invitation link: <a href="https://discord.gg/fNGZXvh">https://discord.gg/fNGZXvh</a>)</p>
+<blockquote><p>Donations ♥ DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="IOTA-101:-Essentials-and-IOTA-Terminology">IOTA 101: Essentials and IOTA Terminology<a class="anchor-link" href="#IOTA-101:-Essentials-and-IOTA-Terminology">&#182;</a></h1><p>IOTA is an open-source Distributed Ledger Technology (DLT) with the following characteristics: <em>permissionless</em>, <em>feeless</em> and <em>trustless</em>. In contrary to the blockchain technology, the IOTA transactions are stored in a form of Directed Acyclic Graph (DAG) called <em>the Tangle</em>.
 <img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/Blockchain_And_Tangle_iota_org.png" alt="(c) iota.org"></p>
 <h2 id="Transactions">Transactions<a class="anchor-link" href="#Transactions">&#182;</a></h2><p>Transactions (TXs) in the tangle can be of two types:</p>
