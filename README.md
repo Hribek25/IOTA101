@@ -36,14 +36,20 @@ If you prefer a static experience (for printing purposes, for instance) you can 
 [![Complete Textbook](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/Complete-Textbook-yellow.png)](https://hribek25.github.io/IOTA101/)
 
 ## Feedback and corrections
-These notebooks are maintained at GitHub (https://github.com/Hribek25/IOTA101). Issues can be entered via the given issue tracker at GitHub (https://github.com/Hribek25/IOTA101/issues).
+These notebooks are maintained at [GitHub](https://github.com/Hribek25/IOTA101).
+Issues can be submited via [issue tracker](https://github.com/Hribek25/IOTA101/issues).
 
 ## About
 These notebooks are developed and maintained by Petr Zizka (petr@zizkovi.name).
 
 It basically summarizes my baby steps with IOTA protocol. It is ongoing process since IOTA is still under heavy development and rapidly emerging every day. So stay tuned - my plan is to keep adding fresh content on regular basis.
 
-Feel free to contact me at `petr@zizkovi.name` or IOTA Discord Channel `@hribek25#2683`. (New to Discord? Invitation link: https://discord.gg/fNGZXvh)
+Feel free to follow me at [Twitter](https://twitter.com/petrzizka) or IOTA Discord Channel (@hribek25#2683).
+*(New to Discord? Invitation link: https://discord.gg/fNGZXvh)*
 
+----
+![Thank You](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/thank-you-lightgrey.png)
 
-> Donations ♥ DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9
+Donations ♥ DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9
+
+![qr code](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9&qzone=1&margin=0&size=120x120&ecc=L)
