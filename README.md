@@ -2,6 +2,7 @@
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-green.svg)](https://github.com/Hribek25/IOTA101)
 [![Azure Notebooks](https://img.shields.io/badge/launch-azurenb-blue.svg)](https://notebooks.azure.com/pzizka/libraries/iota101)
 [![Jupyter Notebook Static Viewer](https://img.shields.io/badge/nb-Viewer-orange.svg)](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
+[![Complete Textbook](https://img.shields.io/badge/Complete-Textbook-yellow.svg)](https://hribek25.github.io/IOTA101/)
 
 These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on a platform and be ready to built own solutions based on it.
 
@@ -21,15 +22,18 @@ Anyway, even if you ignore code snippets completely there is still plenty info f
 Great thing about the Python is the fact you can play with all code snippets directly in your web browser, please see the next chapter. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.
 
 ## Viewing and running
+### Interactive Mode
 Copies of the Jupyter notebooks are hosted on the Microsoft Azure Notebooks:
 
 [![Azure Notebooks](https://img.shields.io/badge/launch-azurenb-blue.svg)](https://notebooks.azure.com/pzizka/libraries/iota101)
 
 It is recommended that you use the notebooks via the above link if you would like to have an interactive experience. For the best experience, 'clone' the library to use the notebooks in the interactive mode.
 
-If you prefer a static experience (for printing for instance) you can reach the given notebooks via Jupyter Notebook Static Viewer as static html files:
+### Static Mode
+If you prefer a static experience (for printing purposes, for instance) you can reach the given notebooks via Jupyter Notebook Static Viewer as static html files, or reach for Complete Textbook that is compiled from source materials on regular basis:
 
 [![Jupyter Notebook Static Viewer](https://img.shields.io/badge/nb-Viewer-orange.svg)](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
+[![Complete Textbook](https://img.shields.io/badge/Complete-Textbook-yellow.svg)](https://hribek25.github.io/IOTA101/)
 
 ## Feedback and corrections
 These notebooks are maintained at GitHub (https://github.com/Hribek25/IOTA101). Issues can be entered via the given issue tracker at GitHub (https://github.com/Hribek25/IOTA101/issues).
