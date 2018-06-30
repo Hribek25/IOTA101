@@ -54,4 +54,4 @@ Disclaimer: I am not associated with the IOTA foundation. I am IOTA supporter.
 
 Donations ♥ DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9
 
-![qr code](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9&qzone=1&margin=0&size=120x120&ecc=L)
+![qr code](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9&qzone=1&margin=0&size=120x120&ecc=L "donation address in QR code")
