@@ -11780,7 +11780,8 @@ div#notebook {
 <h1 id="IOTA-Developer-Essentials-for-Developers,-Tech-Enthusiasts-and-Beginners">IOTA Developer Essentials for Developers, Tech Enthusiasts and Beginners<a class="anchor-link" href="#IOTA-Developer-Essentials-for-Developers,-Tech-Enthusiasts-and-Beginners"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:15px" /></a></h1><p><a href="https://github.com/Hribek25/IOTA101"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/GitHub-Repo-green.png" alt="GitHub Repo" title="Home of the tutorial"></a>
 <a href="https://notebooks.azure.com/pzizka/libraries/iota101"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/launch-azurenb-blue.png" alt="Azure Notebooks" title="Azure service provides an interactive experience with the tutorial"></a>
 <a href="https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/nb-Viewer-orange.png" alt="Jupyter Notebook Static Viewer" title="Jupyter service provides a static experience with the tutorial"></a>
-<a href="https://hribek25.github.io/IOTA101/"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/Complete-Textbook-yellow.png" alt="Complete Textbook" title="All chapters combined on a single page"></a></p>
+<a href="https://hribek25.github.io/IOTA101/"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/Complete-Textbook-yellow.png" alt="Complete Textbook" title="All chapters combined on a single page"></a>
+<a href="https://ecosystem.iota.org/tutorials/iota-developer-essentials"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/iota-ecosystem-yellowgreen.png" alt="IOTA Ecosystem" title="IOTA Ecosystem"></a></p>
 <p>These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on the platform and be ready to build own solutions based on it.</p>
 <blockquote><p>Motto of this tutorial: "Let's start with baby steps before we can try and fly."</p>
 </blockquote>
@@ -12382,7 +12383,7 @@ TryteString(b&#39;CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUI
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Non-value-transactions">Non-value transactions<a class="anchor-link" href="#Non-value-transactions"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:15px" /></a></h2><p>Let's start with non-value transactions first since they are a bit easier for starters.</p>
+<h2 id="Non-value-transactions">Non-value transactions<a class="anchor-link" href="#Non-value-transactions"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:15px" /></a></h2><p>Let's start with non-value transactions (meta transactions) first since they are a bit easier for starters.</p>
 <p><em>Please note, the chapter is divided in two separate sections. In the first section, examples are really close to bare metal (still not too close:) to illustrate the whole process and describing implementation details wherever possible. It is also useful when you want to experiment with different settings at each step (hey "non-existing tips", looking at you).</em></p>
 <p><em>In the second section, PyOTA library is fully levearged since it is capable to hide all implementation details behind a curtain. Needless to say, if you are not interested in such details then you probably would like to start with the second section.</em></p>
 <h3 id="Creating-and-broadcasting-transaction-in-5-steps-(you-want-to-understand-the-process)">Creating and broadcasting transaction in 5 steps (you want to understand the process)<a class="anchor-link" href="#Creating-and-broadcasting-transaction-in-5-steps-(you-want-to-understand-the-process)"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:15px" /></a></h3><h4 id="Create-a-transaction">Create a transaction<a class="anchor-link" href="#Create-a-transaction"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:15px" /></a></h4><p>First of all let's create transactions (offline; in memory) and set main fields.</p>
@@ -13131,6 +13132,405 @@ Final transactions were returned - including nonce (POW)
 <li>Target address 2: 
 <a href="https://thetangle.org/address/CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUICCESOIVZABA9LTMM9RW">https://thetangle.org/address/CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUICCESOIVZABA9LTMM9RW</a></li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Value-transactions">Value transactions<a class="anchor-link" href="#Value-transactions"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:15px" /></a></h2><p>Meta transactions were discussed in the previous chapter. This chapter describes <code>value transactions</code> which are transactions that transfer IOTA tokens between IOTA addresses. Tokens are fully premined and so number of tokens in the network is given. So <code>transfering tokens</code> means changing their ownership only.</p>
+<p>While preparing a bundle with <code>value transations</code> it is important to distinguish three different transaction types within a bundle:</p>
+<ul>
+<li><strong>Input TXs:</strong> those are transactions that <em>deducting</em> (spending) value from address(es). Those transactions have negative <code>value</code> field. They usually refer to <code>senders</code></li>
+<li><strong>Output TXs:</strong> those are transactions that <em>adding</em> (receiving) value to address(es). Those transactions have positive <code>value</code> field. They usually refer to <code>recipients</code></li>
+<li><strong>Unspent/change TX:</strong> technically speaking it is also <em>output</em> transaction that <em>adding</em> value however it usually refers to <code>senders</code> and so it is better to consider it separated from other output TXs</li>
+</ul>
+<p>All three types have to be part of each bundle otherwise you are under a risk of loosing IOTA tokens. In other words, each bundle should consists of at least one <code>input</code> TX, one <code>output</code> TX and one <code>unspent</code> TX. Total balance of the bundle should be zero since the number of tokens is the same, just token owners have been "changed".</p>
+<p>Example:</p>
+<ul>
+<li>Alice owns 100 tokens (<em>input = 100</em>)</li>
+<li>Alice is going to send 20 tokens to John from the address that includes 100 tokens of her (<em>Alice -100</em>)</li>
+<li>John is going to receive 20 tokens from Alice (<em>output = 20</em>; <em>John +20</em>)</li>
+<li>Alice still owns 80 tokens after the transaction (<em>unspent = 80</em>; <em>Alice +80</em>)</li>
+</ul>
+<p>Alice's bundle should look like:
+\begin{align}
+Input - Output &amp; = \ Unspent \\
+Input - Output - Unspent &amp; = \ 0 \\
+100 - 20 - 80 &amp; = \ 0
+\end{align}</p>
+<p>Why Alice has to "put" all 100 tokens in the bundle while she is going to actually spend only 20 tokens? The reason is that IOTA protocol uses one-time signature scheme (OTS) for transaction signing while spending tokens. And with every signing process a half of a private key of the given address is revealed. That's why no one should ever spend tokens from the same address again.
+<img src="https://raw.githubusercontent.com/Hribek25/IOTA101/17cde67e39b66dd7c481577497e08399fc888f96/Graphics/never-reuse-address-again.png" alt="Never reuse address" title="By Petr Zizka"></p>
+<h3 id="Spending-tokens">Spending tokens<a class="anchor-link" href="#Spending-tokens"><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:15px" /></a></h3><p><em>Please note: for a purpose of this chapter we are going to switch to a test network called <code>devnet</code>. It is the testing Tangle. Tokens are not real and everything you do have no implication to the mainnet at all. However it is stil powered by standard node software and so technicaly speaking it behaves like the mainnet. If you need more info regarding devnet please refer to <a href="https://docs.iota.org/introduction/testnet/introduction">the official documentation</a>.</em></p>
+<p>Everything what has been mentioned in the previous chapter focused on <code>non-value</code> transations is still valid also in case of value transactions however there are several additional tasks you should take care of. Needless to say, IOTA libraries (PyOTA and others) are ready to help you and are able to hide all implementation details in case you would like to. In this case I would encourage everyone to prefer a functionality that is offered by extended API calls, such as <code>send_transfer</code>. Experimenting with value transactions and trying to tweak them does not seem to be a good idea (on the mainnet).</p>
+<p>Anyway, even in this chapter I am going to describe main tasks that are performed under the hood to be able to understand the whole concept.</p>
+<p>Let's have the following setup:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">iota</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+
+<span class="c1"># Sender&#39;s side ***********</span>
+<span class="c1"># Sender&#39;s seed</span>
+<span class="n">SeedSender</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;HGW9HB9LJPYUGVHNGCPLFKKPNZAIIFHZBDHKSGMQKFMANUBASSMSV9TAJSSMPRZZU9SFZULXKJ9YLAIUA&quot;</span>
+
+<span class="c1"># Receiver&#39;s side ***********</span>
+<span class="c1"># Recipient&#39;s seed - this is actually not needed for the exercise - it is just to have corresponding seed somewhere written</span>
+<span class="n">SeedReceiver</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;NVPDKGLESTYNJEH9DTWD9DUBYWHZJDDWTBLKWEYLVZKBKKAZTIZ9CFFJMHPEKIFUWQTXRGAVRXAQZCPHL&quot;</span>
+
+<span class="c1"># This is our target address to which we are going to send tokens to (BTW: it is a first generated address based on recipient&#39;s seed)</span>
+<span class="n">AddressReceiver</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC&quot;</span>
+
+<span class="c1">#DevNet node - Devnet Tangle that is used only for testing/dev purposes - no real tokens here:(</span>
+<span class="n">DevnetNode</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.devnet.iota.org:443&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You may be wondering why only the seed for sender's side is defined. As mentioned above the reason is that the address with tokens is changing with every spending exercise and so you have to find address with tokens that left in a bucket programatically (if any tokens left:).</p>
+<p>Let's find out. For this purpose you can use extended API call <code>get_account_data</code> which returns a list of used addresses and total sum of all tokens available accross all of them:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="n">DevnetNode</span><span class="p">,</span>
+                <span class="n">seed</span><span class="o">=</span><span class="n">SeedSender</span> <span class="c1"># let&#39;s use seed of the sender and so library can do all hard work</span>
+               <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking for total balance. This may take some time...&quot;</span><span class="p">)</span>
+
+<span class="c1"># now we can find out whether there are any tokens left</span>
+<span class="n">SenderBalance</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_account_data</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                    <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="c1"># Get the total available balance for the given seed and all related used addresses</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please note, this may take some time if many addresses has been used already...&quot;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">SenderBalance</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">SenderBalance</span><span class="p">[</span><span class="s1">&#39;balance&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Yes, there are some tokens available! hurray&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Please note, this may take some time if many addresses has been used already...
+{&#39;addresses&#39;: [Address(b&#39;CXDUYK9XGHC9DTSPDMKGGGXAIARSRVAFGHJOCDDHWADLVBBOEHLICHTMGKVDOGRU9TBESJNHAXYPVJ9R9&#39;),
+               Address(b&#39;CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUICCESOIVZABA9LTMM9RW&#39;),
+               Address(b&#39;UJCAVPMFHTAHMTVKGCRBKEKXYRPAFFLGHLAWHISFLWUPEXXQAWRZUSFMYPPTIUANFQMKPLTTCLAWDIUY9&#39;),
+               Address(b&#39;WMPTNPCWTVBYSEBJUCRZZIINYEUCDCTWWRVZBJPMYUPRFEEJRRDUJGXE9NYGGZMSXJUJHUISFSCWGPLJZ&#39;),
+               Address(b&#39;IFLULNLIIGWGV9OBDBZT9JHPVLITVOMRMAUOCGPGMIIEQABQANJTBQ9PLPSFRR9BTCOJGE9ZWIZAXCRAW&#39;),
+               Address(b&#39;LHPLHEZNT99XRSCPMQ9XOCIRUYOKVBLTNUVQPZCTMWOM9WHVYPFKGTFQ9MNEPSYKIV9MNPNEKLMLZONHW&#39;)],
+ &#39;balance&#39;: 950,
+ &#39;bundles&#39;: [&lt;iota.transaction.base.Bundle object at 0x7f5c6aac84e0&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7f5c6aabeba8&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7f5c6b08c9e8&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7f5c6abb9f98&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7f5c6aafd940&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7f5c6ab7b2b0&gt;]}
+
+Yes, there are some tokens available! hurray
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Are there any tokens left (value in <code>balance</code> field)? If yes then continue - no action is needed.
+If not, then you need to obtain some. It can be done visiting <a href="http://faucet.devnet.iota.org">IOTA faucet</a> and entering an unused address of the given seed:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Now let&#39;s find a first unused address that can be used as a destination address for unspent/new tokens</span>
+<span class="n">FreeAddressSender</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_new_addresses</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                          <span class="n">count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># If None is specified, then it identifies a first non-used address</span>
+                                          <span class="n">security_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Let&#39;s generate an address using default security level=2.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please note, this may take some time if many addresses has been used already...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This is the first unused address that can be used for new tokens or unspent tokens:&quot;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">FreeAddressSender</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Please note, this may take some time if many addresses has been used already...
+
+This is the first unused address that can be used for new tokens or unspent tokens:
+{&#39;addresses&#39;: [Address(b&#39;QDCWBZCONHEXBGNTUBXCUGM9BUEBEZODVNYKZYBJPQXUVHFHMJPMNTYLWDFFMWHH9RIKABAJVRSIE9GWD&#39;)]}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What have just happened behind the curtain?</p>
+<ul>
+<li>The PyOTA library started to generating addresses from the <code>index=0</code> of the given seed and at the same time it also checked whether there are any transactions registered for each address</li>
+<li>If yes, then in case we are after balances, the balance is saved. In case we are after new unused address then the given address is skipped. First address for which there are not registered transactions is returned</li>
+<li>That's why it may be quite time consuming some time. And now you also understand all issues regarding <code>zero balances</code> after the snapshot</li>
+</ul>
+<p>You may be also wondering how to get individual balances for each used address? This can be checked using the core API call <code>get_balances</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># only if there is any used addresses from the previous steps</span>
+
+<span class="c1"># it returns the balances as a list in the same order as the addresses were provided as input.</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">SenderBalance</span><span class="p">[</span><span class="s1">&#39;addresses&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Some positive balance identified. Individual confirmed balances per used addresses:&quot;</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">get_balances</span><span class="p">(</span><span class="n">addresses</span><span class="o">=</span><span class="n">SenderBalance</span><span class="p">[</span><span class="s1">&#39;addresses&#39;</span><span class="p">],</span>
+                           <span class="n">threshold</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># Confirmation threshold; official docs recommend to set it to 100</span>
+           <span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No positive balance identified.&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Some positive balance identified. Individual confirmed balances per used addresses:
+{&#39;balances&#39;: [0, 0, 0, 0, 0, 950],
+ &#39;duration&#39;: 57,
+ &#39;milestone&#39;: None,
+ &#39;milestoneIndex&#39;: 640346,
+ &#39;references&#39;: [&#39;FDQMYTZBOHGTMBQUTZEK9ZOOHBBEGAETYUIPDFAAQKSJQDMBKSY9VAGSIXR9NWLEUGIOQWXERFZDJR999&#39;]}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It returns <code>balances</code>. You can see how the remaining tokens move to new unused address everytime you spend some tokens. So let's spend some tokens:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tx1</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">ProposedTransaction</span><span class="p">(</span> <span class="n">address</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Address</span><span class="p">(</span><span class="n">AddressReceiver</span><span class="p">),</span> <span class="c1"># 81 trytes long address</span>
+                                <span class="n">message</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="n">tag</span>     <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Tag</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;HRIBEK999IOTA999TUTORIAL&#39;</span><span class="p">),</span>
+                                <span class="n">value</span>   <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># we are going to spend 10i</span>
+
+<span class="c1"># Sending the iotas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sending iotas... Please wait...&quot;</span><span class="p">)</span>
+<span class="n">SentBundle</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">send_transfer</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                         <span class="n">transfers</span><span class="o">=</span><span class="p">[</span><span class="n">tx1</span><span class="p">],</span> <span class="c1">#one transaction defined above</span>
+                         <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1">#input address(es) that are used to finance the given transaction. Tokens will be deducted from them</span>
+                         <span class="n">change_address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># this is the adddress to which unspent amount is sent</span>
+                         <span class="n">min_weight_magnitude</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="c1"># in case of Devnet it is 9</span>
+                         <span class="n">security_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># you may be wondering why there is imputs=None and change_address=None.</span>
+<span class="c1"># It means it will be taken care of by library and so make sure correct seed was added while api initialization</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">It has been sent. Now let&#39;s see transactions that were sent:&quot;</span><span class="p">)</span>
+<span class="c1"># let&#39;s check transactions that were sent in fact</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here is the bundle hash: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">SentBundle</span><span class="p">[</span><span class="s1">&#39;bundle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hash</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">tx</span> <span class="ow">in</span> <span class="n">SentBundle</span><span class="p">[</span><span class="s1">&#39;bundle&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">tx</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Sending iotas... Please wait...
+
+It has been sent. Now let&#39;s see transactions that were sent:
+Here is the bundle hash: &lt;iota.transaction.base.Bundle object at 0x7f5c6e0a9160&gt;
+
+
+{&#39;_legacy_tag&#39;: Tag(b&#39;QCIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;address&#39;: Address(b&#39;BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC&#39;),
+ &#39;attachment_timestamp&#39;: 1530694198428,
+ &#39;attachment_timestamp_lower_bound&#39;: 0,
+ &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;current_index&#39;: 0,
+ &#39;hash&#39;: TransactionHash(b&#39;MFFVLR9SFFZLGNRJMUHZSNZAGLDELLGOOHQI9AUMNIKAWJPEIAHQMEGMNDPDIZDZJAWVJ9LTQJHVHL999&#39;),
+ &#39;is_confirmed&#39;: None,
+ &#39;last_index&#39;: 3,
+ &#39;nonce&#39;: Nonce(b&#39;LARNNZHRUPXZO9OLZAIKLLBAGCL&#39;),
+ &#39;signature_message_fragment&#39;: Fragment(b&#39;999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999&#39;),
+ &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;timestamp&#39;: 1530694139,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;VSLLSQTFWINTDRXRDBPPEJYWFRLWILKWXAQERCSBSJQFX9JXLGIVARCPPSGWRQUAFAFBOH9CSNZNMV999&#39;),
+ &#39;value&#39;: 10}
+
+
+{&#39;_legacy_tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;address&#39;: Address(b&#39;LHPLHEZNT99XRSCPMQ9XOCIRUYOKVBLTNUVQPZCTMWOM9WHVYPFKGTFQ9MNEPSYKIV9MNPNEKLMLZONHW&#39;),
+ &#39;attachment_timestamp&#39;: 1530694198410,
+ &#39;attachment_timestamp_lower_bound&#39;: 0,
+ &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;current_index&#39;: 1,
+ &#39;hash&#39;: TransactionHash(b&#39;VSLLSQTFWINTDRXRDBPPEJYWFRLWILKWXAQERCSBSJQFX9JXLGIVARCPPSGWRQUAFAFBOH9CSNZNMV999&#39;),
+ &#39;is_confirmed&#39;: None,
+ &#39;last_index&#39;: 3,
+ &#39;nonce&#39;: Nonce(b&#39;PGVHRDQWWLTFAGCSWFKGSPIPWVW&#39;),
+ &#39;signature_message_fragment&#39;: Fragment(b&#39;LOILWY9BBFCVHHMMSW9AIZGORRICQGFFBTRROMIFPJHYEERMSYNMIJCPWHHISLCMBXE9HZQUVXNAYBPSAGRMNYWPGBLOTEJEJN9G99WUDCKWAMWOFJYVKYYTJA9YGLTLPXWNCKRBNUJTJYUNCNZLNXYDDZGKUYLLFWNNJAYWFHYCHPZHKCBNDVGSTMKUHZ9UDZWQLGSSKBEJWX9GCHVR9ZOINCKHYQVJAAQZEWXXBXMTCCUKTBCNJBLWDKFXANIGEHHVXHTRMSNZRXTIBDZLAU9EKYWQIY9PAXJXPRRXFLLWQNWNRBBMKCLDVOPYRZV9LIRYSHME9AOYQBNLXNZL9FPSURXZHUKFYIYWDNKBZHIUDTLVENDUNJOR9BNWAUCFDDLLJY9HUFOWLAIQRUJJAPFTUVJW9FLYJLDENQXPDTLTBDDNVSMKERJSIONKPRIKDOYPRISYJCOWGIWUI9UKCMWFCRM9IZSOSKZHJCZLADKFZKNSHL9HURSVQKELDPOIJTRSODE9ASBQGS9VYCSKVJMWIFIYDCEITEJUXZKWJBVLRSULIYSGREZYSIIDH9LFQEBSW9MOWUAIPDUXKVSZXRRGQXCW9JGODIFALIXZEOSF9L9KIPBGZXIMZWLAQBPGVGFT9HMCBFSRF9VYLQDLXKMQ9PUPSTRMPLOGOXWRLOWMYL9TUCAFRJKDCKFAHAXLPXBWKZVHRM9IWQRFKOKCPLXTZCEVLODBVWZZEKQ9CTIFCNUVTCMGUUAE9NEUFSBCZW9POMRZOZFFVEJCDKLLQGGIWQRZTCF9ATVTPTRQRXDPHUTNQAKGSCKIFDRKXZITAPONVIQSLD9SDLWQYCIPAKTJKGCINMUPJGAJOXNFHFRGXBUYPCJSVDCLUNZMUQJPTHSDTPHZXIZRHWDSMMXUTYVQXGHHQAAKO9DFWJITLBNBRHKEWFDQYEJVGJKLSVSYFNDUHPDCRTLBYFVIEFPF9ZKXRVISI99PM9INKTCVH9CNWBCUGFIYHUMUXRXZDXKWBYFBKDJBCAAHR9TYRSIBSEIBKNGQWLWWITWGXUWWTDAFUVSBMKEXEZTZXADXQDJVBAQJXSJRVSJEVKEYHJSMIRSDONAHKYHPQP9LZHUJNDSDMDQUH9CGISJWLYEDF9IYNQAZTBQFUINA9X9LTQHP9GIGECDSBTPMWPTXCXOGDGREUTSMSHKZ9XULOHIPSVXLJSMOLXGQHQMOCEGVJNXPDBKBNGEEXKUZAKEWMAHAGJJBJWCOFNCXGRAMKGWNYLRFROSDKTGCVCJEYZZ9FPGHEAFEHANQGGAEPKQWHOQMZTVPQDRKIRGMOFOS9QYIUKIIMOMLENHDEOLNAWXTPXXCEWXMQAMNXWAJDDPL9PBCU9LDCFYLFVPBFPGQFLUFTNATNUDINOZHJYIHPWDXASXXKNPKLAHYYDVPHBEUBXIPBUPILBTMNXQ9XOJFBAAXVHOZAJJAWFNJZNOLREQHHFKIOEARWHEMBUCXGQFOOPSPVFQ9QHOPWNAZUTINPFDZVHLPWP9RDLGBCRXU9XKHP9DXCODHMXHXZDWHNKAUIZSQVNJZPWTDIZMWQJWREC9AGWTRYZTPLOJUGBZBPSXFUDGDADKPPQDC9FG99NJERNISDLKDJYMKASJHNZUYAGFDDKDEUHRUBDXVMMTCJIKLQTYAHKZZOUDDHAMGROVLAQEWWIZPOERXONPHPSBGLDAAMTNQGBYLUWHGIJOFVMSEIYFBSHHEDWSLZUNRSTRIJBCGBBGBNNNIVHC9MWZM9CNPSVJKVWDOJGYRHZTMJMGGOPRSITGKFPEQHNXVNNABIXDFOKXSNGZJZEENDXOHIHATDTOOB9EQIDZFFEVEQ9WVYBXLK9GEMSZN9RZULHTKPVB9WJHTHXFIQLPMDIEYVEUTPAPQVJHREEUEHATXGBQNIPQAALXWBKRIMXREEVJJYDWYRKURQMVAWZZZPTJRMOXYHOORCUGPLF9RQIDHRUHOPPEKHTFFJTNWKRGO9FCZNCAYXACTKZNRKBWQYPHHGFUJDSDNDVYKTTONVTGRMOMXZXBD9ZFLEN9ECXXJANLBQHHLROMGLKVTFPCB9LF999OCZGFGOMRZJBRZOCNG9PZS9GEVEIIGUMNYIQQYPUOYOKDAOVQBIB9XEQMZHWPSURCRHCFCTVFATFHXJLX&#39;),
+ &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;timestamp&#39;: 1530694180,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;QDYSRQPUQEPACVNCZ9URNSEAMEAUGTIJBPYJKJZCMMZTMKUSZOTXCZT9XGMN99XJTAEBEXWDVCZWHQ999&#39;),
+ &#39;value&#39;: -950}
+
+
+{&#39;_legacy_tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;address&#39;: Address(b&#39;LHPLHEZNT99XRSCPMQ9XOCIRUYOKVBLTNUVQPZCTMWOM9WHVYPFKGTFQ9MNEPSYKIV9MNPNEKLMLZONHW&#39;),
+ &#39;attachment_timestamp&#39;: 1530694198396,
+ &#39;attachment_timestamp_lower_bound&#39;: 0,
+ &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;current_index&#39;: 2,
+ &#39;hash&#39;: TransactionHash(b&#39;QDYSRQPUQEPACVNCZ9URNSEAMEAUGTIJBPYJKJZCMMZTMKUSZOTXCZT9XGMN99XJTAEBEXWDVCZWHQ999&#39;),
+ &#39;is_confirmed&#39;: None,
+ &#39;last_index&#39;: 3,
+ &#39;nonce&#39;: Nonce(b&#39;9BIAYAGERBCBMRP9SKNEVPJRMGQ&#39;),
+ &#39;signature_message_fragment&#39;: Fragment(b&#39;IPO9VXOXFTEMC9FSTBGYFQMPCUINFJSLMQUNSWKIVCUZIENMWWM99VOJZCZUSWBRXPKHNUH9WYMWXEBHZBTCSZDFWUINJNCNRAIVSBVWMCODUBXEBRIQVIQIAXSGTEUYIF9CSCDTASLQVY9CPVHGHETTY9OOTGRVQBHHTRHCMXUAWUFHWKVNFHCJEZDARZZLTHFENQUFHTJ9PHWFZQEEOJNCUVZUSWDTY9DQXXPBMYYDCYUXICCXNSRFBJSN9XXVYLZC9MJAOAZHYL9FBUSAMQFADSDOKDZHRNJVWZXKO99UVKOLDBSZKCWUJEILTJCDCFHWXRIJCHYXWRMHUCDGCZAUXJYTAJNGUOBYUNRQAB9TONNCUMVXUSAICLMTPISQCXGNZZLITQGJBRAPVDCQCLYSXMVVATNX9RSMBRF9JG9IVTMMXEMX9R9PPBANTDTGWFFTVCYXMCMTW9HWOHZWHPFG9CGXFZK9NE9HFAALLETXSTYYUTTRJMQQAWYXGYJMSCRSCNDQHCEMFNSUGQEJTZKJXQCSTGJKUGZEWRHPEIIHRKUZXLNBAAWARCJCURRLEEWPAKEVKFXXYKCAVXTHJLGUZUTAQWKXKLQANMHJIUCRPFPPK9PAYNPAVWFHUPBKGHZBLHLBGMKVIVZPMNFOVGVPQSGJRHER9RWU9OAT9WKVRHOSBXWDJYSBKKZGDFQPPBEEQQILL9CVESNANRSHDWHOBEQAOOK9SDVFONGOZHSVOPBFIZGMDSUOXMJHLVAZUMAFMQKTXNWGEGNIXNJLHERUSMP9ZNTKFIIUAHWAJW9CTARBPI9XJYXMNLQVFCX9CKHT9TWEPCJTNUETMHMBNXGRTKFYSTITBUEVRWZGREHCKQRVNYOWJARDOFWEZADOUYWVITATBHJTYUNZBNCPCPKJPTCGGYZEQGXXVCTVGQRMTFJTUHRHDKCHLNXOXEPMPFDUNWAQTPZCNPCSY9S9VDRITIVCVAAUMKLXNQCUQQBSLNZDXMJDBRQ9QGQQZZXYVQRDDCM9UIBJCQWR9AWMSTJVQSYLAN9XOE9AMNGE9JZPEDOAAYWIFIZKIFPWPDUXKUMJZREUWCJRONFMHHQBWBEFUPBTVVENIK9BOMHNTPQLIWHXFJMVGKLZSKM9BGBUVGTXKAGJEVFUZJFNQIACCMUCZPJIHXQOJNXFURBTSPWJJYSQPYJMVGWECWW9NQYHFCIVCVIWBSKTFUSAJNUSWKHMILXWOKFHGFGE9R9NFNJX9FTHYEDBUFMBVUNGSNQPLZKNKGIDOH9SKE9DPAQ9GJZGNJDTHBQQUJ9LWUYIODVVRMTQJCBUXEN9VLALVGCZQQDHOMVBSBMSARWOJOBHMAFOLH9ZMZUUWXSRKYQUKDETPKBURFXPKBZFXSUCUUSNVCLBFXFMBYGCEVVHAOYOLFFTSVUAHBAOVQKOZOGVKB9EWNFQIDIUJZGARPJQIJWTNUGUWQZXKMNHZJPTQXQ9AHBPZEFLUQA9RB9IJRXPBUKJUEYARCNQELDCLVENYENAHXDEDPMTAHROOHEGHHWDRYICLBNJ9GBBAJBOQGOPDMLXTXSW9KHYMAXFEWICRAT9ULA9IIVPZJFPKDLHVNDXONAQHIOLQWQYXBURFJNWERJQTSREOOCICBAFEQLLFKJRNMAUIAAOTEYMFCVYOUOAHWPEYIABKSWLDLO9XKWVQOEQBULOFAGBXCEVOWXVSYVGPWUJHTXWDAGSRYEV9KHYFWDRRYKCJX9EIGEAKSLJKANC9SOT9FGKHBRONDDG9PFKRRAN9OFYBRKQEADKVQORTCNZ9IEWCWDPT9UWLVAFMXFCJHR9BRIJDNHCRBOHOU9MTXVIKHAJ9DTTWSCCWYYJBFBXJZOSXCP9ZQ9GRJQBGRHIGTRQHEDHYRVEFHXTTBEORMTSAPBLMQASZYCSCRCXDJZY9JBMBTKVPQNRLDTNQPBEVXIW9KRGGMX9UDDNSIBDCFVPDUQPFAGCRDBHOXSHUKEPULRRKCZYVUOP9EUQXUAWZHUDEK9K9ZAZWJIDTDVMDVUAUXPGVRICNFJDKKLNOASHLVQKXBYMPNJILFYUGIJDWTBCWGVXTLYCVWPYIO9IBPDHDMCNQJMSVYLTRWLBMEGOPIOBN9PGEZZAUWVYHHJGGTRLEGJHWYLTZYYU9VNFQSCNAKUUELW&#39;),
+ &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;timestamp&#39;: 1530694180,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;HKAPPXLINILTPWJIAVUMKWFLPSYEBIAEXEVASYZAWLPZAELBFLDWLAWIFFTTLVHKJSWTFYSMDB9FUI999&#39;),
+ &#39;value&#39;: 0}
+
+
+{&#39;_legacy_tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;address&#39;: Address(b&#39;QDCWBZCONHEXBGNTUBXCUGM9BUEBEZODVNYKZYBJPQXUVHFHMJPMNTYLWDFFMWHH9RIKABAJVRSIE9GWD&#39;),
+ &#39;attachment_timestamp&#39;: 1530694198365,
+ &#39;attachment_timestamp_lower_bound&#39;: 0,
+ &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;UNWJXHVXJBFIRLCBPZPJW9QVC9XWJWBDIGTHPWWMBXDLCQMMQOQSG9PQDMBDESSEPVHPUTNZYAJMZ9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;current_index&#39;: 3,
+ &#39;hash&#39;: TransactionHash(b&#39;HKAPPXLINILTPWJIAVUMKWFLPSYEBIAEXEVASYZAWLPZAELBFLDWLAWIFFTTLVHKJSWTFYSMDB9FUI999&#39;),
+ &#39;is_confirmed&#39;: None,
+ &#39;last_index&#39;: 3,
+ &#39;nonce&#39;: Nonce(b&#39;JV9BQINYD9DBFXZGJKSCHXMJVRH&#39;),
+ &#39;signature_message_fragment&#39;: Fragment(b&#39;999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999&#39;),
+ &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
+ &#39;timestamp&#39;: 1530694191,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
+ &#39;value&#39;: 940}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://devnet.thetangle.org/address/BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC">https://devnet.thetangle.org/address/BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC</a></p>
 
 </div>
 </div>
