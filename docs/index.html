@@ -13173,7 +13173,7 @@ Input - Output - Unspent &amp; = \ 0 \\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">iota</span>
@@ -13192,9 +13192,29 @@ Input - Output - Unspent &amp; = \ 0 \\
 
 <span class="c1">#DevNet node - Devnet Tangle that is used only for testing/dev purposes - no real tokens here:(</span>
 <span class="n">DevnetNode</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.devnet.iota.org:443&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variables were initialized.&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Variables were initialized.
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13211,7 +13231,7 @@ Input - Output - Unspent &amp; = \ 0 \\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="n">DevnetNode</span><span class="p">,</span>
@@ -13245,21 +13265,26 @@ Input - Output - Unspent &amp; = \ 0 \\
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>
+<pre>Checking for total balance. This may take some time...
+
 Please note, this may take some time if many addresses has been used already...
 {&#39;addresses&#39;: [Address(b&#39;CXDUYK9XGHC9DTSPDMKGGGXAIARSRVAFGHJOCDDHWADLVBBOEHLICHTMGKVDOGRU9TBESJNHAXYPVJ9R9&#39;),
                Address(b&#39;CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUICCESOIVZABA9LTMM9RW&#39;),
                Address(b&#39;UJCAVPMFHTAHMTVKGCRBKEKXYRPAFFLGHLAWHISFLWUPEXXQAWRZUSFMYPPTIUANFQMKPLTTCLAWDIUY9&#39;),
                Address(b&#39;WMPTNPCWTVBYSEBJUCRZZIINYEUCDCTWWRVZBJPMYUPRFEEJRRDUJGXE9NYGGZMSXJUJHUISFSCWGPLJZ&#39;),
                Address(b&#39;IFLULNLIIGWGV9OBDBZT9JHPVLITVOMRMAUOCGPGMIIEQABQANJTBQ9PLPSFRR9BTCOJGE9ZWIZAXCRAW&#39;),
-               Address(b&#39;LHPLHEZNT99XRSCPMQ9XOCIRUYOKVBLTNUVQPZCTMWOM9WHVYPFKGTFQ9MNEPSYKIV9MNPNEKLMLZONHW&#39;)],
- &#39;balance&#39;: 950,
- &#39;bundles&#39;: [&lt;iota.transaction.base.Bundle object at 0x7f5c6aac84e0&gt;,
-             &lt;iota.transaction.base.Bundle object at 0x7f5c6aabeba8&gt;,
-             &lt;iota.transaction.base.Bundle object at 0x7f5c6b08c9e8&gt;,
-             &lt;iota.transaction.base.Bundle object at 0x7f5c6abb9f98&gt;,
-             &lt;iota.transaction.base.Bundle object at 0x7f5c6aafd940&gt;,
-             &lt;iota.transaction.base.Bundle object at 0x7f5c6ab7b2b0&gt;]}
+               Address(b&#39;LHPLHEZNT99XRSCPMQ9XOCIRUYOKVBLTNUVQPZCTMWOM9WHVYPFKGTFQ9MNEPSYKIV9MNPNEKLMLZONHW&#39;),
+               Address(b&#39;QDCWBZCONHEXBGNTUBXCUGM9BUEBEZODVNYKZYBJPQXUVHFHMJPMNTYLWDFFMWHH9RIKABAJVRSIE9GWD&#39;),
+               Address(b&#39;NUCUUHYYGHCHMFWYSHULQTDP9IPWNNMQTMPDRUWKPNLOTTR9LHCEJPXIBTUTEFGGVAC9L9KQKXBGWGLYW&#39;)],
+ &#39;balance&#39;: 940,
+ &#39;bundles&#39;: [&lt;iota.transaction.base.Bundle object at 0x7fe1534da0f0&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7fe1534ca438&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7fe1534e1208&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7fe1534e7a20&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7fe1534db940&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7fe1534ad9e8&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7fe1534f27f0&gt;,
+             &lt;iota.transaction.base.Bundle object at 0x7fe1534c1d30&gt;]}
 
 Yes, there are some tokens available! hurray
 </pre>
@@ -13274,6 +13299,7 @@ Yes, there are some tokens available! hurray
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Please note: API call <code>get_account_data</code> consider only confirmed transactions while calculating total balance. So it is better to wait until all transactions are cleared before you send additional tokens.</em></p>
 <p>Are there any tokens left (value in <code>balance</code> field)? If yes then continue - no action is needed.
 If not, then you need to obtain some. It can be done visiting <a href="http://faucet.devnet.iota.org">IOTA faucet</a> and entering an unused address of the given seed:</p>
 
@@ -13282,15 +13308,16 @@ If not, then you need to obtain some. It can be done visiting <a href="http://fa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Now let&#39;s find a first unused address that can be used as a destination address for unspent/new tokens</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please note, this may take some time if many addresses has been used already...&quot;</span><span class="p">)</span>
 <span class="n">FreeAddressSender</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_new_addresses</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                                           <span class="n">count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># If None is specified, then it identifies a first non-used address</span>
                                           <span class="n">security_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Let&#39;s generate an address using default security level=2.</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please note, this may take some time if many addresses has been used already...&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This is the first unused address that can be used for new tokens or unspent tokens:&quot;</span><span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">FreeAddressSender</span><span class="p">)</span>
 </pre></div>
@@ -13313,7 +13340,7 @@ If not, then you need to obtain some. It can be done visiting <a href="http://fa
 Please note, this may take some time if many addresses has been used already...
 
 This is the first unused address that can be used for new tokens or unspent tokens:
-{&#39;addresses&#39;: [Address(b&#39;QDCWBZCONHEXBGNTUBXCUGM9BUEBEZODVNYKZYBJPQXUVHFHMJPMNTYLWDFFMWHH9RIKABAJVRSIE9GWD&#39;)]}
+{&#39;addresses&#39;: [Address(b&#39;NUCUUHYYGHCHMFWYSHULQTDP9IPWNNMQTMPDRUWKPNLOTTR9LHCEJPXIBTUTEFGGVAC9L9KQKXBGWGLYW&#39;)]}
 </pre>
 </div>
 </div>
@@ -13330,16 +13357,16 @@ This is the first unused address that can be used for new tokens or unspent toke
 <ul>
 <li>The PyOTA library started to generating addresses from the <code>index=0</code> of the given seed and at the same time it also checked whether there are any transactions registered for each address</li>
 <li>If yes, then in case we are after balances, the balance is saved. In case we are after new unused address then the given address is skipped. First address for which there are not registered transactions is returned</li>
-<li>That's why it may be quite time consuming some time. And now you also understand all issues regarding <code>zero balances</code> after the snapshot</li>
+<li>That's why it may be quite time consuming. And now you also understand all issues regarding <code>zero balances</code> after the snapshot</li>
 </ul>
-<p>You may be also wondering how to get individual balances for each used address? This can be checked using the core API call <code>get_balances</code>:</p>
+<p>You may be also wondering how to get individual balances for each used address? This can be checked using the core API call <code>get_balances</code> which provides you with a balance for any address you specify. Let's query for used addresses from the previous exercise:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># only if there is any used addresses from the previous steps</span>
@@ -13370,11 +13397,11 @@ This is the first unused address that can be used for new tokens or unspent toke
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Some positive balance identified. Individual confirmed balances per used addresses:
-{&#39;balances&#39;: [0, 0, 0, 0, 0, 950],
- &#39;duration&#39;: 57,
+{&#39;balances&#39;: [0, 0, 0, 0, 0, 0, 0, 940],
+ &#39;duration&#39;: 47,
  &#39;milestone&#39;: None,
- &#39;milestoneIndex&#39;: 640346,
- &#39;references&#39;: [&#39;FDQMYTZBOHGTMBQUTZEK9ZOOHBBEGAETYUIPDFAAQKSJQDMBKSY9VAGSIXR9NWLEUGIOQWXERFZDJR999&#39;]}
+ &#39;milestoneIndex&#39;: 640871,
+ &#39;references&#39;: [&#39;GBWYYHVUQCYQFYPVJUNQIESZSEJWN9MFJZUJMRXEABBPI9LLSFHALWJS9AMEIWYUIVYECVOPXXDWXN999&#39;]}
 </pre>
 </div>
 </div>
@@ -13387,14 +13414,14 @@ Some positive balance identified. Individual confirmed balances per used address
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It returns <code>balances</code>. You can see how the remaining tokens move to new unused address everytime you spend some tokens. So let's spend some tokens:</p>
+<p>It returns <code>balances</code> and you can see how the remaining tokens move to new unused address every time you spend some tokens. Needless to say, used addresses with zero balances should not be used anymore since tokens were already spent from them. So let's spend some tokens:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tx1</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">ProposedTransaction</span><span class="p">(</span> <span class="n">address</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Address</span><span class="p">(</span><span class="n">AddressReceiver</span><span class="p">),</span> <span class="c1"># 81 trytes long address</span>
@@ -13405,14 +13432,14 @@ Some positive balance identified. Individual confirmed balances per used address
 <span class="c1"># Sending the iotas</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sending iotas... Please wait...&quot;</span><span class="p">)</span>
 <span class="n">SentBundle</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">send_transfer</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                         <span class="n">transfers</span><span class="o">=</span><span class="p">[</span><span class="n">tx1</span><span class="p">],</span> <span class="c1">#one transaction defined above</span>
-                         <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1">#input address(es) that are used to finance the given transaction. Tokens will be deducted from them</span>
+                         <span class="n">transfers</span><span class="o">=</span><span class="p">[</span><span class="n">tx1</span><span class="p">],</span> <span class="c1"># one transaction defined above. It is an output TX that adds tokens</span>
+                         <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># input address(es) that are used to finance the given transaction. Tokens will be deducted from them</span>
                          <span class="n">change_address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># this is the adddress to which unspent amount is sent</span>
                          <span class="n">min_weight_magnitude</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="c1"># in case of Devnet it is 9</span>
-                         <span class="n">security_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                         <span class="n">security_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># you need to specify security level to be sure library generate compatible addresses</span>
 
 <span class="c1"># you may be wondering why there is imputs=None and change_address=None.</span>
-<span class="c1"># It means it will be taken care of by library and so make sure correct seed was added while api initialization</span>
+<span class="c1"># It means it will be taken care by library and so make sure correct seed / security level was added while api initialization</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">It has been sent. Now let&#39;s see transactions that were sent:&quot;</span><span class="p">)</span>
 <span class="c1"># let&#39;s check transactions that were sent in fact</span>
@@ -13441,82 +13468,82 @@ Some positive balance identified. Individual confirmed balances per used address
 Sending iotas... Please wait...
 
 It has been sent. Now let&#39;s see transactions that were sent:
-Here is the bundle hash: &lt;iota.transaction.base.Bundle object at 0x7f5c6e0a9160&gt;
+Here is the bundle hash: QAICYLSBWAAHDBOYVIYBDQVSOYJLSSIVFHKL9XBVAGKVEXE9W9YYGQNGTGRJHSNBXLWTSKBJYJDXNIYWC
 
 
-{&#39;_legacy_tag&#39;: Tag(b&#39;QCIBEK999IOTA999TUTORIAL999&#39;),
+{&#39;_legacy_tag&#39;: Tag(b&#39;ETIBEK999IOTA999TUTORIAL999&#39;),
  &#39;address&#39;: Address(b&#39;BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC&#39;),
- &#39;attachment_timestamp&#39;: 1530694198428,
+ &#39;attachment_timestamp&#39;: 1530716715089,
  &#39;attachment_timestamp_lower_bound&#39;: 0,
  &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
- &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
- &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;OMOQCEQIMFYSGPCCSIGVCHMKPOKMHCRUIHZXADIBDKELVLDGZTVAFHIWCMDZIFPTGNJSFUGEPXZSZ9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;QAICYLSBWAAHDBOYVIYBDQVSOYJLSSIVFHKL9XBVAGKVEXE9W9YYGQNGTGRJHSNBXLWTSKBJYJDXNIYWC&#39;),
  &#39;current_index&#39;: 0,
- &#39;hash&#39;: TransactionHash(b&#39;MFFVLR9SFFZLGNRJMUHZSNZAGLDELLGOOHQI9AUMNIKAWJPEIAHQMEGMNDPDIZDZJAWVJ9LTQJHVHL999&#39;),
+ &#39;hash&#39;: TransactionHash(b&#39;WETZIQM9AJZWJMNUSBPK9SJNRVJNNAJVRAHQJHAAPUSMUDUZUSUVDR9XZSAZXCLKWDNCRBOA9XKXBM999&#39;),
  &#39;is_confirmed&#39;: None,
  &#39;last_index&#39;: 3,
- &#39;nonce&#39;: Nonce(b&#39;LARNNZHRUPXZO9OLZAIKLLBAGCL&#39;),
+ &#39;nonce&#39;: Nonce(b&#39;ZVWKVNQPJTMAJTLPFLRAXAVGRFD&#39;),
  &#39;signature_message_fragment&#39;: Fragment(b&#39;999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999&#39;),
  &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
- &#39;timestamp&#39;: 1530694139,
- &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;VSLLSQTFWINTDRXRDBPPEJYWFRLWILKWXAQERCSBSJQFX9JXLGIVARCPPSGWRQUAFAFBOH9CSNZNMV999&#39;),
+ &#39;timestamp&#39;: 1530716591,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;IZEAQTBQADTZLIRMQBTNCNUOBNJBKZUSIQUIFET9GQOSVJQMCIROPAKFYJ9QV9UJ9ZREYZF9QFKABR999&#39;),
  &#39;value&#39;: 10}
 
 
 {&#39;_legacy_tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
  &#39;address&#39;: Address(b&#39;LHPLHEZNT99XRSCPMQ9XOCIRUYOKVBLTNUVQPZCTMWOM9WHVYPFKGTFQ9MNEPSYKIV9MNPNEKLMLZONHW&#39;),
- &#39;attachment_timestamp&#39;: 1530694198410,
+ &#39;attachment_timestamp&#39;: 1530716715074,
  &#39;attachment_timestamp_lower_bound&#39;: 0,
  &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
- &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
- &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;OMOQCEQIMFYSGPCCSIGVCHMKPOKMHCRUIHZXADIBDKELVLDGZTVAFHIWCMDZIFPTGNJSFUGEPXZSZ9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;QAICYLSBWAAHDBOYVIYBDQVSOYJLSSIVFHKL9XBVAGKVEXE9W9YYGQNGTGRJHSNBXLWTSKBJYJDXNIYWC&#39;),
  &#39;current_index&#39;: 1,
- &#39;hash&#39;: TransactionHash(b&#39;VSLLSQTFWINTDRXRDBPPEJYWFRLWILKWXAQERCSBSJQFX9JXLGIVARCPPSGWRQUAFAFBOH9CSNZNMV999&#39;),
+ &#39;hash&#39;: TransactionHash(b&#39;IZEAQTBQADTZLIRMQBTNCNUOBNJBKZUSIQUIFET9GQOSVJQMCIROPAKFYJ9QV9UJ9ZREYZF9QFKABR999&#39;),
  &#39;is_confirmed&#39;: None,
  &#39;last_index&#39;: 3,
- &#39;nonce&#39;: Nonce(b&#39;PGVHRDQWWLTFAGCSWFKGSPIPWVW&#39;),
- &#39;signature_message_fragment&#39;: Fragment(b&#39;LOILWY9BBFCVHHMMSW9AIZGORRICQGFFBTRROMIFPJHYEERMSYNMIJCPWHHISLCMBXE9HZQUVXNAYBPSAGRMNYWPGBLOTEJEJN9G99WUDCKWAMWOFJYVKYYTJA9YGLTLPXWNCKRBNUJTJYUNCNZLNXYDDZGKUYLLFWNNJAYWFHYCHPZHKCBNDVGSTMKUHZ9UDZWQLGSSKBEJWX9GCHVR9ZOINCKHYQVJAAQZEWXXBXMTCCUKTBCNJBLWDKFXANIGEHHVXHTRMSNZRXTIBDZLAU9EKYWQIY9PAXJXPRRXFLLWQNWNRBBMKCLDVOPYRZV9LIRYSHME9AOYQBNLXNZL9FPSURXZHUKFYIYWDNKBZHIUDTLVENDUNJOR9BNWAUCFDDLLJY9HUFOWLAIQRUJJAPFTUVJW9FLYJLDENQXPDTLTBDDNVSMKERJSIONKPRIKDOYPRISYJCOWGIWUI9UKCMWFCRM9IZSOSKZHJCZLADKFZKNSHL9HURSVQKELDPOIJTRSODE9ASBQGS9VYCSKVJMWIFIYDCEITEJUXZKWJBVLRSULIYSGREZYSIIDH9LFQEBSW9MOWUAIPDUXKVSZXRRGQXCW9JGODIFALIXZEOSF9L9KIPBGZXIMZWLAQBPGVGFT9HMCBFSRF9VYLQDLXKMQ9PUPSTRMPLOGOXWRLOWMYL9TUCAFRJKDCKFAHAXLPXBWKZVHRM9IWQRFKOKCPLXTZCEVLODBVWZZEKQ9CTIFCNUVTCMGUUAE9NEUFSBCZW9POMRZOZFFVEJCDKLLQGGIWQRZTCF9ATVTPTRQRXDPHUTNQAKGSCKIFDRKXZITAPONVIQSLD9SDLWQYCIPAKTJKGCINMUPJGAJOXNFHFRGXBUYPCJSVDCLUNZMUQJPTHSDTPHZXIZRHWDSMMXUTYVQXGHHQAAKO9DFWJITLBNBRHKEWFDQYEJVGJKLSVSYFNDUHPDCRTLBYFVIEFPF9ZKXRVISI99PM9INKTCVH9CNWBCUGFIYHUMUXRXZDXKWBYFBKDJBCAAHR9TYRSIBSEIBKNGQWLWWITWGXUWWTDAFUVSBMKEXEZTZXADXQDJVBAQJXSJRVSJEVKEYHJSMIRSDONAHKYHPQP9LZHUJNDSDMDQUH9CGISJWLYEDF9IYNQAZTBQFUINA9X9LTQHP9GIGECDSBTPMWPTXCXOGDGREUTSMSHKZ9XULOHIPSVXLJSMOLXGQHQMOCEGVJNXPDBKBNGEEXKUZAKEWMAHAGJJBJWCOFNCXGRAMKGWNYLRFROSDKTGCVCJEYZZ9FPGHEAFEHANQGGAEPKQWHOQMZTVPQDRKIRGMOFOS9QYIUKIIMOMLENHDEOLNAWXTPXXCEWXMQAMNXWAJDDPL9PBCU9LDCFYLFVPBFPGQFLUFTNATNUDINOZHJYIHPWDXASXXKNPKLAHYYDVPHBEUBXIPBUPILBTMNXQ9XOJFBAAXVHOZAJJAWFNJZNOLREQHHFKIOEARWHEMBUCXGQFOOPSPVFQ9QHOPWNAZUTINPFDZVHLPWP9RDLGBCRXU9XKHP9DXCODHMXHXZDWHNKAUIZSQVNJZPWTDIZMWQJWREC9AGWTRYZTPLOJUGBZBPSXFUDGDADKPPQDC9FG99NJERNISDLKDJYMKASJHNZUYAGFDDKDEUHRUBDXVMMTCJIKLQTYAHKZZOUDDHAMGROVLAQEWWIZPOERXONPHPSBGLDAAMTNQGBYLUWHGIJOFVMSEIYFBSHHEDWSLZUNRSTRIJBCGBBGBNNNIVHC9MWZM9CNPSVJKVWDOJGYRHZTMJMGGOPRSITGKFPEQHNXVNNABIXDFOKXSNGZJZEENDXOHIHATDTOOB9EQIDZFFEVEQ9WVYBXLK9GEMSZN9RZULHTKPVB9WJHTHXFIQLPMDIEYVEUTPAPQVJHREEUEHATXGBQNIPQAALXWBKRIMXREEVJJYDWYRKURQMVAWZZZPTJRMOXYHOORCUGPLF9RQIDHRUHOPPEKHTFFJTNWKRGO9FCZNCAYXACTKZNRKBWQYPHHGFUJDSDNDVYKTTONVTGRMOMXZXBD9ZFLEN9ECXXJANLBQHHLROMGLKVTFPCB9LF999OCZGFGOMRZJBRZOCNG9PZS9GEVEIIGUMNYIQQYPUOYOKDAOVQBIB9XEQMZHWPSURCRHCFCTVFATFHXJLX&#39;),
+ &#39;nonce&#39;: Nonce(b&#39;KJFOJUDICDFCLQZ9LR9IDCQUHFO&#39;),
+ &#39;signature_message_fragment&#39;: Fragment(b&#39;IOJDUTXUUTQAFABNP9MNFZCJCVJDZFPFCEO9CNCJZJORGGMEAYGCYCTUJXCRHMWDWQGTLVLKUKSJZDOFBQKOWBBBJLGCJMPMSIUPKNMJUTK9SCLJEJIAXJPIBAMKPIPWV9YFOISHKKODWCLVKVU9ITSYPDECQYWHDDVGBMENYIYUXSMZBVDJ9LFBD9ONFQ9WGJQXSULOFZPYYNOLJMLPLFSGOXQYLPXQJXWLAFGEINWQVKCTMPANJBLWDKFXANIGEHHVXHTRMSNZRXTIBDZLAU9EKYWQIY9PAXJXPRRXFLLWQNWNRBBMKCLDVOPYRZV9LIRYPJOBHQVN9FSHDUQZGIVSRJZZRPMXJXNGAFKBFCZFKEXTGCXKSXGIPXDCZVMVWTHSADPWQFVELEVUMSNMZYGPLREFOGLQHGUJ9SBBNWACE9TQ9QEIUQVANEJIVKHRRJTRO9VBTG9GQDSABOSCFXTGYLATTYKISEQSNWCQ9MSQMTFYKX9BACKXLOIETKSQRWBPIEMWIQYEJVRKDIAAQFHREQNHPTMTDGDP9ZUOZMPMIEMYVGDNCUDYSIIDH9LFQEBSW9MOWUAIPDUXKVSZXRRGQXCW9JGODIFALIXZEOSF9L9KIPBGZXIMZWLAQBPGVGFT9HMCMTFVCNLQXTUPNS99IAJYQDBZUIL9SPRDSMVVPCSESEXRAWQHGHAUSOXDFXQADHCPVJBOQOZOEWITOYWIWZPLJVXY9JAD9UBVEJWETMNGJKIPTTVFCAIWWZWZD9SC9AELKBOBFQESCYQNEUHARILLEACMNQPUCHOTBWMYOMXBV9LOHJOAARYAGLUFVKQWPPPAEJUKFM9HOWMYPQGJYMKTLLXOQSSCBXNLSSGYMT9EVKRCFARJHLBBORQJIRBGHIOE9PGGIJFMBXVONARZTOXTWRJJRPDEXSLRLWXJWIS9WQXIQTWPIPIXIE9DIOVNBOZUQOGWGXFETAAQKGWDNKU9LVOGABRR9EGZAFNBTUSEVIXFMVWXDRGOTUOIYCNVMB9BDUU9R9KACQZTUDAPHFMCXKTYV9GGDHVYJBCTIJITGRVUVDHERVX9JHNCVKSUII9RXWUXYMQMACPWLS9HYSAEPOBNGATUSXOOX99XVAGITJMIOFDOBJHTHWITVKRFZMDGSEWPFOYBNMBK99LQ9PVJMNDSNJUCOJIWVOKBLIIIEQXACTD9FZIEPIANOIIWCUVWKIHHJZ9REBJIMJQBVLIVE9FNXNXHRCBY9DXYFFW9E9DHFBWOCATUAV9UBPMWXXTSFSV9DAR9RWEGLXA9CPBOJLVMZPIGNYNNQDOVWKIMDDBYNVFMKCCHDCMURPHIUUXGSVBL9AXPOOJVVSRYAEDVVXWWYXTGUEPZCGPFDSJAVUCACZOJSTFSJDBFBTAOWEUOAUCGFWWNQPAGAVQEIYFZCXXBHSJ9GFXHUOZOKCAP99VOYSGAHYNRAIBMVTTHMJDNPLGJYTJDXNLTIXTNCQIEJKGCBCITVMQFTGQTFRAVERWLCKEJNEHQLAEGAB9YXIQQ9UAOLP9DEDPDADPEMHVBSPGVZGROAKKNYUNYKUCNXGESAPXIF9GDNLEPMTCFQYIGDMUV9PBQCUHARZSPJPPCVEXHEHLC9HRF9CFRJFD9TPYXPHMDKMWWRHSZ9RCBMOMRLPOQJXRLXJWDWKLIBNBADLXUKFAGAQLUAYKKVKXIQXTZLMHNCAI9XMCZKBNSBEZNAFIOOHTIUSRTDJENHCKKALTZN9COURJGVSKYBCSWYUS9TXWFPGDCSWLKSXCSNMUJRBRHMFUZQDUWUNCWNWLKJOUSQY9VPWEYMUH9VRHZFCBKYTRMCHEMNMBKQCLS9V9HUPNGCHCKCDHPNLYKNIQWANCAOP9GQDKO9EXMAEI9ZIYTVQDLDZHEOWLZKEOBTXYLJNTGDLVUOBTQMX9CTLPHE9VAYYCQGMHUDQUOJNF9EFJCYESEYGHEMTHVQSZIHFTUCDHCAOFLAOGHRSSFQKHAUCMWLIDMDOMODCVDCFQPYPNRI9SUEJQCQ9FBKKWFDRJPFDZGGLQDKSOHQFZICHVWWCBPNOSYROXAW9JRDPWXSLHIVKYFHBKBVNAUNISDBTZWZ9XVUAKHFOTRTTMVMCAPMBIAZVRFVFRAVRHSDGSQPWMMCJOBUKRTQKPOIHTRM9BVPKW&#39;),
  &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
- &#39;timestamp&#39;: 1530694180,
- &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;QDYSRQPUQEPACVNCZ9URNSEAMEAUGTIJBPYJKJZCMMZTMKUSZOTXCZT9XGMN99XJTAEBEXWDVCZWHQ999&#39;),
+ &#39;timestamp&#39;: 1530716644,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;CBDARFE9ZEOACTFJKPGWHIFPRQMSDITQLHAIFOBOFZJXBGKUSTFONLAGNETBXPBFROQMCDXZUGLXFB999&#39;),
  &#39;value&#39;: -950}
 
 
 {&#39;_legacy_tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
  &#39;address&#39;: Address(b&#39;LHPLHEZNT99XRSCPMQ9XOCIRUYOKVBLTNUVQPZCTMWOM9WHVYPFKGTFQ9MNEPSYKIV9MNPNEKLMLZONHW&#39;),
- &#39;attachment_timestamp&#39;: 1530694198396,
+ &#39;attachment_timestamp&#39;: 1530716715060,
  &#39;attachment_timestamp_lower_bound&#39;: 0,
  &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
- &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
- &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;OMOQCEQIMFYSGPCCSIGVCHMKPOKMHCRUIHZXADIBDKELVLDGZTVAFHIWCMDZIFPTGNJSFUGEPXZSZ9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;QAICYLSBWAAHDBOYVIYBDQVSOYJLSSIVFHKL9XBVAGKVEXE9W9YYGQNGTGRJHSNBXLWTSKBJYJDXNIYWC&#39;),
  &#39;current_index&#39;: 2,
- &#39;hash&#39;: TransactionHash(b&#39;QDYSRQPUQEPACVNCZ9URNSEAMEAUGTIJBPYJKJZCMMZTMKUSZOTXCZT9XGMN99XJTAEBEXWDVCZWHQ999&#39;),
+ &#39;hash&#39;: TransactionHash(b&#39;CBDARFE9ZEOACTFJKPGWHIFPRQMSDITQLHAIFOBOFZJXBGKUSTFONLAGNETBXPBFROQMCDXZUGLXFB999&#39;),
  &#39;is_confirmed&#39;: None,
  &#39;last_index&#39;: 3,
- &#39;nonce&#39;: Nonce(b&#39;9BIAYAGERBCBMRP9SKNEVPJRMGQ&#39;),
- &#39;signature_message_fragment&#39;: Fragment(b&#39;IPO9VXOXFTEMC9FSTBGYFQMPCUINFJSLMQUNSWKIVCUZIENMWWM99VOJZCZUSWBRXPKHNUH9WYMWXEBHZBTCSZDFWUINJNCNRAIVSBVWMCODUBXEBRIQVIQIAXSGTEUYIF9CSCDTASLQVY9CPVHGHETTY9OOTGRVQBHHTRHCMXUAWUFHWKVNFHCJEZDARZZLTHFENQUFHTJ9PHWFZQEEOJNCUVZUSWDTY9DQXXPBMYYDCYUXICCXNSRFBJSN9XXVYLZC9MJAOAZHYL9FBUSAMQFADSDOKDZHRNJVWZXKO99UVKOLDBSZKCWUJEILTJCDCFHWXRIJCHYXWRMHUCDGCZAUXJYTAJNGUOBYUNRQAB9TONNCUMVXUSAICLMTPISQCXGNZZLITQGJBRAPVDCQCLYSXMVVATNX9RSMBRF9JG9IVTMMXEMX9R9PPBANTDTGWFFTVCYXMCMTW9HWOHZWHPFG9CGXFZK9NE9HFAALLETXSTYYUTTRJMQQAWYXGYJMSCRSCNDQHCEMFNSUGQEJTZKJXQCSTGJKUGZEWRHPEIIHRKUZXLNBAAWARCJCURRLEEWPAKEVKFXXYKCAVXTHJLGUZUTAQWKXKLQANMHJIUCRPFPPK9PAYNPAVWFHUPBKGHZBLHLBGMKVIVZPMNFOVGVPQSGJRHER9RWU9OAT9WKVRHOSBXWDJYSBKKZGDFQPPBEEQQILL9CVESNANRSHDWHOBEQAOOK9SDVFONGOZHSVOPBFIZGMDSUOXMJHLVAZUMAFMQKTXNWGEGNIXNJLHERUSMP9ZNTKFIIUAHWAJW9CTARBPI9XJYXMNLQVFCX9CKHT9TWEPCJTNUETMHMBNXGRTKFYSTITBUEVRWZGREHCKQRVNYOWJARDOFWEZADOUYWVITATBHJTYUNZBNCPCPKJPTCGGYZEQGXXVCTVGQRMTFJTUHRHDKCHLNXOXEPMPFDUNWAQTPZCNPCSY9S9VDRITIVCVAAUMKLXNQCUQQBSLNZDXMJDBRQ9QGQQZZXYVQRDDCM9UIBJCQWR9AWMSTJVQSYLAN9XOE9AMNGE9JZPEDOAAYWIFIZKIFPWPDUXKUMJZREUWCJRONFMHHQBWBEFUPBTVVENIK9BOMHNTPQLIWHXFJMVGKLZSKM9BGBUVGTXKAGJEVFUZJFNQIACCMUCZPJIHXQOJNXFURBTSPWJJYSQPYJMVGWECWW9NQYHFCIVCVIWBSKTFUSAJNUSWKHMILXWOKFHGFGE9R9NFNJX9FTHYEDBUFMBVUNGSNQPLZKNKGIDOH9SKE9DPAQ9GJZGNJDTHBQQUJ9LWUYIODVVRMTQJCBUXEN9VLALVGCZQQDHOMVBSBMSARWOJOBHMAFOLH9ZMZUUWXSRKYQUKDETPKBURFXPKBZFXSUCUUSNVCLBFXFMBYGCEVVHAOYOLFFTSVUAHBAOVQKOZOGVKB9EWNFQIDIUJZGARPJQIJWTNUGUWQZXKMNHZJPTQXQ9AHBPZEFLUQA9RB9IJRXPBUKJUEYARCNQELDCLVENYENAHXDEDPMTAHROOHEGHHWDRYICLBNJ9GBBAJBOQGOPDMLXTXSW9KHYMAXFEWICRAT9ULA9IIVPZJFPKDLHVNDXONAQHIOLQWQYXBURFJNWERJQTSREOOCICBAFEQLLFKJRNMAUIAAOTEYMFCVYOUOAHWPEYIABKSWLDLO9XKWVQOEQBULOFAGBXCEVOWXVSYVGPWUJHTXWDAGSRYEV9KHYFWDRRYKCJX9EIGEAKSLJKANC9SOT9FGKHBRONDDG9PFKRRAN9OFYBRKQEADKVQORTCNZ9IEWCWDPT9UWLVAFMXFCJHR9BRIJDNHCRBOHOU9MTXVIKHAJ9DTTWSCCWYYJBFBXJZOSXCP9ZQ9GRJQBGRHIGTRQHEDHYRVEFHXTTBEORMTSAPBLMQASZYCSCRCXDJZY9JBMBTKVPQNRLDTNQPBEVXIW9KRGGMX9UDDNSIBDCFVPDUQPFAGCRDBHOXSHUKEPULRRKCZYVUOP9EUQXUAWZHUDEK9K9ZAZWJIDTDVMDVUAUXPGVRICNFJDKKLNOASHLVQKXBYMPNJILFYUGIJDWTBCWGVXTLYCVWPYIO9IBPDHDMCNQJMSVYLTRWLBMEGOPIOBN9PGEZZAUWVYHHJGGTRLEGJHWYLTZYYU9VNFQSCNAKUUELW&#39;),
+ &#39;nonce&#39;: Nonce(b&#39;ESSCWJWVUM9JQPD9DGCRAVNOCK9&#39;),
+ &#39;signature_message_fragment&#39;: Fragment(b&#39;F9NQRQZDMNFAOWUPDOJVWDFJSTXPEWZFXIXAYKQVOJRK9GNKFPVVVJLAEWLVNJZWSAGVEKMHBPRFERMQWXNPINIAILER9SXFZEIWJDAOTUXQULDCMJBFRSAJNRECLGFTAOHQXWAIBRPWNXJVJGAQXTZJUJJKNTUCHXAULTVOZBGGRCSMAYINPPSCOPED99NJWNRVKW9NQAEISODTAPFXQZEJNPYWMFYNRLJXPUAIVSIP99BKHYDLLULHACIRIFDLO9GYAAJNMDXWE9RFYUCXCPC99VBDGMIXWUWYAHGDOQEJYKGBQTLSAI9MWOMNTWTIN9LATMNRPYMB9VDFLJWSELCGN9ECWNFPSLBSDYQXLHVIXPSEHPMTB9ULRHKZXMSEBRCYEZNITPZWSVOHUAAEBDDXTK9NEJQDXLPCMIEVCRIDNHJM9ULAOCDAWXAOCUEEFSPKBAANXI9VGJMFQFIGMKDDMGDQVRVDLNSZQCMKWOFJHYJW9IDFBSJV9QCL9CVHEJHNAOGSB9MLQZSPLRNNYAXMYTDJVYUUIRFZEPPKRKEHGL9TWBNMWRBLMAUCQOO9BGWNSBPLRQIPZEDNMFLIQBBORGAEC9WNVDP9TFXXPG9SHEMO9VAWDTQE9ZFXGCFJCCJEAU9BZUXLZXCLUCSPMQWJSDOSKSKSEITDMQNEJIEFEMRIHWHUTEKMEROFDTVHGNAOHBRWFXKFYA9RIAKOZZHUXNTRHYNUNSKMCGGTFEVILMUEDKIWPVOHRFLXJMWDMZQBWQQBRXNXDJKGWONFQUTGKVILQMHNGIVJGJGLECUXKSUSBDBPHHIRICKAY9VSQEDTZMSGGIHUKWABHFLTSQYECMHZSLGDTBMSKVVCVFADKYHQLSCWQFJXOOX9LXREFKPQYTMMMOCXMSXDZJ9PAKOOXBEHJLBHYP9KNQNCSAMMWZKE9L9MZXPHSLEAMUQCRHVQCOVKZDMW9WSICZPZPSE9FUX9PXEMWGOLJGHEXBRCQGBUIWHLKHIHAWXMLOGNBHYQBNBNBLTOMZPVWWFBEB9RLEKIWUJYFVQHUWOAQPUVRXIUZBPTTYWVLCPTXFZZYDBEVHSNGOPCWYDSACGQLWQBUVIPEXUMKNUSIJZGZ9ATSWOIMWGVUTOOFWWIDUAZNUJJITLJNHZBOCPZUBAHEENLSFEYTPIXZMASPWIAJQDZBPWWZOACQHNBYXLDFGCLVTXAK9VZCNJCLRBYEJ9XIQNCPEHRYSAZ9PJMANLGBMXLLBTJSFUPXINEV9QOSJCUZUBJUHUSX9CZRZP9FIRCYXXZBBSEOZWVALZFAKBDEZETWDXFMLQ9DRAXSQGVBAIKAVPITCDCRLFXBEVTSEHCZYEYEJDPOHLT9JEZPDUNGIMJUW9FEKP9VIV9MYRIZ9XZMLU9YTVVKUZNW9FVUEKYXDCRYGJ9FJLNORKCMPFWXEYTFZHMKZ9P99GILRQPKJDQQ9JEXCCZMOP9TXTKVSBBWBGDMYZYRLBHLGLJV9DFKDOEIZCHAIQGCWBCHXWXQIDLEZXSSDQ9KLSVYTRDSHSXQH9OMOMQCQKRIZBZARXTCAQKEXUDPZXWL9CWQNIC9KDNDBYNNBIYWH9HTA9NKLODTRFZCDEUPRSHZUKDVBZTIUULOMZCGZVNLDQHAHLHYQOVLXHZAOPPCQFGCONV9RMMAECQLLNGKHOFAPJZCTRTPAHPJRZNPMVXTGIVFOEIFGMXKVLMBWKEVXQBTYCPTPPVDZPURSMPJPN9LKXAJVVFJDMKAYXCBBDERADM9KUY9KDUFTKLUEMMB9CAOZXEZSNTWROBDKOZPTFXWGJVYVGQ9BWHMIFFTU9HXBOODPGHZUCABDWYUEAMTMOCACAGSVHPMODDEPWFXIEVOMBHODBSCUMKCFQEHNUXLHGVCUPVCYPQTKFDRUVCUIQYYKXGZBYDJ9PBLEKGHXOKVQHRQNGFNTOTOEZLYVJVUS9KLKUUFJ9LKYHQBGTIBTLAHMPMYMCLLGKGEVTOCRCYFYCRPKCMDCWFKVEMNQHKIPGTD9SL99SWQNGGUIPXYLRPCNRCIQOISMLREHKYLPAPRJCVGAQNGDXRPAOHBJHYY9BXNXNQLMY9NHDLJMHOUJRGKN9IXYXOLPGJDGYTCWEXMBAOWSKTQARLFHI9FHUQX9VOAIBRWFHPGEMCJWINOHZ&#39;),
  &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
- &#39;timestamp&#39;: 1530694180,
- &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;HKAPPXLINILTPWJIAVUMKWFLPSYEBIAEXEVASYZAWLPZAELBFLDWLAWIFFTTLVHKJSWTFYSMDB9FUI999&#39;),
+ &#39;timestamp&#39;: 1530716644,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;EKSWAUCWJDKSNEYAYYNNVSRFHXDCGLQKRHFSCOMXYBXJOCZLVNAKJTAAN9ZHBLYRYPKRQPBVFUDGQL999&#39;),
  &#39;value&#39;: 0}
 
 
 {&#39;_legacy_tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
- &#39;address&#39;: Address(b&#39;QDCWBZCONHEXBGNTUBXCUGM9BUEBEZODVNYKZYBJPQXUVHFHMJPMNTYLWDFFMWHH9RIKABAJVRSIE9GWD&#39;),
- &#39;attachment_timestamp&#39;: 1530694198365,
+ &#39;address&#39;: Address(b&#39;NUCUUHYYGHCHMFWYSHULQTDP9IPWNNMQTMPDRUWKPNLOTTR9LHCEJPXIBTUTEFGGVAC9L9KQKXBGWGLYW&#39;),
+ &#39;attachment_timestamp&#39;: 1530716715040,
  &#39;attachment_timestamp_lower_bound&#39;: 0,
  &#39;attachment_timestamp_upper_bound&#39;: 3812798742493,
- &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;UNWJXHVXJBFIRLCBPZPJW9QVC9XWJWBDIGTHPWWMBXDLCQMMQOQSG9PQDMBDESSEPVHPUTNZYAJMZ9999&#39;),
- &#39;bundle_hash&#39;: BundleHash(b&#39;PWNCLFFBZNWEOGFCDFL9LIZNBPUPBEFZTGLYSSSJTDSIRHZAYJRCWGCDDSKYXIIRKRFNVUF9LWDVOFGGY&#39;),
+ &#39;branch_transaction_hash&#39;: TransactionHash(b&#39;OMOQCEQIMFYSGPCCSIGVCHMKPOKMHCRUIHZXADIBDKELVLDGZTVAFHIWCMDZIFPTGNJSFUGEPXZSZ9999&#39;),
+ &#39;bundle_hash&#39;: BundleHash(b&#39;QAICYLSBWAAHDBOYVIYBDQVSOYJLSSIVFHKL9XBVAGKVEXE9W9YYGQNGTGRJHSNBXLWTSKBJYJDXNIYWC&#39;),
  &#39;current_index&#39;: 3,
- &#39;hash&#39;: TransactionHash(b&#39;HKAPPXLINILTPWJIAVUMKWFLPSYEBIAEXEVASYZAWLPZAELBFLDWLAWIFFTTLVHKJSWTFYSMDB9FUI999&#39;),
+ &#39;hash&#39;: TransactionHash(b&#39;EKSWAUCWJDKSNEYAYYNNVSRFHXDCGLQKRHFSCOMXYBXJOCZLVNAKJTAAN9ZHBLYRYPKRQPBVFUDGQL999&#39;),
  &#39;is_confirmed&#39;: None,
  &#39;last_index&#39;: 3,
- &#39;nonce&#39;: Nonce(b&#39;JV9BQINYD9DBFXZGJKSCHXMJVRH&#39;),
+ &#39;nonce&#39;: Nonce(b&#39;ZVFNDEIHGMFIWHQMQVRUNGWPZOQ&#39;),
  &#39;signature_message_fragment&#39;: Fragment(b&#39;999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999&#39;),
  &#39;tag&#39;: Tag(b&#39;HRIBEK999IOTA999TUTORIAL999&#39;),
- &#39;timestamp&#39;: 1530694191,
- &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;XJCTUNEXSGGGW9ZJUNENOFPIXJOETZLNTCRRPISNFFMGTXYQGNYAHLZDILFPI9ABUTZIFBZUISBAA9999&#39;),
+ &#39;timestamp&#39;: 1530716706,
+ &#39;trunk_transaction_hash&#39;: TransactionHash(b&#39;OMOQCEQIMFYSGPCCSIGVCHMKPOKMHCRUIHZXADIBDKELVLDGZTVAFHIWCMDZIFPTGNJSFUGEPXZSZ9999&#39;),
  &#39;value&#39;: 940}
 </pre>
 </div>
@@ -13530,7 +13557,25 @@ Here is the bundle hash: &lt;iota.transaction.base.Bundle object at 0x7f5c6e0a91
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="https://devnet.thetangle.org/address/BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC">https://devnet.thetangle.org/address/BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC</a></p>
+<p>Let's review all transactions that has been prepared and sent eventually:</p>
+<ul>
+<li>The first transaction <code>current_index=0</code> is the <code>output TX</code> that basically adds tokens to some address</li>
+<li>Transactions <code>current_index=1</code> and <code>current_index=2</code> are two parts of the same transaction - <code>Input TX</code>. This transaction deducts tokens from the address(es). You can see negative <code>value</code> in the transaction <code>current_index=1</code></li>
+<li>Why there are two parts? Since the transaction spends tokens it has to be signed in order to validate the ownership. Signature is generated from the private key and the signature can be observed in the field <code>signature_message_fragment</code>. Here is the thing. Do you remember when different <code>security levels</code> were discussed? There are three security levels available and the given level has the direct impact on length of the signature. Since <code>signature_message_fragment</code> is of the fixed size, if <code>SL&gt;1</code> then the transaction has to be split to be able to accommodate full signature.</li>
+<li>The last transaction <code>current_index=3</code> moves unspent tokens to the first unused address of the given seed.</li>
+</ul>
+<p>The following tasks have to be done behind the curtain in addition to the standard transaction preparation process:</p>
+<ul>
+<li>Search for address(es) with some balance until total amount of tokens available is large enough to be spent. You can use more input addresses if needed</li>
+<li>If there would be some unspent amount of tokens then also search for the first unused address</li>
+<li>Spending transactions (Input TX) has to be properly signed and split in case of <code>SL&gt;1</code></li>
+<li>There is also some quick check performed whether resulting number of tokens is zero (no more tokens, no less tokens. Number of tokens has to be balanced).</li>
+</ul>
+<p>So basically all steps we tried in the chapter had to be done also behind the curtain while using <code>send_transfer</code> extended API call. You can also see that some of those operations may be quite expensive in terms of time while being completely stateless. In real world applications it would be better to save some states (index of last address, used addresses, etc.) to avoid too many expensive operations.</p>
+<p>You can review the given broadcasted transactions also in the tangle explorer (for devnet):</p>
+<ul>
+<li><a href="https://devnet.thetangle.org/address/BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC">https://devnet.thetangle.org/address/BMFSMZMNBGKHAWPIZIOMJGRBXZETVSAYDSTDQCHLYTBWZMIXLNXF9XHLTMOCATFVFOMBQF9IOQGPEBPDC</a></li>
+</ul>
 
 </div>
 </div>
