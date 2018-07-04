@@ -3,6 +3,7 @@
 [![Azure Notebooks](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/launch-azurenb-blue.png "Azure service provides an interactive experience with the tutorial")](https://notebooks.azure.com/pzizka/libraries/iota101)
 [![Jupyter Notebook Static Viewer](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/nb-Viewer-orange.png "Jupyter service provides a static experience with the tutorial")](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
 [![Complete Textbook](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/Complete-Textbook-yellow.png "All chapters combined on a single page")](https://hribek25.github.io/IOTA101/)
+[![IOTA Ecosystem](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/iota-ecosystem-yellowgreen.png "IOTA Ecosystem")](https://ecosystem.iota.org/tutorials/iota-developer-essentials)
 
 These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on the platform and be ready to build own solutions based on it.
 
