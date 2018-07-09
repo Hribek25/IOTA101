@@ -53,6 +53,8 @@ Disclaimer: I am not associated with the IOTA foundation. I am IOTA supporter.
 ----
 ![Thank You](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/thank-you-lightgrey.png "Your support is deeply appreciated")
 
+The IOTA Developer Essentials is a long-term project. The main goal is to provide a comprehensive onboarding information to anybody interested in the IOTA protocol. It will cover much more chapters, more code snippets and it will also cover more languages. There is a [roadmap](https://github.com/Hribek25/IOTA101/projects/1) available. Your kind donations will support the vision to move forward. Thank you.  
+
 Donations ♥ DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9
 
 ![qr code](http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9&qzone=1&margin=0&size=120x120&ecc=L "donation address in QR code")
