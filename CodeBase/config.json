@@ -1,0 +1,10 @@
+// Active languages within code base + Python which is native
+{
+  "configtype": "codebaselanguages",
+  "activelanguages": [
+    {
+      "language": "NodeJS",
+      "sourcefile": "codebase.nodejs.ipynb"
+    }
+  ]
+}
