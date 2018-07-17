@@ -1,4 +1,5 @@
-# IOTA Developer Essentials for Developers, Tech Enthusiasts and Beginners 
+![IOTA Developer Essentials Banner](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/IOTA-Developer-Essentials.png)
+# IOTA Developer Essentials
 [![GitHub Repo](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/GitHub-Repo-green.png "Home of the tutorial")](https://github.com/Hribek25/IOTA101)
 [![Azure Notebooks](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/launch-azurenb-blue.png "Azure service provides an interactive experience with the tutorial")](https://notebooks.azure.com/pzizka/libraries/iota101)
 [![Jupyter Notebook Static Viewer](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/nb-Viewer-orange.png "Jupyter service provides a static experience with the tutorial")](https://nbviewer.jupyter.org/github/Hribek25/IOTA101/tree/master/)
