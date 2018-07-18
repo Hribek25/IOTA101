@@ -1,5 +1,5 @@
-// Destination for HTML static files
 {
+  "_comment": "Destination for HTML static files",
   "configtype": "htmldestination",
-  "perex":"> *This textbook was generated automatically from a [GitHub Repo](https://github.com/Hribek25/IOTA101). Visit the repo for more information.* \n\n%%README%%\n\n--- \n"
+  "perex": "> *This textbook was generated automatically from a [GitHub Repo](https://github.com/Hribek25/IOTA101). Visit the repo for more information.* \n\n%%README%%\n\n--- \n"
 }

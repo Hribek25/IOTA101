@@ -1,5 +1,5 @@
-// Active IOTA textbooks
 {
+  "_comment": "Active IOTA textbooks",
   "configtype": "iotatextbooks",
   "activetextbooks": [ "01_IOTA Essentials.ipynb", "02_IOTA Transactions.ipynb" ],
   "readme": "README.md"
