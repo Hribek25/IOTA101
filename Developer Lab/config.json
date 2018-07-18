@@ -1,4 +1,4 @@
-// Destination for language-dependent interactive notebooks
 {
+  "_comment": "Destination for language-dependent interactive notebooks",
   "configtype": "languagenotebookdestination"
 }

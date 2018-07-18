@@ -1,5 +1,5 @@
-// Active languages within code base + Python which is native
 {
+  "_comment": "Active languages within code base + Python which is native",
   "configtype": "codebaselanguages",
   "activelanguages": [
     {
