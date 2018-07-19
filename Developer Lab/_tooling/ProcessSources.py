@@ -1,4 +1,5 @@
 ﻿#!/usr/bin/env python3
+
 import json
 import sys
 import nbformat
@@ -6,6 +7,7 @@ import os
 import io
 from pprint import pprint
 from nbconvert import HTMLExporter
+from bs4 import BeautifulSoup
 
 
 class ConfigManager(object):
@@ -25,7 +27,7 @@ class ConfigManager(object):
         nondetected = False
         for key in self._ConfigSources:
             if self._ConfigSources[key]["content"] is None:
-                print("Can't load config file for " + key)
+                print("Could not load config file for " + key)
                 nondetected=True
         if nondetected:
             raise Exception("Some config files can't be loaded...")                                     
@@ -92,9 +94,17 @@ class ConfigManager(object):
                         self._ConfigSources[content["configtype"]]["content"] = content                        
                                     
 
+class SoapNavigationElements(object):
+    def DivClassCodeCell(self, tag):
+        return tag.name == "div" and tag.has_attr("class") and "code_cell" in tag["class"]
+
+    def DivClassCodeCellInputPrompt(self, tag):
+        return tag.name == "div" and tag.has_attr("class") and "prompt" in tag["class"] and "input_prompt" in tag["class"]
+
+    
 
 class TaskManager(object):
-    def MergeNotebooks(self, SourceNotebooks, Perex, ReadmeFile = None):
+    def MergeNotebooks(self, SourceNotebooks, Perex, TargetFile, ReadmeFile = None):
         if SourceNotebooks is None or len(SourceNotebooks)==0:
             raise ValueError("SourceNotebooks cannot be empty!")
         
@@ -116,11 +126,15 @@ class TaskManager(object):
             with io.open(fname, 'r', encoding='utf-8') as f:
                 nb = nbformat.read(f, as_version=4)
             mergednotebook.cells.extend(nb.cells)
+            mergednotebook.metadata.update(nb.metadata)
 
         if not "title" in mergednotebook.metadata:
             mergednotebook.metadata.title = ''
         mergednotebook.metadata.title += "Complete IOTA Developer Essentials Textbook"
-        return mergednotebook
+
+        with io.open(TargetFile, 'w', encoding='utf-8') as f:
+            nbformat.write(mergednotebook,f)
+        
 
     def ConvertNotebook(self, FromNotebook, ToHTML):        
         htmlexporter = HTMLExporter() #default settings
@@ -132,13 +146,78 @@ class TaskManager(object):
         with io.open(ToHTML, 'w', encoding='utf-8') as f:
             f.write(body)
 
-    def ReplaceCodeBaseWith(ReplacedNtb, ReplaceWithNtb):
-        pass
+    def ReplaceCodeBaseWith(self,ReplacedNtb, ReplaceWithNtb, TargetNtb, Language=None):
+        
+        # loading and indexing notebook with codebase
+        with io.open(ReplaceWithNtb, 'r', encoding='utf-8') as f:
+            inputNtb = nbformat.read(f, as_version=4)
+        targetLanguageMetaData = {key: inputNtb["metadata"][key]  for key in inputNtb["metadata"] if key=="kernelspec" or key=="language_info"} # info regarding the target lingo
 
-    
+        commentline = ""
+        if targetLanguageMetaData["kernelspec"]["language"]=="javascript":
+            commentline = "//%s"
+        
+        inputBase={} # dictionary for fast acccess codebase based on codeid
+        for c in inputNtb.cells:
+            if c["cell_type"]=="code" and "iotadev" in c["metadata"] and "codeid" in c["metadata"]["iotadev"]: #yes, it seems it is the correct code snippet
+                inputBase[c["metadata"]["iotadev"]["codeid"]] = c #storing whole cell
+
+
+        # now let's compile new NTB with replaced codebase
+        with io.open(ReplacedNtb, 'r', encoding='utf-8') as f:
+            OutputNtb = nbformat.read(f, as_version=4)
+
+        for c in OutputNtb.cells:
+            if c["cell_type"]=="code" and "iotadev" in c["metadata"] and "codeid" in c["metadata"]["iotadev"]: #yes, it seems to be a code snippet I am looking for
+                codeid = c["metadata"]["iotadev"]["codeid"]
+                if codeid in inputBase: #if there is a new code base, let's replace it
+                    c["outputs"]=inputBase[codeid]["outputs"]
+                    c["source"]=inputBase[codeid]["source"]
+                    c["execution_count"]=0
+                else: #there is not code base to be replaced - and so removing source and outputs and adding some comment line
+                    c["outputs"] = []
+                    c["source"] = [commentline % (" Sorry, no code snippet available for the given language: " + targetLanguageMetaData["kernelspec"]["language"])]
+                    c["execution_count"]=0
+
+        #replacing also kernel/language specs
+        for k in targetLanguageMetaData:
+            OutputNtb["metadata"][k] = targetLanguageMetaData[k]
+        
+        #pprint(OutputNtb)
+        
+        #let's save a new one
+        with io.open(TargetNtb, 'w', encoding='utf-8') as f:
+            nbformat.write(OutputNtb,f)
+               
+    def PerformHTMLtweaks(self, TargetFile, Language):
+        navsoap = SoapNavigationElements()
+
+        icosource = r"<img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_%s.png' width='20' >" % (Language.lower())
+                        
+        if not os.path.exists(TargetFile):
+            raise Exception("File can't be found:" + TargetFile)
+
+        with open(TargetFile) as fp:
+            soup = BeautifulSoup(fp, "html5lib")
+                
+        for i in soup.find_all(navsoap.DivClassCodeCell):
+            for ele in i.find_all(navsoap.DivClassCodeCellInputPrompt): # searching for In [XX]
+                ele.string = icosource #replacing it with language ico               
+
+        with open(TargetFile, 'r') as f:
+            f.write(soup)
+        print("HTML was tweaked: " + TargetFile)
+
+
 def main():
+    TplntbFileName = "Allchapters_%s.ipynb"
+    TplhtmlFileName = "Allchapters_%s.ipynb.html"
+
     try:
-        cfg = ConfigManager(r'C:\Users\pzizka\OneDrive\VisualBasicProjects\repos\IOTA101')
+        rootDir = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                               "..%s..%s"%(os.path.sep, os.path.sep))
+        cfg = ConfigManager(rootDir)
+        
     except Exception as e:
         pprint(e)
         return 1   
@@ -148,40 +227,68 @@ def main():
     #TODO: clean target directory
 
     # MERGING
-    # Let's merge main Python-based notebook
     print("Merging exercise...Python-based")
-    targetdir = cfg.GetPathTargetNotebooks() # where to save combined python notebooks
+    targetdir = cfg.GetPathTargetNotebooks() # where to save combined python notebooks as a master
     print("Target directory: " + targetdir)
     print("Source files")
     pprint(cfg.GetPathAllTextbooks())
         
     tasks = TaskManager()
     
-    combinedfile = os.path.join(targetdir,"Allchapters_python.ipynb")
+    all_prepared_languages = [] # which languages has been processed ?
+
+    # Let's merge MASTER Python-based notebook
+    lang="python"
+    combinedfile = os.path.join(targetdir,TplntbFileName % (lang))
     try:
         merged = tasks.MergeNotebooks(cfg.GetPathAllTextbooks(),
                                       cfg.GetPerex(),
+                                      combinedfile,
                                       cfg.GetPathReadmeFile())        
-        with io.open(combinedfile, 'w', encoding='utf-8') as f:
-            nbformat.write(merged,f)
+        
         print("File merged: " + combinedfile)
+        all_prepared_languages.append(lang)
     except Exception as e :
         pprint(e)
         return 1
 
-    # CONVERTING
-    if cfg.GetPathTargetHTML() is not None: 
+    # REPLACING CODE BASES - GENERATING NEW CODE BASES 
+    for i in cfg.GetActiveCodeBaseLanguages():
         try:
-            htmlfile = os.path.join(cfg.GetPathTargetHTML(),
-                                "Allchapters_python.ipynb.html")
-            tasks.ConvertNotebook(combinedfile, htmlfile)    
-            print("File converted... " + combinedfile + " -----> " + htmlfile)
-        except Exception as e :
+            f = os.path.join(cfg.GetPathTargetNotebooks(),TplntbFileName % (i["language"]))
+            tasks.ReplaceCodeBaseWith(combinedfile,
+                                  i["path"],
+                                  f,
+                                  i["language"])
+            all_prepared_languages.append(i["language"])
+            print("New language-specific file generated... " + f)
+        except Exception as e:
             pprint(e)
-            return 1
-    else:
-        print("File NOT converted... due to missing HTML target dir: " + combinedfile )    
+            return 1 # All or nothing
+        
 
+    # CONVERTING
+    if cfg.GetPathTargetHTML() is not None:  # let's convert all combined files
+        for l in all_prepared_languages:            
+                htmlfile = os.path.join(cfg.GetPathTargetHTML(), TplhtmlFileName % (l))
+                ntbfile = os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l))
+
+                if os.path.exists(ntbfile):                
+                    try:
+                        tasks.ConvertNotebook(ntbfile, htmlfile)    
+                        print("File converted... " + ntbfile + " -----> " + htmlfile)
+                    except Exception as e :
+                        pprint(e)
+                        return 1
+                else:
+                    print("Could not find the file to be converted to HTML: " + ntbfile + " Skipping.")
+
+    else:
+        print("Files NOT converted... due to missing HTML target dir: " + combinedfile )
+
+    # HTML Tweaks
+    tasks.PerformHTMLtweaks(os.path.join(cfg.GetPathTargetHTML(), TplhtmlFileName % ("python")))
+    
     
 if __name__ == "__main__":
     sys.exit(int(main() or 0))
