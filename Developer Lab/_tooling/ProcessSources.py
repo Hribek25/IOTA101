@@ -8,6 +8,7 @@ import io
 import re
 from pprint import pprint
 from nbconvert import HTMLExporter
+import shutil
 #from bs4 import BeautifulSoup
 #from jinja2 import DictLoader
 
@@ -179,6 +180,7 @@ class TaskManager(object):
                     c["outputs"] = []
                     c["source"] = [commentline % (" No code snippet available for the selected language: " + targetLanguageMetaData["kernelspec"]["language"])]
                     c["execution_count"]=0
+                    c["metadata"]["iotadev"]["missing"]="true"
 
         #replacing also kernel/language specs
         for k in targetLanguageMetaData:
@@ -235,6 +237,42 @@ class TaskManager(object):
             f.write(filecontent)
         print("HTML was tweaked: " + TargetFile)
 
+    def GenerateCodeBaseStatus(self,FilesToExamine, FileToGenerate):
+        snippets={} # main storage for snippets and respective language
+        langs = []
+
+        for f in FilesToExamine:
+            with io.open(f, 'r', encoding='utf-8') as f:
+                Ntb = nbformat.read(f, as_version=4)
+            lang = Ntb["metadata"]["kernelspec"]["language"]
+            langs.append(lang)
+
+            for c in Ntb.cells:
+                if c["cell_type"]=="code" and "iotadev" in c["metadata"] and "codeid" in c["metadata"]["iotadev"]: #yes, it seems to be a code snippet I am looking for
+                    tit = c["metadata"]["iotadev"]["title"] if "title" in c["metadata"]["iotadev"] else ""
+                    codeid =   tit + " <sub>#" + c["metadata"]["iotadev"]["codeid"] + r"</sub>"
+                    if not codeid in snippets:
+                        snippets[codeid] = [] #list of identified languages
+
+                    if not "missing" in c["metadata"]["iotadev"]:
+                        snippets[codeid].append(lang)
+
+        content = ""
+        for idx,i in enumerate(snippets):
+            if idx==0: #table header
+                content += "Language | " + "|".join([v for v in langs]) + "\n"
+                content += "--- | " + "|".join(["---" for _ in langs]) + "\n"
+            content += i  # code snippet description
+            for v in langs:
+                if v in snippets[i]:
+                    content += "|" + "Yes"
+                else:
+                    content += "|" + "N/A"
+            content += "\n"
+        with io.open(FileToGenerate, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print("Code Base status generated: " + FileToGenerate)
+
 
 def main():
     TplntbFileName = "Allchapters_%s.ipynb"
@@ -279,7 +317,7 @@ def main():
         pprint(e)
         return 1
 
-    # REPLACING CODE BASES - GENERATING NEW CODE BASES 
+    # GENERATING NEW CODE BASES 
     for i in cfg.GetActiveCodeBaseLanguages():
         try:
             f = os.path.join(cfg.GetPathTargetNotebooks(),TplntbFileName % (i["language"]))
@@ -296,7 +334,7 @@ def main():
 
     # CONVERTING TO HTML AND TWEAKING
     if cfg.GetPathTargetHTML() is not None:  # let's convert all combined files
-        for l in all_prepared_languages:            
+        for idx,l in enumerate(all_prepared_languages):            
                 ntbfile = os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l))
                 htmlfile = os.path.join(cfg.GetPathTargetHTML(), TplhtmlFileName % (l))
                 
@@ -327,14 +365,23 @@ def main():
                     except Exception as e :
                         pprint(e)
                         return 1                        
+                    # if it is the first HTML file then it becomes index.html
+                    if idx==0:
+                        shutil.copyfile(src=htmlfile,
+                                        dst=os.path.join(cfg.GetPathTargetHTML(), "index.html"))
+                        print("Index.html file was replaced with " + htmlfile)
 
                 else:
                     print("Could not find the file to be converted to HTML: " + ntbfile + " Skipping.")
 
     else:
         print("Files NOT converted... due to missing HTML target dir: " + combinedfile )   
-    
-    
+
+    # GENERATING CODE BASE STATUS
+    tasks.GenerateCodeBaseStatus(FilesToExamine=[os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l)) for l in all_prepared_languages],
+                                 FileToGenerate=os.path.join(cfg.GetPathTargetNotebooks(),"STATUS.md")
+                                 )
+      
     
 if __name__ == "__main__":
     sys.exit(int(main() or 0))
