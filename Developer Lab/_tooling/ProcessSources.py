@@ -140,9 +140,6 @@ class TaskManager(object):
         htmlexporter = HTMLExporter() #default settings
         (body, resources) = htmlexporter.from_filename(FromNotebook)
         
-        #replacing link placeholder - to be moved somewhere else since I do not know how many languages ATM
-        #body = body.replace("&#182;",u'<img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png" style="display:inline; height:20px" />')
-        
         with io.open(ToHTML, 'w', encoding='utf-8') as f:
             f.write(body)
 
@@ -189,23 +186,45 @@ class TaskManager(object):
         with io.open(TargetNtb, 'w', encoding='utf-8') as f:
             nbformat.write(OutputNtb,f)
                
-    def PerformHTMLtweaks(self, TargetFile, Language):
-        navsoap = SoapNavigationElements()
-
-        icosource = r"<img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_%s.png' width='20' >" % (Language.lower())
-                        
+    def PerformHTMLtweaks(self, TargetFile, Language, Chunks):
         if not os.path.exists(TargetFile):
             raise Exception("File can't be found:" + TargetFile)
-
+        
         with open(TargetFile) as fp:
-            soup = BeautifulSoup(fp, "html5lib")
-                
-        for i in soup.find_all(navsoap.DivClassCodeCell):
-            for ele in i.find_all(navsoap.DivClassCodeCellInputPrompt): # searching for In [XX]
-                ele.string = icosource #replacing it with language ico               
+            #soup = BeautifulSoup(fp, "html5lib")
+            filecontent = fp.read()
 
-        with open(TargetFile, 'r') as f:
-            f.write(soup)
+        tplChunks = {"link_me": None,
+                     "language_ico": None,
+                     "title": None}
+        for i in Chunks:
+            if i in tplChunks:
+                tplChunks[i] = Chunks[i]
+
+        #PRE DOM TWEAKS
+        filecontent = filecontent.replace("&#182;",u'%%%link_me%%%')
+        
+        
+        #DOM TWEAKS
+        navsoap = SoapNavigationElements() # helping functions to identify some DOM elements
+        soup = BeautifulSoup(filecontent, "html5lib")
+        soup.title.string="%%%title%%%"
+        for i in soup.find_all(navsoap.DivClassCodeCell): # two phases to be sure it is targetted
+            for ele in i.find_all(navsoap.DivClassCodeCellInputPrompt): # searching for In [XX]
+                ele.string = "%%%language_ico%%%"
+
+        filecontent = str(soup) # getting back to normal string
+        del soup
+
+        # replacing placeholders
+        #filecontent = filecontent.format(tpl=tplChunks)
+        for i in tplChunks:
+            if tplChunks[i] is not None:
+                filecontent = filecontent.replace("%%%" + i + "%%%",tplChunks[i])
+                
+        # saving the file
+        with open(TargetFile, 'w') as f:
+            f.write(filecontent)
         print("HTML was tweaked: " + TargetFile)
 
 
@@ -267,27 +286,38 @@ def main():
             return 1 # All or nothing
         
 
-    # CONVERTING
+    # CONVERTING TO HTML AND TWEAKING
     if cfg.GetPathTargetHTML() is not None:  # let's convert all combined files
         for l in all_prepared_languages:            
-                htmlfile = os.path.join(cfg.GetPathTargetHTML(), TplhtmlFileName % (l))
                 ntbfile = os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l))
+                htmlfile = os.path.join(cfg.GetPathTargetHTML(), TplhtmlFileName % (l))
 
-                if os.path.exists(ntbfile):                
+                if os.path.exists(ntbfile):
                     try:
                         tasks.ConvertNotebook(ntbfile, htmlfile)    
                         print("File converted... " + ntbfile + " -----> " + htmlfile)
                     except Exception as e :
                         pprint(e)
                         return 1
+                    
+                    # HTML Tweaks
+                    try:
+                        tasks.PerformHTMLtweaks(htmlfile,
+                                                l,
+                                                {"link_me": r"<img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png' style='display:inline; height:18px' />",
+                                                "language_ico": r"<img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_%s.png' style='display:inline; height:25px' title='%s' />" % (l.lower(),l.lower()),
+                                                "title": "IOTA Developer Essentials in " + l
+                                                })
+                    except Exception as e :
+                        pprint(e)
+                        return 1                        
+
                 else:
                     print("Could not find the file to be converted to HTML: " + ntbfile + " Skipping.")
 
     else:
-        print("Files NOT converted... due to missing HTML target dir: " + combinedfile )
-
-    # HTML Tweaks
-    tasks.PerformHTMLtweaks(os.path.join(cfg.GetPathTargetHTML(), TplhtmlFileName % ("python")))
+        print("Files NOT converted... due to missing HTML target dir: " + combinedfile )   
+    
     
     
 if __name__ == "__main__":
