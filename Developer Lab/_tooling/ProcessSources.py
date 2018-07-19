@@ -5,9 +5,11 @@ import sys
 import nbformat
 import os
 import io
+import re
 from pprint import pprint
 from nbconvert import HTMLExporter
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
+#from jinja2 import DictLoader
 
 
 class ConfigManager(object):
@@ -94,12 +96,12 @@ class ConfigManager(object):
                         self._ConfigSources[content["configtype"]]["content"] = content                        
                                     
 
-class SoapNavigationElements(object):
-    def DivClassCodeCell(self, tag):
-        return tag.name == "div" and tag.has_attr("class") and "code_cell" in tag["class"]
+#class SoapNavigationElements(object):
+#    def DivClassCodeCell(self, tag):
+#        return tag.name == "div" and tag.has_attr("class") and "code_cell" in tag["class"]
 
-    def DivClassCodeCellInputPrompt(self, tag):
-        return tag.name == "div" and tag.has_attr("class") and "prompt" in tag["class"] and "input_prompt" in tag["class"]
+#    def DivClassCodeCellInputPrompt(self, tag):
+#        return tag.name == "div" and tag.has_attr("class") and "prompt" in tag["class"] and "input_prompt" in tag["class"]
 
     
 
@@ -138,6 +140,8 @@ class TaskManager(object):
 
     def ConvertNotebook(self, FromNotebook, ToHTML):        
         htmlexporter = HTMLExporter() #default settings
+        htmlexporter.template_file="custom.tpl"
+
         (body, resources) = htmlexporter.from_filename(FromNotebook)
         
         with io.open(ToHTML, 'w', encoding='utf-8') as f:
@@ -173,7 +177,7 @@ class TaskManager(object):
                     c["execution_count"]=0
                 else: #there is not code base to be replaced - and so removing source and outputs and adding some comment line
                     c["outputs"] = []
-                    c["source"] = [commentline % (" Sorry, no code snippet available for the given language: " + targetLanguageMetaData["kernelspec"]["language"])]
+                    c["source"] = [commentline % (" No code snippet available for the selected language: " + targetLanguageMetaData["kernelspec"]["language"])]
                     c["execution_count"]=0
 
         #replacing also kernel/language specs
@@ -202,19 +206,23 @@ class TaskManager(object):
                 tplChunks[i] = Chunks[i]
 
         #PRE DOM TWEAKS
-        filecontent = filecontent.replace("&#182;",u'%%%link_me%%%')
+        filecontent = filecontent.replace("&#182;",u'%%%link_me%%%') # hopefully will get rid of this step while generating HTML
         
-        
+        if tplChunks["language_ico"] is not None: #here I need something special because of codeid within the placeholder
+            filecontent = re.sub(pattern=r"%%%language_ico[|]{1}([A-Z0-9]+)%%%",
+                                repl=tplChunks["language_ico"].replace("%%%codeid%%%",r"\g<1>"),
+                                string=filecontent)
+                
         #DOM TWEAKS
-        navsoap = SoapNavigationElements() # helping functions to identify some DOM elements
-        soup = BeautifulSoup(filecontent, "html5lib")
-        soup.title.string="%%%title%%%"
-        for i in soup.find_all(navsoap.DivClassCodeCell): # two phases to be sure it is targetted
-            for ele in i.find_all(navsoap.DivClassCodeCellInputPrompt): # searching for In [XX]
-                ele.string = "%%%language_ico%%%"
+        #navsoap = SoapNavigationElements() # helping functions to identify some DOM elements
+        #soup = BeautifulSoup(filecontent, "html5lib")
+        #soup.title.string="%%%title%%%"
+        #for i in soup.find_all(navsoap.DivClassCodeCell): # two phases to be sure it is targetted
+        #    for ele in i.find_all(navsoap.DivClassCodeCellInputPrompt): # searching for In [XX]
+        #        ele.string = "%%%language_ico%%%"
 
-        filecontent = str(soup) # getting back to normal string
-        del soup
+        #filecontent = str(soup) # getting back to normal string
+        #del soup
 
         # replacing placeholders
         #filecontent = filecontent.format(tpl=tplChunks)
@@ -291,7 +299,7 @@ def main():
         for l in all_prepared_languages:            
                 ntbfile = os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l))
                 htmlfile = os.path.join(cfg.GetPathTargetHTML(), TplhtmlFileName % (l))
-
+                
                 if os.path.exists(ntbfile):
                     try:
                         tasks.ConvertNotebook(ntbfile, htmlfile)    
@@ -301,12 +309,20 @@ def main():
                         return 1
                     
                     # HTML Tweaks
+                    # language_ico menu - navigation thru all avail languages
+                    lang_ico_chunk = ""
+
+                    # main currently visible lang is the first one - and no hyperlink
+                    lang_ico_chunk += r"<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}.svg?sanitize=true' style='margin-bottom: 12px; display:inline; width:50px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='{lang}' /></a>".format(lang=l.lower(), href=TplhtmlFileName % (l))
+                    for i in all_prepared_languages:
+                        if i!=l: # only for other languages
+                            lang_ico_chunk += r"<br /><a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}.svg?sanitize=true' style='display:inline; width:50px; -webkit-filter: grayscale(100%); filter: grayscale(100%);padding:5px;' title='{lang}' /></a>".format(lang=i.lower(), href=TplhtmlFileName % (i))
                     try:
                         tasks.PerformHTMLtweaks(htmlfile,
                                                 l,
-                                                {"link_me": r"<img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/link-me-lightgrey.png' style='display:inline; height:18px' />",
-                                                "language_ico": r"<img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_%s.png' style='display:inline; height:25px' title='%s' />" % (l.lower(),l.lower()),
-                                                "title": "IOTA Developer Essentials in " + l
+                                                {"link_me": r"<img src='https://img.shields.io/badge/link-{}-lightgrey.svg' style='display:inline; height:18px' />".format(l),
+                                                "language_ico": lang_ico_chunk,
+                                                "title": "IOTA Developer Essentials for " + l
                                                 })
                     except Exception as e :
                         pprint(e)
