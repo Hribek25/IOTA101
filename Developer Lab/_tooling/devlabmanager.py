@@ -268,7 +268,8 @@ class TaskManager(object):
                     codeid =   tit + " <sub>#" + c["metadata"]["iotadev"]["codeid"] + r"</sub>"
                     if not codeid in snippets:
                         snippets[codeid] = {"langs": [],
-                                            "standalone": None} #list of identified languages
+                                            "standalone": None,
+                                            "codeid": c["metadata"]["iotadev"]["codeid"]} #list of identified languages
                         if "standalone" in c["metadata"]["iotadev"]:
                             snippets[codeid]["standalone"] = c["metadata"]["iotadev"]["standalone"]
 
@@ -297,7 +298,7 @@ The following table indicates what is the language-wise coverage across all snip
             coverageTotal +=1
             for v in langs:
                 if v in snippets[i]["langs"]:
-                    content += "|" + r'[<span style="color:green">Yes</span>]({} "Preview")'.format(r"https://hribek25.github.io/IOTA101/" + RootHTMLurl % (v))
+                    content += "|" + r'[<span style="color:green">Yes</span>]({} "Preview")'.format(r"https://hribek25.github.io/IOTA101/" + RootHTMLurl % (v) + "#" + snippets[i]["codeid"])
                     coverage[v] +=1
                 else:
                     content += "|" + r"<span style='color:red'>N/A</span>"
