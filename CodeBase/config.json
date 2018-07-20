@@ -3,7 +3,7 @@
   "configtype": "codebaselanguages",
   "activelanguages": [
     {
-      "language": "NodeJS",
+      "language": "javascript",
       "sourcefile": "codebase.nodejs.ipynb"
     }
   ]
