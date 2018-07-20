@@ -237,9 +237,14 @@ class TaskManager(object):
             f.write(filecontent)
         print("HTML was tweaked: " + TargetFile)
 
-    def GenerateCodeBaseStatus(self,FilesToExamine, FileToGenerate):
+    def GenerateCodeBaseStatus(self,FilesToExamine, FileToGenerate, RootHTMLurl):
+        # Assumption - main language is the first one
+
         snippets={} # main storage for snippets and respective language
         langs = []
+
+        statusinfo = r" ![Coverage](https://img.shields.io/badge/Coverage-%%%percent%%%%25-brightgreen.svg) "
+        standaloneinfo = r"  ![Standalone Snippet](https://img.shields.io/badge/-{}-lightgrey.svg) "
 
         for f in FilesToExamine:
             with io.open(f, 'r', encoding='utf-8') as f:
@@ -252,23 +257,44 @@ class TaskManager(object):
                     tit = c["metadata"]["iotadev"]["title"] if "title" in c["metadata"]["iotadev"] else ""
                     codeid =   tit + " <sub>#" + c["metadata"]["iotadev"]["codeid"] + r"</sub>"
                     if not codeid in snippets:
-                        snippets[codeid] = [] #list of identified languages
+                        snippets[codeid] = {"langs": [],
+                                            "standalone": None} #list of identified languages
+                        if "standalone" in c["metadata"]["iotadev"]:
+                            snippets[codeid]["standalone"] = c["metadata"]["iotadev"]["standalone"]
 
                     if not "missing" in c["metadata"]["iotadev"]:
-                        snippets[codeid].append(lang)
+                        snippets[codeid]["langs"].append(lang)
 
         content = ""
+
+        #intro
+        content += """
+## Language Coverage
+The following table indicates what is the language-wise coverage across all snippets described in *IOTA Developer Essentials* and *IOTA Developer Lab*. If the given snippet is available then you can jump directly to it. `Standalone` column indicates whether the given code snippet can be used standalone or whether it is just a fragment of a broader code block.
+
+*Info for contributors: There is an unique ID shown at each snippet. It is the code id that is unique across the whole code base and uniquely identifies the given snippet.*
+
+"""
+        coverage={l:0 for l in langs} # storage for language counters
+        coverageTotal=0
+
         for idx,i in enumerate(snippets):
             if idx==0: #table header
-                content += "Language | " + "|".join([v for v in langs]) + "\n"
-                content += "--- | " + "|".join(["---" for _ in langs]) + "\n"
-            content += i  # code snippet description
+                content += "Standalone | Code Base | " + "|".join([v for v in langs]) + "\n"                
+                content += "---|--- | " + "|".join([":---:" for _ in langs]) + "\n"
+            content += standaloneinfo.format(snippets[i]["standalone"])
+            content += "|" + i  # code snippet description
+            coverageTotal +=1
             for v in langs:
-                if v in snippets[i]:
-                    content += "|" + "Yes"
+                if v in snippets[i]["langs"]:
+                    content += "|" + r'[<span style="color:green">Yes</span>]({} "Preview")'.format(r"https://hribek25.github.io/IOTA101/" + RootHTMLurl % (v))
+                    coverage[v] +=1
                 else:
-                    content += "|" + "N/A"
+                    content += "|" + r"<span style='color:red'>N/A</span>"
             content += "\n"
+        # status coverage indication
+        content += " &nbsp; | **Current Status:** | " + "|".join([statusinfo.replace("%%%percent%%%", str(int((coverage[v] / coverageTotal) * 100))) for v in langs]) + "\n"
+
         with io.open(FileToGenerate, 'w', encoding='utf-8') as f:
             f.write(content)
         print("Code Base status generated: " + FileToGenerate)
@@ -379,7 +405,8 @@ def main():
 
     # GENERATING CODE BASE STATUS
     tasks.GenerateCodeBaseStatus(FilesToExamine=[os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l)) for l in all_prepared_languages],
-                                 FileToGenerate=os.path.join(cfg.GetPathTargetNotebooks(),"STATUS.md")
+                                 FileToGenerate=os.path.join(cfg.GetPathTargetNotebooks(),"COVERAGE.md"),
+                                 RootHTMLurl=TplhtmlFileName
                                  )
       
     
