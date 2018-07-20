@@ -2,5 +2,6 @@
   "_comment": "Active IOTA textbooks",
   "configtype": "iotatextbooks",
   "activetextbooks": [ "01_IOTA Essentials.ipynb", "02_IOTA Transactions.ipynb" ],
-  "readme": "README.md"
+  "readme": "README.md",
+  "perex": "> *This textbook was generated automatically from a [GitHub Repo](https://github.com/Hribek25/IOTA101). Visit the repo for more information.* \n\n%%README%%\n\n--- \n"
 }
