@@ -1,6 +1,6 @@
 ![IOTA Developer Essentials Banner](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/IOTA-Developer-Essentials.png)
 # IOTA Developer Essentials
-[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#language-coverage)
+[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-green.svg "Home of the tutorial")](https://github.com/Hribek25/IOTA101)
 [![Interactive Lab](https://img.shields.io/badge/Interactive-Lab-blue.svg "Interactive experience with the tutorial")](https://hribek25.github.io/IOTA101/devlab.html)
 [![Complete Textbook](https://img.shields.io/badge/Complete-Textbook-yellow.svg "All chapters combined on a single page")](https://hribek25.github.io/IOTA101/)
@@ -21,7 +21,7 @@ Code snippets are currently based on Python and NodeJs. Since Python is very des
 
 Interested to see what is the overall code base coverage breaked down to a specific language? The following page provides you such info. We are working hard to be sure there is no language that would be second-class citizien.
 
-[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#language-coverage)
+[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 
 Even if you ignore code snippets completely there is still plenty info left.
 
