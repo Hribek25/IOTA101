@@ -311,7 +311,8 @@ The following table indicates what is the language-wise coverage across all snip
 
     def GenerateDevLabLandingPage(self, SourceFilesPath, HTMLRootPath):
         filestomerge = ["README.md",
-                        "COVERAGE.md"]
+                        "COVERAGE.md",
+                        "ABOUT.md"]
             
         ntb = nbformat.v4.new_notebook()
 
