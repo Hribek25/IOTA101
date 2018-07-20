@@ -139,11 +139,20 @@ class TaskManager(object):
             nbformat.write(mergednotebook,f)
         
 
-    def ConvertNotebook(self, FromNotebook, ToHTML):        
+    def ConvertNotebookFromFile(self, FromNotebook, ToHTML):        
         htmlexporter = HTMLExporter() #default settings
         htmlexporter.template_file="custom.tpl"
 
         (body, resources) = htmlexporter.from_filename(FromNotebook)
+        
+        with io.open(ToHTML, 'w', encoding='utf-8') as f:
+            f.write(body)
+
+    def ConvertNotebookFromNotebook(self, FromNotebook, ToHTML):        
+        htmlexporter = HTMLExporter() #default settings
+        htmlexporter.template_file="custom.tpl"
+
+        (body, resources) = htmlexporter.from_notebook_node(FromNotebook)
         
         with io.open(ToHTML, 'w', encoding='utf-8') as f:
             f.write(body)
@@ -208,7 +217,8 @@ class TaskManager(object):
                 tplChunks[i] = Chunks[i]
 
         #PRE DOM TWEAKS
-        filecontent = filecontent.replace("&#182;",u'%%%link_me%%%') # hopefully will get rid of this step while generating HTML
+        if tplChunks["link_me"] is not None:
+            filecontent = filecontent.replace("&#182;",u'%%%link_me%%%') # hopefully will get rid of this step while generating HTML
         
         if tplChunks["language_ico"] is not None: #here I need something special because of codeid within the placeholder
             filecontent = re.sub(pattern=r"%%%language_ico[|]{1}([A-Z0-9]+)%%%",
@@ -299,6 +309,43 @@ The following table indicates what is the language-wise coverage across all snip
             f.write(content)
         print("Code Base status generated: " + FileToGenerate)
 
+    def GenerateDevLabLandingPage(self, SourceFilesPath, HTMLRootPath):
+        filestomerge = ["README.md",
+                        "COVERAGE.md"]
+            
+        ntb = nbformat.v4.new_notebook()
+
+        for i in filestomerge:
+            file = os.path.join(SourceFilesPath,i)
+
+            if not os.path.exists(file):
+                print("File does not exist: " + file)
+            else:
+                try:
+                    mdcontent = open(file, "r").read()
+                except Exception as e:
+                    pprint(e)
+                    return 1
+                mdc = nbformat.v4.new_markdown_cell(mdcontent)
+                ntb.cells.append(mdc)
+        
+        #convert to HTML and save
+        htmlfile = os.path.join(HTMLRootPath,"devlab.html")        
+        self.ConvertNotebookFromNotebook(ntb,htmlfile)
+
+        try:
+            self.PerformHTMLtweaks(htmlfile,
+                                    None,
+                                    {"link_me": r"<img src='https://img.shields.io/badge/link-me-lightgrey.svg' style='display:inline; height:18px' />",
+                                    "language_ico": None,
+                                    "title": "IOTA Developer Lab"
+                                    })
+        except Exception as e :
+            pprint(e)
+            return 1                    
+        
+        print("File was generated: " + htmlfile)
+
 
 def main():
     TplntbFileName = "Allchapters_%s.ipynb"
@@ -366,7 +413,7 @@ def main():
                 
                 if os.path.exists(ntbfile):
                     try:
-                        tasks.ConvertNotebook(ntbfile, htmlfile)    
+                        tasks.ConvertNotebookFromFile(ntbfile, htmlfile)    
                         print("File converted... " + ntbfile + " -----> " + htmlfile)
                     except Exception as e :
                         pprint(e)
@@ -408,6 +455,8 @@ def main():
                                  FileToGenerate=os.path.join(cfg.GetPathTargetNotebooks(),"COVERAGE.md"),
                                  RootHTMLurl=TplhtmlFileName
                                  )
+    tasks.GenerateDevLabLandingPage(SourceFilesPath=cfg.GetPathTargetNotebooks(),
+                                    HTMLRootPath=cfg.GetPathTargetHTML())
       
     
 if __name__ == "__main__":
