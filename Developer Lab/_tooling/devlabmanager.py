@@ -254,7 +254,8 @@ class TaskManager(object):
         langs = []
 
         statusinfo = r" ![Coverage](https://img.shields.io/badge/Coverage-%%%percent%%%%25-brightgreen.svg) "
-        standaloneinfo = r"  ![Standalone Snippet](https://img.shields.io/badge/-{}-lightgrey.svg) "
+        standaloneinfotrue = r"  ![Standalone Snippet](https://img.shields.io/badge/-{}-orange.svg) "
+        standaloneinfofalse = r"  ![Standalone Snippet](https://img.shields.io/badge/-{}-lightgrey.svg) "
 
         for f in FilesToExamine:
             with io.open(f, 'r', encoding='utf-8') as f:
@@ -293,7 +294,7 @@ The following table indicates what is the language-wise coverage across all snip
             if idx==0: #table header
                 content += "Standalone | Code Base | " + "|".join([v for v in langs]) + "\n"                
                 content += "---|--- | " + "|".join([":---:" for _ in langs]) + "\n"
-            content += standaloneinfo.format(snippets[i]["standalone"])
+            content += standaloneinfotrue.format(snippets[i]["standalone"]) if snippets[i]["standalone"]=="true" else standaloneinfofalse.format(snippets[i]["standalone"])
             content += "|" + i  # code snippet description
             coverageTotal +=1
             for v in langs:
