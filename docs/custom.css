@@ -2,6 +2,6 @@
   display: inline;  
 }
 
-code {
+.rendered_html code {
 background-color: rgb(239, 240, 241);
 }
