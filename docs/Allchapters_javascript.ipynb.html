@@ -11800,11 +11800,11 @@ div#notebook {
 <h2 id="Main-Goal">Main Goal<a class="anchor-link" href="#Main-Goal"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Main goal of this guide is to provide a comprehensive yet well-balanced proportion of deep-dive technical information and essentials.</p>
 <h2 id="Getting-Started">Getting Started<a class="anchor-link" href="#Getting-Started"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>There are several chapters available. If you are not familiar with IOTA then it is highly recommended to follow them in the particular order to understand all important IOTA concepts properly. Otherwise you may get quickly confused later.</p>
 <h2 id="Code-Snippets">Code Snippets<a class="anchor-link" href="#Code-Snippets"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Code snippets are currently based on Python and NodeJs. Since Python is very descriptive language and easy to understand, I believe the tutorial is basically understandable to anyone. Anyway, all important IOTA concepts are described in language-agnostic way and so you would be able to use any language of your choice.</p>
-<p>Interested to see what is the overall code base coverage breaked down to a specific language? The following page provides you such info. We are working hard to be sure there is no language that would be second-class citizien.</p>
+<p>Interested to see what is the overall code base coverage breaked down to a specific language? The following page provides you such info. We are working hard to be sure there is no language that would be a second-class citizien.</p>
 <p><a href="https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage"><img src="https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg" alt="Languages Covered" title="Languages covered"></a></p>
 <p>Even if you ignore code snippets completely there is still plenty info left.</p>
 <p>The tutotorial is accompanied by <em>IOTA Developer Lab</em> and so you can play with all code snippets directly in your web browser, please see the next chapter. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.</p>
-<h2 id="Viewing-and-running">Viewing and running<a class="anchor-link" href="#Viewing-and-running"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><h3 id="Interactive-Mode">Interactive Mode<a class="anchor-link" href="#Interactive-Mode"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><p>There exists a side project called <em>IOTA Developer Lab</em> that is built on top of <em>IOTA Developer Essentials</em>. the project provides infrastructure services for you to be able to get an interactive experience with all described code snippets.</p>
+<h2 id="Viewing-and-running">Viewing and running<a class="anchor-link" href="#Viewing-and-running"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><h3 id="Interactive-Mode">Interactive Mode<a class="anchor-link" href="#Interactive-Mode"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><p>There exists a side project called <em>IOTA Developer Lab</em> that is built on top of <em>IOTA Developer Essentials</em>. The project provides infrastructure services for you to be able to get an interactive experience with all code snippets.</p>
 <p><a href="https://hribek25.github.io/IOTA101/devlab.html"><img src="https://img.shields.io/badge/Interactive-Lab-blue.svg" alt="Interactive Lab" title="Interactive experience with the tutorial"></a></p>
 <h3 id="Static-Mode">Static Mode<a class="anchor-link" href="#Static-Mode"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><p>If you prefer a static experience (for printing purposes, for instance) you can reach the given notebooks as a Complete Textbook that is compiled from all source materials:</p>
 <p><a href="https://hribek25.github.io/IOTA101/"><img src="https://img.shields.io/badge/Complete-Textbook-yellow.svg" alt="Complete Textbook"></a></p>
@@ -11862,7 +11862,7 @@ There are no miners with IOTA protocol to validate transactions. The <em>consens
 <h3 id="Trit">Trit<a class="anchor-link" href="#Trit"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><p>One <em>Trite</em> is analogous to one <em>bit</em>. It is the smallest digit and has three states. Trit = <strong>Tri</strong>nary dig<strong>it</strong>.</p>
 <h3 id="Tryte">Tryte<a class="anchor-link" href="#Tryte"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><p><em>Tryte</em> consists of three <em>trits</em> meaning 27 combinations.
 $$3^3=27$$</p>
-<p>You will recognize soon that almost everything is encoded in <em>Trytes</em> in the IOTA world. Tryte is visually represented using [A..Z] alphabets and number 9. One character represents one tryte (here comes 27 possible characters again). <em>Don't be mad, IOTA libraries are going to help us.</em></p>
+<p>You will recognize soon that almost everything is encoded in <em>Trytes</em> in the IOTA world. Tryte is visually represented using [A..Z] alphabets and number 9. One character represents one tryte (here comes 27 possible characters again). <em>Don't get mad, IOTA libraries are going to help us.</em></p>
 <p>Small example:</p>
 
 </div>
@@ -11921,8 +11921,8 @@ Number of trits: 39
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="IOTA-101:-Basic-network-interactions">IOTA 101: Basic network interactions<a class="anchor-link" href="#IOTA-101:-Basic-network-interactions"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h1><p>The tutorial is based on an official Python library called <em>PyOTA</em>. It encapsulates all official IRI API calls and it can be installed via <em>PIP</em> in any Python environment. If you are viewing this tutorial on <em>Azure Notebooks</em> then you do not have to worry about it. The Python environment is already configured for you including the PyOTA. So you can just directly playing with code snippets in your web browser.</p>
-<p>Anyway, most of the information in the tutorial is language-agnostic and so only implementation details slightly differ across different programming languages. Top-level details are the same regardless programming language you are going to use for your project. I based all code snippets on the Python language since it is understandable language even for beginners.</p>
+<h1 id="IOTA-101:-Basic-network-interactions">IOTA 101: Basic network interactions<a class="anchor-link" href="#IOTA-101:-Basic-network-interactions"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h1><p>The tutorial is based on official IOTA libraries called <em>PyOTA</em> and <em>IOTA Javascript Library - iota.lib.js</em>. It encapsulates all official IRI API calls and it can be installed via <code>pip</code> in a Python environment or via <code>npm</code> in a NodeJS environment. Reader is also encouraged to try a ready-made environment via <em>IOTA Developer Lab</em> project where anyone can run a code directly in web browser. When viewing it interactively then just select a code snippet and hit <code>ctrl + enter</code> which rerun it.</p>
+<p>Anyway, most of the information in the tutorial is language-agnostic and so only implementation details slightly differ across different programming languages. Top-level details are the same regardless programming language you are going to use for your project.</p>
 <h2 id="Conneting-to-IOTA-nodes">Conneting to IOTA nodes<a class="anchor-link" href="#Conneting-to-IOTA-nodes"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Before you can interact with the IOTA network you need an URL of the running IOTA node. There are dozen of directories of public nodes available, feel free to google them.</p>
 <p>For a sake of this tutorial I use a project called <em>Carriota Field</em>. It is a load ballancer and incentivizer that provides you an access to a pool of participanting nodes (thousands of nodes) effortlessly.</p>
 <ul>
@@ -12032,8 +12032,7 @@ Node is probably synced!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Generating-IOTA-seed-and-IOTA-address">Generating IOTA seed and IOTA address<a class="anchor-link" href="#Generating-IOTA-seed-and-IOTA-address"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Since the IOTA network is <em>permissionless</em> type of network, anybody is able to use it and interact with it. No central authority is required at any stage.</p>
-<p>So anybody is able to generate own seed and respective private key/address anytime. It is highly recommended to <em>NOT</em> use online generators at all.</p>
+<h2 id="Generating-IOTA-seed-and-IOTA-address">Generating IOTA seed and IOTA address<a class="anchor-link" href="#Generating-IOTA-seed-and-IOTA-address"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Since the IOTA network is <em>permissionless</em> type of network, anybody is able to use it and interact with it. No central authority is required at any stage. So anybody is able to generate own seed and respective private key/address anytime. It is highly recommended to <em>NOT</em> use online generators at all.</p>
 <p>The Seed is the only key to the given addresses. Anyone who owns the Seed owns also all funds related to respective IOTA addresses (all of them).</p>
 <p>Seed and addresses only consists of characters [A-Z] and number 9. Length is always 81 charaters. There are usually also used additional 9 characters in IOTA addresses (so total lenght is 90 then) which is a <em>checksum</em>. It provides a way how to prevent typos while manipulating with IOTA addresses.</p>
 
@@ -12113,7 +12112,7 @@ Length: 81
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Alternatively you can leverage also PyOTA library since it has own implementation of the pseudo-random Seed generator (Python 2.7+ compatible). Difference between both methods is very subtle. I just wanted to illustrate both ways: Fully independent and IOTA-library-dependant.</p>
+<p>Alternatively you can leverage also PyOTA library since it has own implementation of the pseudo-random Seed generator (Python 2.7+ compatible). Difference between both methods is very subtle. I just wanted to illustrate both ways: Fully independent and IOTA-library-dependant. <em>Please note, IOTA Javascript library does not support a seed generation.</em></p>
 
 </div>
 </div>
@@ -12226,7 +12225,7 @@ $$PrivateKey/Address3 = fce(Seed, 3, 2)$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Needless to say, <code>NodeURL</code> is not important for this task at all. As mentioned earlier, some actions are purely done on client's side. This is one of them.</p>
-<p>Anyway, in case of PyOTA library you can directly use an address generator component instead of the whole library. Outputs are equivalent in both cases.</p>
+<p>Anyway, in case of IOTA library (PyOTA or iota.lib.js) you can directly use an address generator component instead of the whole library. Outputs are equivalent in both cases.</p>
 
 </div>
 </div>
@@ -12288,7 +12287,7 @@ KY9DLZCHET9ATLMADPXGDVDYMPHKRKQPJZ9MB9HEIMMFCRRTNJIJIHPKGZNKKDTFMYPZRRQYAQKVAHMY
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Validating-IOTA-address">Validating IOTA address<a class="anchor-link" href="#Validating-IOTA-address"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>As mentioned earlier, IOTA address consists of 81 trytes ([A..Z9] characters) or 90 trytes including checksum. Checksum is useful when you want to make sure a valid address was given (no typos, etc.) and so it is a good practise to encourage user of your app using IOTA addresses including checksums = 90 trytes.</p>
-<p>PyOTA library is able to help you to deal with some basic patterns such as validating addresses, generating checksums, etc.</p>
+<p>IOTA libraries are able to help you to deal with some basic patterns such as validating addresses, generating checksums, etc.</p>
 
 </div>
 </div>
@@ -12356,11 +12355,12 @@ Length incl checksum: 90
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You should always make sure your app is dealing with valid IOTA address. Please note, you should also make sure an address is of correct length and consists only of allowed characters.</p>
-<p>For example the following snippet:</p>
+<p>You should always make sure your app is dealing with valid IOTA address. Please note, you should also make sure an address is of correct length and consists only of allowed characters. IOTA libraries may slightly differ in their approaches but differences are very subtle and both libraries provide enough functions to validate IOTA address.</p>
+<p>General steps should be:</p>
 <ul>
-<li>Checks length manually - since PyOTA library accepts also addresses with less than 80 trytes</li>
-<li>Checks valid characters are used - PyOTA library would thrown an exception in that case</li>
+<li>Checks length</li>
+<li>Checks valid characters</li>
+<li>Checks address against its checksum</li>
 </ul>
 
 </div>
@@ -12468,7 +12468,7 @@ CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUICCESOIVZABA9LTMM9R
 <p><em>Please note, the chapter is divided in two separate sections. In the first section, examples are really close to bare metal (still not too close:) to illustrate the whole process and describing implementation details wherever possible. It is also useful when you want to experiment with different settings at each step (hey "non-existing tips", looking at you).</em></p>
 <p><em>In the second section, PyOTA library is fully levearged since it is capable to hide all implementation details behind a curtain. Needless to say, if you are not interested in such details then you probably would like to start with the second section.</em></p>
 <h3 id="Creating-and-broadcasting-transaction-in-5-steps-(you-want-to-understand-the-process)">Creating and broadcasting transaction in 5 steps (you want to understand the process)<a class="anchor-link" href="#Creating-and-broadcasting-transaction-in-5-steps-(you-want-to-understand-the-process)"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><h4 id="Create-a-transaction">Create a transaction<a class="anchor-link" href="#Create-a-transaction"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h4><p>First of all let's create transactions (offline; in memory) and set main fields.</p>
-<p>BTW: <code>Timestamp</code> field is defined automatically by the PyOTA library and so please make sure it is also defined while using other IOTA-facing libraries. It is an important field while creating <code>bundle hash</code>.</p>
+<p>BTW: <code>Timestamp</code> field is defined automatically by the IOTA-facing libraries in the process. It is important field while creating <code>bundle hash</code>.</p>
 <p>In the examples within this chapter we are going to broadcast meta transactions (data only) to two different IOTA addresses.</p>
 
 </div>
@@ -13034,8 +13034,8 @@ List of all transactions in the bundle:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Creating-and-broadcasting-transaction-in-a-single-call-(you-want-send-a-transaction-quickly)">Creating and broadcasting transaction in a single call (you want send a transaction quickly)<a class="anchor-link" href="#Creating-and-broadcasting-transaction-in-a-single-call-(you-want-send-a-transaction-quickly)"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><p>As mentioned above, PyOTA library (and almost any other IOTA-facing library) is able to encapsulate all implementation details and so you do not need to care of them anymore. It is usually based on <em>extended API calls</em> that were proposed to be included by IOTA Foundation to make developer's life easier (<a href="https://github.com/iotaledger/wiki/blob/master/api-proposal.md">https://github.com/iotaledger/wiki/blob/master/api-proposal.md</a>).</p>
-<p>Even if using extended API calls you can still slightly control a level of your involvement in the whole process. From almost no involvement and fully automatic (<em>send_transfer()</em>) to semi-manual approach discussed above.</p>
+<h3 id="Creating-and-broadcasting-transaction-in-a-single-call-(you-want-send-a-transaction-quickly)">Creating and broadcasting transaction in a single call (you want send a transaction quickly)<a class="anchor-link" href="#Creating-and-broadcasting-transaction-in-a-single-call-(you-want-send-a-transaction-quickly)"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h3><p>As mentioned above, IOTA-facing libraries are able to encapsulate all implementation details and so you do not need to care of them anymore. It is usually based on <em>extended API calls</em> that were proposed to be included by IOTA Foundation to make developer's life easier (<a href="https://github.com/iotaledger/wiki/blob/master/api-proposal.md">https://github.com/iotaledger/wiki/blob/master/api-proposal.md</a>).</p>
+<p>Even if using extended API calls you can still slightly control a level of your involvement in the whole process. From almost no involvement and fully automatic (<code>send_transfer()</code>) to semi-manual approach discussed above.</p>
 <p><img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/Different_API_calls.png" alt="Different API calls" title="By Petr Zizka"></p>
 <p>There are some specifics you should consider while designing your app:</p>
 <ul>
@@ -13043,7 +13043,7 @@ List of all transactions in the bundle:
 <li>If there is an exception raised during the process then you need to go back at beginning and restart the whole process again</li>
 </ul>
 <p>So it is basically your call to decide what works best for you.</p>
-<p>Now back to our exercise. Here comes a code that basically broadcasts transactions in a single call (<em>send_transfer()</em>) and you do not have to care of any implemenation details that are hidden under the hood.</p>
+<p>Now back to our exercise. Here comes a code that basically broadcasts transactions in a single call (<code>send_transfer()</code>) and you do not have to care of any implemenation details that are hidden under the hood.</p>
 
 </div>
 </div>
@@ -13183,7 +13183,7 @@ List of all transactions in the bundle:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And to complete the picture here is addtional code that uses prepare_transfer() and send_trytes() combo.</p>
+<p>And to complete the picture here is addtional code that uses <code>prepare_transfer()</code> and <code>send_trytes()</code> combo.</p>
 
 </div>
 </div>
