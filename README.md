@@ -19,7 +19,7 @@ There are several chapters available. If you are not familiar with IOTA then it 
 ## Code Snippets
 Code snippets are currently based on Python and NodeJs. Since Python is very descriptive language and easy to understand, I believe the tutorial is basically understandable to anyone. Anyway, all important IOTA concepts are described in language-agnostic way and so you would be able to use any language of your choice.
 
-Interested to see what is the overall code base coverage breaked down to a specific language? The following page provides you such info. We are working hard to be sure there is no language that would be a second-class citizien.
+Interested to see what is the overall code base coverage breaked down to a specific language? The following page provides you such an info. Needless to say, we are working hard to be sure there is no language that would be a second-class citizen.
 
 [![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 
