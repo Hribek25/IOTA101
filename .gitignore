@@ -3,3 +3,5 @@
 .vs/VSWorkspaceState.json
 .vs/ProjectSettings.json
 .vs/IOTA101/v15/.suo
+.ipynb_checkpoints/*
+CodeBase/.ipynb_checkpoints/*
