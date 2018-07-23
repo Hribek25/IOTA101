@@ -1,0 +1,8 @@
+{
+  "_comment": "Mapping internal id to gist id: language / code id / gist id",
+  "configtype": "gistmap",
+  "languages":   {
+    "javascript": [],
+    "python": []
+    }   
+}

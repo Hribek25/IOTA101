@@ -9,6 +9,7 @@ import re
 from pprint import pprint
 from nbconvert import HTMLExporter
 import shutil
+
 #from bs4 import BeautifulSoup
 #from jinja2 import DictLoader
 
@@ -21,17 +22,21 @@ class ConfigManager(object):
                 
         self._RootDirectory = RootDirectory
         self._ConfigSources = {
-            "languagenotebookdestination":{"dir":"","content":None},
-            "iotatextbooks":{"dir":"","content":None},
-            "htmldestination":{"dir":"","content":None},
-            "codebaselanguages":{"dir":"","content":None}
+            "languagenotebookdestination":{"dir":"","content":None, "optional": False},
+            "iotatextbooks":{"dir":"","content":None, "optional": False},
+            "htmldestination":{"dir":"","content":None, "optional": False},
+            "codebaselanguages":{"dir":"","content":None, "optional": False},
+            "gistmap":{"dir":"","content":None, "optional": True}
             }
         self._SearchForConfigFiles() # are all config files in place?
         nondetected = False
         for key in self._ConfigSources:
             if self._ConfigSources[key]["content"] is None:
-                print("Could not load config file for " + key)
-                nondetected=True
+                if self._ConfigSources[key]["optional"]!=True:
+                    print("Could not load config file for " + key)
+                    nondetected=True
+                else:
+                    print("Could not load optional config file for " + key + " but it is OK...")
         if nondetected:
             raise Exception("Some config files can't be loaded...")                                     
 
@@ -82,19 +87,23 @@ class ConfigManager(object):
             
     def _SearchForConfigFiles(self):
         for root, dirs, files in os.walk(self._RootDirectory):
-            if "config.json" in files:
-                content = None
-                try:
-                    with open(os.path.join(root,"config.json"), 'r') as f:
-                        content = json.load(f)
-                except Exception as e:
-                    pprint(e)
-                    print(" at " + root)
+            for fn in ["config.json", "gist_map.json"]:  # searching for two potential files
+                if fn in files:
+                    content = None
+                    try:
+                        with open(os.path.join(root,fn), 'r') as f:
+                            content = json.load(f)
+                    except Exception as e:
+                        pprint(e)
+                        print(" at " + root)
                     
-                if content is not None:
-                    if "configtype" in content and content["configtype"] in self._ConfigSources:
-                        self._ConfigSources[content["configtype"]]["dir"] = root
-                        self._ConfigSources[content["configtype"]]["content"] = content                        
+                    if content is not None:
+                        if "configtype" in content and content["configtype"] in self._ConfigSources:
+                            self._ConfigSources[content["configtype"]]["dir"] = root
+                            self._ConfigSources[content["configtype"]]["content"] = content   
+                            
+    def GetGistMap(self):
+        return self._ConfigSources["gistmap"]
                                     
 
 #class SoapNavigationElements(object):
@@ -103,7 +112,6 @@ class ConfigManager(object):
 
 #    def DivClassCodeCellInputPrompt(self, tag):
 #        return tag.name == "div" and tag.has_attr("class") and "prompt" in tag["class"] and "input_prompt" in tag["class"]
-
     
 
 class TaskManager(object):
@@ -364,7 +372,6 @@ def main():
         return 1   
     print("Searching for config.json files...DONE")
     
-
     #TODO: clean target directory
 
     # MERGING
