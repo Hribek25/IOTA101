@@ -92,10 +92,12 @@ def main():
     print("Searching for config.json files...DONE")
     
     TplDescription = "The snippet is a part of the IOTA Developer Essentials. You can reach the project at https://hribek25.github.io/IOTA101/"
+    TplReference = "Complete description and story regarding the snippet is available at: %s"
     baseurl = "https://hribek25.github.io/IOTA101/"
     TplntbFileName = devlabmanager.ConfigManager.TplntbFileName
     TplhtmlFileName = devlabmanager.ConfigManager.TplhtmlFileName
     TplGistFileName = "IOTA101_%s"
+    TplNoCodeSnippet = "No code snippet available for the selected language"
     
     gistmap = cfg.GetGistMap() # the full gist mapping and storage
     if gistmap["content"] is None:
@@ -115,10 +117,12 @@ def main():
             with io.open(p, 'r', encoding='utf-8') as f:
                 inputNtb = nbformat.read(f, as_version=4) # reading the given notebook                
             NotebookLanguageMetaData = {key: inputNtb["metadata"][key]  for key in inputNtb["metadata"] if key=="kernelspec" or key=="language_info"} # info regarding the target lingo
-
+        
         commentline = None
         extension = None
         language = NotebookLanguageMetaData["kernelspec"]["language"]
+        print("Processing... " + p + " for " + language)
+
         if language=="javascript":
             commentline = "// %s"
             extension = ".js"
@@ -141,6 +145,11 @@ def main():
                 # DESCRIPTION
                 requirements += commentline % TplDescription + os.linesep #let's move some detailed description as a part of the code
 
+                # REFERENCE
+                reference = baseurl + TplhtmlFileName % language + "#" + codeid
+                reference = TplReference % reference
+                requirements += commentline % reference + os.linesep
+
                 title = ""
                 # TITLE
                 if "title" in c["metadata"]["iotadev"]:
@@ -152,7 +161,7 @@ def main():
                         title = CodeSnippetTitles[codeid]
                 
                 for r in gistmap["content"]["languages"][language]["requirements"]:
-                    if re.match(pattern=r["regexp"], string=rawcode): # if it matches then let's include some requirements
+                    if re.search(pattern=r["regexp"], string=rawcode): # if it matches then let's include some requirements
                         requirements += r["content"] + os.linesep
 
                 if requirements!="":
@@ -163,37 +172,41 @@ def main():
                 gistdescription = title
                 
                 # was it already created in gist?
-                if codeid in gistmap["content"]["languages"][language]["snippets"]: # yes, it should be already in Gist
-                    # check whether it was the same code
-                    if gistmap["content"]["languages"][language]["snippets"][codeid]["checksum"]!=checksum: # it seems it has been changed
-                        # EDITING GIST
-                        try:
-                            gistMan.EditGist(GistID=gistmap["content"]["languages"][language]["snippets"][codeid]["gistid"],
-                                         FileName=gistfilename,
-                                         Description=gistdescription,
-                                         Content=rawcode)
-                            print("Already published Gist was edited: " + codeid + " for " + language)
+                if rawcode.find(TplNoCodeSnippet) == -1: # no valid snippet here - skipping
+                    if codeid in gistmap["content"]["languages"][language]["snippets"]: # yes, it should be already in Gist
+                        # check whether it was the same code
+                        if gistmap["content"]["languages"][language]["snippets"][codeid]["checksum"]!=checksum: # it seems it has been changed
+                            # EDITING GIST
+                            try:
+                                gistMan.EditGist(GistID=gistmap["content"]["languages"][language]["snippets"][codeid]["gistid"],
+                                             FileName=gistfilename,
+                                             Description=gistdescription,
+                                             Content=rawcode)
+                                print("Already published Gist was edited: " + gistfilename)
 
+                            except Exception as e :
+                                print("Something went wrong while editing Gist: " + codeid + " for " + language)
+                                pprint(e)                                                  
+                        
+                        
+                        else: # it should be already in Gist and nothing has changed - checksum is the same
+                            print("Published Gist was skipped - no changes: " + gistfilename) # TODO: be paranoid and doublecheck the snippet is really there
+                    else: # it does not seem the code is in Gist
+                        # CREATING GIST
+                        try:
+                            created = gistMan.CreateGist(FileName=gistfilename,
+                                                    Description=gistdescription,
+                                                    Content = rawcode)
+                            print("New gist was created: " + gistfilename)
+                            # let's add the snippet to the main storage
+                            gistmap["content"]["languages"][language]["snippets"][codeid] = {"gistid":created["id"],
+                                                                                            "checksum": checksum,
+                                                                                            "html_url": created["html_url"]}
                         except Exception as e :
-                            print("Something went wrong while editing Gist: " + codeid + " for " + language)
-                            pprint(e)                                                  
-                        
-                        
-                    else: # it should be already in Gist and nothing has changed - checksum is the same
-                        pass # TODO: be paranoid and doublecheck the snippet is really there
-                else: # it does not seem the code is in Gist
-                    # CREATING GIST
-                    try:
-                        created = gistMan.CreateGist(FileName=gistfilename,
-                                                Description=gistdescription,
-                                                Content = rawcode)
-                        # let's add the snippet to the main storage
-                        gistmap["content"]["languages"][language]["snippets"][codeid] = {"gistid":created["id"],
-                                                                                        "checksum": checksum,
-                                                                                        "html_url": created["html_url"]}
-                    except Exception as e :
-                        print("Something went wrong while creating Gist: " + codeid + " for " + language)
-                        pprint(e)
+                            print("Something went wrong while creating Gist: " + codeid + " for " + language)
+                            pprint(e)
+                else:
+                    print("Snippet was skipped - probably N/A: " + gistfilename)
 
     # let's update gist_map.json file - it has been probably changed
     if os.path.exists(os.path.join(gistmap["dir"],"gist_map.json")):
