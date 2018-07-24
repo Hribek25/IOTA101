@@ -38,6 +38,29 @@ class GistManager(object):
         else:
             raise Exception(r.text)
 
+    def DeleteAllGists(self):
+        try:
+            g = self.ListAllGists()
+        except Exception as e :
+            pprint (e)
+            return
+        
+        # cycle thru all gists
+        print("Found %s Gist items..." % len(g))
+        for i in g:
+            filename = next(iter(i["files"].values()))["filename"] #first filename
+            if filename.startswith("IOTA101"):
+                url = '/gists/%s' % i["id"]      
+
+                r = requests.delete('%s%s' % (self.BASE_URL, url),
+			    headers=self.header)
+                if (r.status_code == 204):
+                    #pprint(vars(r))
+                    print("Gist was deleted: " + i["description"] + "; " + filename)
+                else:
+                    print("Gist can't be deleted: " + i["description"] + "; " + filename)
+                    pprint(r.text)           
+
     def GetGist(self, GistID):
         url = '/gists/%s' % GistID        
         r = requests.get('%s%s' % (self.BASE_URL, url),
@@ -108,6 +131,9 @@ def main():
     languages = cfg.GetAllLanguages()
     gistMan = GistManager(cfg)
 
+    #gistMan.DeleteAllGists()
+    #return 1
+
     CodeSnippetTitles = {} #storage for all code snippet titles
 
 
@@ -174,18 +200,23 @@ def main():
                 # was it already created in gist?
                 if rawcode.find(TplNoCodeSnippet) == -1: # no valid snippet here - skipping
                     if codeid in gistmap["content"]["languages"][language]["snippets"]: # yes, it should be already in Gist
-                        # check whether it was the same code
-                        if gistmap["content"]["languages"][language]["snippets"][codeid]["checksum"]!=checksum: # it seems it has been changed
+                        # check whether it was the same code - based on content and description
+                        if gistmap["content"]["languages"][language]["snippets"][codeid]["checksum"]!=checksum or gistmap["content"]["languages"][language]["snippets"][codeid]["description"]!=gistdescription : # it seems it has been changed
                             # EDITING GIST
                             try:
                                 gistMan.EditGist(GistID=gistmap["content"]["languages"][language]["snippets"][codeid]["gistid"],
                                              FileName=gistfilename,
                                              Description=gistdescription,
                                              Content=rawcode)
-                                print("Already published Gist was edited: " + gistfilename)
+                                # let's update also local storage
+                                gistmap["content"]["languages"][language]["snippets"][codeid] = {"gistid":gistmap["content"]["languages"][language]["snippets"][codeid]["gistid"],
+                                                                                            "checksum": checksum,
+                                                                                            "html_url": gistmap["content"]["languages"][language]["snippets"][codeid]["html_url"],
+                                                                                            "description": gistdescription}
+                                print("Already published Gist was updated: " + gistfilename)
 
                             except Exception as e :
-                                print("Something went wrong while editing Gist: " + codeid + " for " + language)
+                                print("Something went wrong while editing Gist: " + gistfilename)
                                 pprint(e)                                                  
                         
                         
@@ -201,7 +232,8 @@ def main():
                             # let's add the snippet to the main storage
                             gistmap["content"]["languages"][language]["snippets"][codeid] = {"gistid":created["id"],
                                                                                             "checksum": checksum,
-                                                                                            "html_url": created["html_url"]}
+                                                                                            "html_url": created["html_url"],
+                                                                                            "description": gistdescription}
                         except Exception as e :
                             print("Something went wrong while creating Gist: " + codeid + " for " + language)
                             pprint(e)
