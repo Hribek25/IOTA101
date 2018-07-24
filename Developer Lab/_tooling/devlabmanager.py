@@ -15,6 +15,8 @@ import shutil
 
 
 class ConfigManager(object):
+    TplntbFileName = "Allchapters_%s.ipynb"
+    TplhtmlFileName = "Allchapters_%s.ipynb.html"
     
     def __init__(self, RootDirectory):
         if not RootDirectory:
@@ -59,6 +61,15 @@ class ConfigManager(object):
                                 "path":fname})
         return out
     
+    def GetAllLanguages(self):
+        out = []
+        out.append("python") # master language - always the first one
+        
+        for l in self.GetActiveCodeBaseLanguages():
+            out.append(l["language"])
+        
+        return out
+
     def GetPathReadmeFile(self):
         out = None
         if self._ConfigSources["iotatextbooks"]["content"] is not None and "readme" in self._ConfigSources["iotatextbooks"]["content"]:
@@ -358,15 +369,13 @@ The following table indicates what is the language-wise coverage across all snip
         print("File was generated: " + htmlfile)
 
 
-def main():
-    TplntbFileName = "Allchapters_%s.ipynb"
-    TplhtmlFileName = "Allchapters_%s.ipynb.html"
-
+def main():        
     try:
         rootDir = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                                "..%s..%s"%(os.path.sep, os.path.sep))
         cfg = ConfigManager(rootDir)
-        
+        TplntbFileName = ConfigManager.TplntbFileName
+        TplhtmlFileName = ConfigManager.TplhtmlFileName
     except Exception as e:
         pprint(e)
         return 1   
