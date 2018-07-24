@@ -1,8 +1,24 @@
 {
-  "_comment": "Mapping internal id to gist id: language / code id / gist id",
+  "_comment": "Mapping internal id to gist id: language / code id / gist id / code base hash",
   "configtype": "gistmap",
-  "languages":   {
-    "javascript": [],
-    "python": []
-    }   
+  "languages": {
+    "javascript": {
+      "requirements": [
+        {
+          "regexp": "require[(].*iota.lib.js",
+          "content": "// Requirement: IOTA Javascript Library (!npm install iota.lib.js)"
+        }
+      ],
+      "snippets": {}
+    },
+    "python": {
+      "requirements": [
+        {
+          "regexp": "import iota",
+          "content": "# Requirement: PyOTA library (!pip install pyota)"
+        }
+      ],
+      "snippets": {}
+    }
+  }
 }
