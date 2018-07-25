@@ -10,13 +10,26 @@ from pprint import pprint
 from nbconvert import HTMLExporter
 import shutil
 
-#from bs4 import BeautifulSoup
-#from jinja2 import DictLoader
-
-
 class ConfigManager(object):
     TplntbFileName = "Allchapters_%s.ipynb"
     TplhtmlFileName = "Allchapters_%s.ipynb.html"
+    
+    TplhtmlSnipMainLangIco = r"""
+<img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}_small.svg?sanitize=true' style='margin-bottom: 0px; display:inline; width:30px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='{lang} version' /><br />
+<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_link_small.svg?sanitize=true' style='margin-bottom: 0px; display:inline; width:30px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='Direct link to the snippet' /></a><br />
+"""
+    TplhtmlSnipSecondaryLangIco = r"""
+<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}_small.svg?sanitize=true' style='display:inline; width:30px; -webkit-filter: grayscale(100%); filter: grayscale(100%);padding:5px;' title='Link to {lang} version' /></a><br />
+"""
+    # Gist has to be separated since it is optional and not included with all snippets
+    TplhtmlSnipGistLink = r"""
+<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_gist_small.svg?sanitize=true' style='margin-bottom: 0px; display:inline; width:30px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='Link to Gist (%%%codedescription%%%)' /></a><br />
+"""
+    # if not gist link - so at least make some space
+    TplhtmlSnipGap = r"""
+<div style='margin-bottom: 3px; margin-left:auto; margin-right:0; display:block; width:30px; height:5px; border-bottom-color: #eeeeee; border-bottom-style: solid; border-bottom-width: 1px;'>&nbsp;</div>
+"""
+
     
     def __init__(self, RootDirectory):
         if not RootDirectory:
@@ -116,16 +129,13 @@ class ConfigManager(object):
     def GetGistMap(self):
         return self._ConfigSources["gistmap"]
                                     
-
-#class SoapNavigationElements(object):
-#    def DivClassCodeCell(self, tag):
-#        return tag.name == "div" and tag.has_attr("class") and "code_cell" in tag["class"]
-
-#    def DivClassCodeCellInputPrompt(self, tag):
-#        return tag.name == "div" and tag.has_attr("class") and "prompt" in tag["class"] and "input_prompt" in tag["class"]
-    
+   
 
 class TaskManager(object):
+    def __init__(self, Configuration):
+        self._ConfFiles = Configuration
+    
+    
     def MergeNotebooks(self, SourceNotebooks, Perex, TargetFile, ReadmeFile = None):
         if SourceNotebooks is None or len(SourceNotebooks)==0:
             raise ValueError("SourceNotebooks cannot be empty!")
@@ -219,13 +229,27 @@ class TaskManager(object):
         #let's save a new one
         with io.open(TargetNtb, 'w', encoding='utf-8') as f:
             nbformat.write(OutputNtb,f)
-               
+    
+    def _langIcoReplHelper(self, matchobj):
+        codeid = matchobj.group(1) # actual code id
+        l = self._lang # active language
+        tpl = self._tplLangIco # actual template to deal with
+        gistmap = self._ConfFiles.GetGistMap()["content"] #get snippets in gist
+
+        if codeid in gistmap["languages"][l]["snippets"]: # is the given code id among gist snippets?
+            tpl = tpl.replace("%%%gist_link%%%",ConfigManager.TplhtmlSnipGistLink.format(href=gistmap["languages"][l]["snippets"][codeid]["html_url"]))
+            tpl = tpl.replace("%%%codedescription%%%", gistmap["languages"][l]["snippets"][codeid]["description"])
+        else:
+            tpl = tpl.replace("%%%gist_link%%%","") #no gist snippet, no gist link
+
+        tpl = tpl.replace("%%%codeid%%%",codeid) # now replace code id placeholder
+        return tpl
+
     def PerformHTMLtweaks(self, TargetFile, Language, Chunks):
         if not os.path.exists(TargetFile):
             raise Exception("File can't be found:" + TargetFile)
         
         with open(TargetFile) as fp:
-            #soup = BeautifulSoup(fp, "html5lib")
             filecontent = fp.read()
 
         tplChunks = {"link_me": None,
@@ -239,21 +263,18 @@ class TaskManager(object):
         if tplChunks["link_me"] is not None:
             filecontent = filecontent.replace("&#182;",u'%%%link_me%%%') # hopefully will get rid of this step while generating HTML
         
-        if tplChunks["language_ico"] is not None: #here I need something special because of codeid within the placeholder
-            filecontent = re.sub(pattern=r"%%%language_ico[|]{1}([A-Z0-9]+)%%%",
-                                repl=tplChunks["language_ico"].replace("%%%codeid%%%",r"\g<1>"),
-                                string=filecontent)
-                
-        #DOM TWEAKS
-        #navsoap = SoapNavigationElements() # helping functions to identify some DOM elements
-        #soup = BeautifulSoup(filecontent, "html5lib")
-        #soup.title.string="%%%title%%%"
-        #for i in soup.find_all(navsoap.DivClassCodeCell): # two phases to be sure it is targetted
-        #    for ele in i.find_all(navsoap.DivClassCodeCellInputPrompt): # searching for In [XX]
-        #        ele.string = "%%%language_ico%%%"
+        if tplChunks["language_ico"] is not None: # Here I need something special because of codeid used within the placeholder. In addtional to that I need to process code id before replace
+            self._tplLangIco = tplChunks["language_ico"] # actual template stored
+            self._lang = Language
 
-        #filecontent = str(soup) # getting back to normal string
-        #del soup
+            filecontent = re.sub(pattern=r"%%%language_ico[|]{1}([A-Z0-9]+)%%%",
+                                 repl=self._langIcoReplHelper,
+                                 string=filecontent)
+            
+            #re.sub(pattern=r"%%%language_ico[|]{1}([A-Z0-9]+)%%%",
+            #                    repl=tplChunks["language_ico"].replace("%%%codeid%%%",r"\g<1>"),
+            #                    string=filecontent)
+
 
         # replacing placeholders
         #filecontent = filecontent.format(tpl=tplChunks)
@@ -328,7 +349,7 @@ The following table indicates what is the language-wise coverage across all snip
 
         with io.open(FileToGenerate, 'w', encoding='utf-8') as f:
             f.write(content)
-        print("Code Base status generated: " + FileToGenerate)
+        print("Language coverage was generated: " + FileToGenerate)
 
     def GenerateDevLabLandingPage(self, SourceFilesPath, HTMLRootPath):
         filestomerge = ["README.md",
@@ -366,7 +387,7 @@ The following table indicates what is the language-wise coverage across all snip
             pprint(e)
             return 1                    
         
-        print("File was generated: " + htmlfile)
+        print("DevLab landing page was generated: " + htmlfile)
 
 
 def main():        
@@ -390,11 +411,11 @@ def main():
     print("Source files")
     pprint(cfg.GetPathAllTextbooks())
         
-    tasks = TaskManager()
+    tasks = TaskManager(cfg)
     
     all_prepared_languages = [] # which languages has been processed ?
 
-    # Let's merge MASTER Python-based notebook
+    # Let's combine MASTER Python-based notebook
     lang="python"
     combinedfile = os.path.join(targetdir,TplntbFileName % (lang))
     try:
@@ -409,7 +430,7 @@ def main():
         pprint(e)
         return 1
 
-    # GENERATING NEW CODE BASES 
+    # GENERATING NEW CODE BASES from the master merged notebook
     for i in cfg.GetActiveCodeBaseLanguages():
         try:
             f = os.path.join(cfg.GetPathTargetNotebooks(),TplntbFileName % (i["language"]))
@@ -422,9 +443,8 @@ def main():
         except Exception as e:
             pprint(e)
             return 1 # All or nothing
-        
-
-    # CONVERTING TO HTML AND TWEAKING
+    
+    # CONVERTING ALL NOTEBOOKS TO HTML AND TWEAKING FINAL LOOK AND FEEL
     if cfg.GetPathTargetHTML() is not None:  # let's convert all combined files
         for idx,l in enumerate(all_prepared_languages):            
                 ntbfile = os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l))
@@ -442,11 +462,20 @@ def main():
                     # language_ico menu - navigation thru all avail languages
                     lang_ico_chunk = ""
 
-                    # main currently visible lang is the first one - and no hyperlink
-                    lang_ico_chunk += r"<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}.svg?sanitize=true' style='margin-bottom: 12px; display:inline; width:50px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='{lang}' /></a>".format(lang=l.lower(), href=TplhtmlFileName % (l))
-                    for i in all_prepared_languages:
+                    # main currently visible lang + direct link ico
+                    lang_ico_chunk += ConfigManager.TplhtmlSnipMainLangIco.format(lang=l.lower(), href=TplhtmlFileName % (l))
+                    
+                    #Gist or not Gist - that's the question
+                    #lang_ico_chunk += ConfigManager.TplhtmlSnipGistLink.format(href=TplhtmlFileName % (l))
+                    lang_ico_chunk += "%%%gist_link%%%"
+                    
+                    #gap
+                    lang_ico_chunk += ConfigManager.TplhtmlSnipGap #gap between main lang and other langs
+                    
+                    for i in all_prepared_languages: # add reference to other languages below
                         if i!=l: # only for other languages
-                            lang_ico_chunk += r"<br /><a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}.svg?sanitize=true' style='display:inline; width:50px; -webkit-filter: grayscale(100%); filter: grayscale(100%);padding:5px;' title='{lang}' /></a>".format(lang=i.lower(), href=TplhtmlFileName % (i))
+                            lang_ico_chunk += ConfigManager.TplhtmlSnipSecondaryLangIco.format(lang=i.lower(), href=TplhtmlFileName % (i))
+                    
                     try:
                         tasks.PerformHTMLtweaks(htmlfile,
                                                 l,
