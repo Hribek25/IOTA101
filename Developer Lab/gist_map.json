@@ -1,5 +1,5 @@
 {
-  "_comment": "Mapping internal id to gist id: language / code id / gist id / code base hash",
+  "_comment": "Local storage and config file for gist bridge - mapping internal id to gist id and for diff purposes: language / code id / gist id / snippet hash, etc.",
   "configtype": "gistmap",
   "languages": {
     "javascript": {
@@ -77,6 +77,10 @@
         {
           "regexp": "import iota",
           "content": "# Requirement: PyOTA library (!pip install pyota)"
+        },
+        {
+          "regexp": "from iota[.].{5,}import",
+          "content": "# Requirement: PyOTA library (!pip install pyota)"
         }
       ],
       "snippets": {
@@ -100,7 +104,7 @@
         },
         "65788F1C3FCB": {
           "gistid": "d8b46334b5db2f1d99282c8c8448faf4",
-          "checksum": "2860183680",
+          "checksum": "2741648363",
           "html_url": "https://gist.github.com/d8b46334b5db2f1d99282c8c8448faf4",
           "description": "Generating a seed: IOTA-facing-library-based approach"
         },
@@ -112,7 +116,7 @@
         },
         "2508A6FF9241": {
           "gistid": "243fe16933ece0af4e4cee63c5632bb0",
-          "checksum": "2866499075",
+          "checksum": "340882375",
           "html_url": "https://gist.github.com/243fe16933ece0af4e4cee63c5632bb0",
           "description": "Generating IOTA addresses from a seed (#2)"
         },
