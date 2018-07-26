@@ -9,6 +9,7 @@ import re
 from pprint import pprint
 from nbconvert import HTMLExporter
 import shutil
+import gistbridge
 
 class ConfigManager(object):
     TplntbFileName = "Allchapters_%s.ipynb"
@@ -405,7 +406,7 @@ def main():
     #TODO: clean target directory
 
     # MERGING
-    print("Merging exercise...Python-based")
+    print("\nBUILDING MASTER NOTEBOOK (PYTHON-BASED)...")
     targetdir = cfg.GetPathTargetNotebooks() # where to save combined python notebooks as a master
     print("Target directory: " + targetdir)
     print("Source files")
@@ -431,6 +432,7 @@ def main():
         return 1
 
     # GENERATING NEW CODE BASES from the master merged notebook
+    print("\nBUILDING ANY-LANGUAGE-BASED NOTEBOOK(S)...")
     for i in cfg.GetActiveCodeBaseLanguages():
         try:
             f = os.path.join(cfg.GetPathTargetNotebooks(),TplntbFileName % (i["language"]))
@@ -444,6 +446,18 @@ def main():
             pprint(e)
             return 1 # All or nothing
     
+    #UPDATING GISTS
+    print("\nUPDATING GISTS...")
+    manager = gistbridge.GistBridgeManager(cfg)
+    manager.UpdateGists() # let's update/create all gists if needed
+    gistmap = cfg.GetGistMap()
+
+    # let's update gist_map.json file - it may be changed
+    if os.path.exists(os.path.join(gistmap["dir"],"gist_map.json")):
+        open(os.path.join(gistmap["dir"],"gist_map.json"),"w").write(json.dumps(gistmap["content"]))
+        print("gist_map.json file was updated...")
+
+    print("\nBUIDLING HTML FILES FROM NOTEBOOKS...")
     # CONVERTING ALL NOTEBOOKS TO HTML AND TWEAKING FINAL LOOK AND FEEL
     if cfg.GetPathTargetHTML() is not None:  # let's convert all combined files
         for idx,l in enumerate(all_prepared_languages):            
@@ -453,7 +467,7 @@ def main():
                 if os.path.exists(ntbfile):
                     try:
                         tasks.ConvertNotebookFromFile(ntbfile, htmlfile)    
-                        print("File converted... " + ntbfile + " -----> " + htmlfile)
+                        print("File converted... " + ntbfile + " --> " + htmlfile)
                     except Exception as e :
                         pprint(e)
                         return 1
@@ -498,11 +512,13 @@ def main():
     else:
         print("Files NOT converted... due to missing HTML target dir: " + combinedfile )   
 
-    # GENERATING CODE BASE STATUS
+    # GENERATING CODE BASE STATUS AND DEV LANDING PAGE
+    print("\nGENERATING LANGUAGE COVERAGE MD FILE...")
     tasks.GenerateCodeBaseStatus(FilesToExamine=[os.path.join(cfg.GetPathTargetNotebooks(), TplntbFileName % (l)) for l in all_prepared_languages],
                                  FileToGenerate=os.path.join(cfg.GetPathTargetNotebooks(),"COVERAGE.md"),
                                  RootHTMLurl=TplhtmlFileName
                                  )
+    print("\nGENERATING DEV LAB LANDING PAGE...")
     tasks.GenerateDevLabLandingPage(SourceFilesPath=cfg.GetPathTargetNotebooks(),
                                     HTMLRootPath=cfg.GetPathTargetHTML())
       
