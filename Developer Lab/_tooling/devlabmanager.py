@@ -19,11 +19,11 @@ class ConfigManager(object):
 <a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_link_small.svg?sanitize=true' style='margin-bottom: 0px; display:inline; width:30px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='Direct link to the snippet' /></a><br />
 """
     TplhtmlSnipSecondaryLangIco = r"""
-<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}_small.svg?sanitize=true' style='display:inline; width:30px; -webkit-filter: grayscale(100%); filter: grayscale(100%);padding:5px;' title='Link to {lang} version' /></a><br />
+<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_{lang}_small.svg?sanitize=true' style='display:inline; width:30px; -webkit-filter: grayscale(100%); filter: grayscale(100%);padding:5px;' title='Switch to {lang} version' /></a><br />
 """
     # Gist has to be separated since it is optional and not included with all snippets
     TplhtmlSnipGistLink = r"""
-<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_gist_small.svg?sanitize=true' style='margin-bottom: 0px; display:inline; width:30px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='Link to Gist (%%%codedescription%%%)' /></a><br />
+<a href='{href}#%%%codeid%%%'><img src='https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/ico_gist_small.svg?sanitize=true' style='margin-bottom: 0px; display:inline; width:30px; background-color: rgb(221, 255, 255); border-left-color: rgb(33, 150, 243); border-left-style: solid; border-left-width: 3px; padding:5px' title='View @ Gist [%%%codedescription%%%]' /></a><br />
 """
     # if not gist link - so at least make some space
     TplhtmlSnipGap = r"""
