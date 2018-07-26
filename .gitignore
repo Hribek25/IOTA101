@@ -5,3 +5,5 @@
 .vs/IOTA101/v15/.suo
 .ipynb_checkpoints/*
 CodeBase/.ipynb_checkpoints/*
+Developer Lab/_tooling/__pycache__/devlabmanager.cpython-36.pyc
+*.pyc

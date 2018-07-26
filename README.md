@@ -2,8 +2,9 @@
 # IOTA Developer Essentials
 [![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-green.svg "Home of the tutorial")](https://github.com/Hribek25/IOTA101)
-[![Interactive Lab](https://img.shields.io/badge/Interactive-Lab-blue.svg "Interactive experience with the tutorial")](https://hribek25.github.io/IOTA101/devlab.html)
-[![Complete Textbook](https://img.shields.io/badge/Complete-Textbook-yellow.svg "All chapters combined on a single page")](https://hribek25.github.io/IOTA101/)
+[![GitHub Gist](https://img.shields.io/badge/Gist-Integrated-orange.svg "View @ Gist")](https://gist.github.com/search?utf8=%E2%9C%93&q=IOTA101)
+[![Interactive Lab](https://img.shields.io/badge/Interactive-Lab-blue.svg "Interactive experience with code snippets")](https://hribek25.github.io/IOTA101/devlab.html)
+[![Complete Textbook](https://img.shields.io/badge/Complete-Textbook-yellow.svg "All chapters combined on a single page for all languages")](https://hribek25.github.io/IOTA101/)
 [![IOTA Ecosystem](https://img.shields.io/badge/iota-ecosystem-yellowgreen.svg "IOTA Ecosystem")](https://ecosystem.iota.org/tutorials/iota-developer-essentials)
 
 These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on the platform and be ready to build own solutions based on it.
@@ -23,9 +24,13 @@ Interested to see what is the overall code base coverage breaked down to a speci
 
 [![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 
-Even if you ignore code snippets completely there is still plenty info left.
+IOTA Developer Essentials are accompanied by *IOTA Developer Lab* and so you can play with all code snippets directly in your web browser, please see the next chapter. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.
 
-The tutotorial is accompanied by *IOTA Developer Lab* and so you can play with all code snippets directly in your web browser, please see the next chapter. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.
+[![Interactive Lab](https://img.shields.io/badge/Interactive-Lab-blue.svg "Interactive experience with code snippets")](https://hribek25.github.io/IOTA101/devlab.html)
+
+All *standalone* code snippets are also maintained @ GitHub Gist. It enables you to fork them, comment them, share them, embed them and track all changes to them. See the action panel next to each code snippet.
+
+[![GitHub Gist](https://img.shields.io/badge/Gist-Integrated-orange.svg "View @ Gist")](https://gist.github.com/search?utf8=%E2%9C%93&q=IOTA101)
 
 ## Viewing and running
 ### Interactive Mode
