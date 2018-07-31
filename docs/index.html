@@ -11934,10 +11934,10 @@ $$3^3=27$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="IOTA-101:-Basic-network-interactions">IOTA 101: Basic network interactions<a class="anchor-link" href="#IOTA-101:-Basic-network-interactions"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h1><p>The tutorial is based on official IOTA libraries called <em>PyOTA</em> and <em>IOTA Javascript Library - iota.lib.js</em>. It encapsulates all official IRI API calls and it can be installed via <code>pip</code> in a Python environment or via <code>npm</code> in a NodeJS environment. Reader is also encouraged to try a ready-made environment via <em>IOTA Developer Lab</em> project where anyone can run a code directly in web browser. When viewing it interactively then just select a code snippet and hit <code>ctrl + enter</code> which rerun it.</p>
+<h1 id="IOTA-101:-Basic-network-interactions">IOTA 101: Basic network interactions<a class="anchor-link" href="#IOTA-101:-Basic-network-interactions"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h1><p>The tutorial is based on official IOTA libraries called <em>PyOTA</em> and <em>IOTA Javascript Library - iota.lib.js</em>. It encapsulates all official IRI API calls and it can be installed via <code>pip</code> in a Python environment or via <code>npm</code> in a NodeJS environment. Reader is also encouraged to try a ready-made environment via <em>IOTA Developer Lab</em> project where anyone can run a code directly in web browser. When viewing it interactively then just select a code snippet and hit <code>ctrl + enter</code> which executes it.</p>
 <p>Anyway, most of the information in the tutorial is language-agnostic and so only implementation details slightly differ across different programming languages. Top-level details are the same regardless programming language you are going to use for your project.</p>
 <h2 id="Conneting-to-IOTA-nodes">Conneting to IOTA nodes<a class="anchor-link" href="#Conneting-to-IOTA-nodes"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Before you can interact with the IOTA network you need an URL of the running IOTA node. There are dozen of directories of public nodes available, feel free to google them.</p>
-<p>For a sake of this tutorial I use a project called <em>Carriota Field</em>. It is a load ballancer and incentivizer that provides you an access to a pool of participanting nodes (thousands of nodes) effortlessly.</p>
+<p>For a sake of this tutorial I use a project called <em>Deviota Field</em>. It is a load ballancer and incentivizer that provides you an access to a pool of participanting nodes (thousands of nodes) effortlessly.</p>
 <ul>
 <li><em>Advantage:</em> you do not have to care about public nodes and whether they are running or not</li>
 <li><em>Disadvantage:</em> you do not know in advance which specific node will process your API call. So in some respect results of API calls may differ since some API calls depend on specific node, such as GetNodeInfo().</li>
@@ -11971,7 +11971,7 @@ $$3^3=27$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">iota</span> <span class="c1">#importing PyOTA library to interact with</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
 
-<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.carriota.com:443&quot;</span>
+<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span>
 
 <span class="n">api</span><span class="o">=</span><span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="n">NodeURL</span><span class="p">)</span> <span class="c1"># ctor initialization of the PyOTA library</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_node_info</span><span class="p">()</span> <span class="c1"># basic API call to double check health conditions</span>
@@ -12000,27 +12000,26 @@ $$3^3=27$$</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{&#39;appName&#39;: &#39;IRI&#39;,
- &#39;appVersion&#39;: &#39;1.5.1&#39;,
- &#39;duration&#39;: 4,
- &#39;fieldName&#39;: &#39;Bender&#39;,
- &#39;fieldPublicId&#39;: &#39;b84bb770842d2fd3&#39;,
+ &#39;appVersion&#39;: &#39;1.5.2&#39;,
+ &#39;duration&#39;: 11,
+ &#39;fieldName&#39;: &#39;NoahsArk&#39;,
+ &#39;fieldPublicId&#39;: &#39;e70b86a26cb4b330&#39;,
  &#39;fieldVersion&#39;: &#39;0.1.6&#39;,
- &#39;jreAvailableProcessors&#39;: 8,
- &#39;jreFreeMemory&#39;: 1730395136,
- &#39;jreMaxMemory&#39;: 27559723008,
- &#39;jreTotalMemory&#39;: 5199888384,
- &#39;jreVersion&#39;: &#39;1.8.0_172&#39;,
- &#39;latestMilestone&#39;: TransactionHash(b&#39;NKZQUVMVGOWRQVZEJXTNYXHBAAULXWQXZEBTELWDBNIUXI9DXWHCJS9AJRDZCMMUVVW9EPQ9HDLK99999&#39;),
- &#39;latestMilestoneIndex&#39;: 620942,
- &#39;latestSolidSubtangleMilestone&#39;: TransactionHash(b&#39;NKZQUVMVGOWRQVZEJXTNYXHBAAULXWQXZEBTELWDBNIUXI9DXWHCJS9AJRDZCMMUVVW9EPQ9HDLK99999&#39;),
- &#39;latestSolidSubtangleMilestoneIndex&#39;: 620942,
+ &#39;jreAvailableProcessors&#39;: 2,
+ &#39;jreFreeMemory&#39;: 67907760,
+ &#39;jreMaxMemory&#39;: 3169320960,
+ &#39;jreTotalMemory&#39;: 1843920896,
+ &#39;jreVersion&#39;: &#39;1.8.0_171&#39;,
+ &#39;latestMilestone&#39;: TransactionHash(b&#39;AHJXRWMGLR9WCSXQLLZVILYYSUFTPNZTGZFYEXDZDYHJYSXLXHKHRXHLYOJNODUDBNMYGBMEFDNZ99999&#39;),
+ &#39;latestMilestoneIndex&#39;: 644683,
+ &#39;latestSolidSubtangleMilestone&#39;: TransactionHash(b&#39;AHJXRWMGLR9WCSXQLLZVILYYSUFTPNZTGZFYEXDZDYHJYSXLXHKHRXHLYOJNODUDBNMYGBMEFDNZ99999&#39;),
+ &#39;latestSolidSubtangleMilestoneIndex&#39;: 644683,
  &#39;milestoneStartIndex&#39;: 590000,
- &#39;neighbors&#39;: 11,
+ &#39;neighbors&#39;: 4,
  &#39;packetsQueueSize&#39;: 0,
- &#39;time&#39;: 1532237418215,
- &#39;tips&#39;: 1460,
- &#39;transactionsToRequest&#39;: 0}
-
+ &#39;time&#39;: 1533050174003,
+ &#39;tips&#39;: 8207,
+ &#39;transactionsToRequest&#39;: 1}
 
 Node is probably synced!
 </pre>
@@ -12036,7 +12035,7 @@ Node is probably synced!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Please note: When using </em>Carriota Field service<em> then this type of check is quite useless since other API calls of yours may be served by different node that has not been checked obviously. On the other hand, Carriota Field uses some smart techniques under the hood that should prevent you to use node that is not in a good condition.</em></p>
+<p><em>Please note: When using </em>Deviota Field service<em> then this type of check is quite useless since other API calls of yours may be served by different node that has not been checked obviously. On the other hand, the Field uses some smart techniques under the hood that should prevent you to use node that is not in a good condition.</em></p>
 
 </div>
 </div>
@@ -12216,7 +12215,7 @@ $$PrivateKey/Address3 = fce(Seed, 3, 2)$$</p>
 
 <span class="c1"># For this particular task the Node URL is not important as it will not be contacted at all</span>
 <span class="c1"># However it has to be well-formatted URI</span>
-<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.carriota.com:443&quot;</span>
+<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span>
 <span class="n">MySeed</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;WKQDUZTGFKSSLACUCHHLZRKZBHSDSCEBHKUPDLKFBQALEBKDMFRPUQGZRXAADPG9TSRTZGGBZOFRJCFMM&quot;</span>
 
 <span class="n">api</span><span class="o">=</span><span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="n">NodeURL</span><span class="p">,</span>
@@ -12502,7 +12501,7 @@ TryteString(b&#39;CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUI
 <li><strong><code>Address</code>:</strong> It is IOTA address that is associated with the given transaction. <em>Value</em> indicates whether it is an address of a receiver or a sender</li>
 <li><strong><code>Tag</code>:</strong> It is an user-defined tag that can be used for searching, etc.</li>
 <li><strong><code>SignatureMessageFragment</code>:</strong> This is the most lenghty attribute (2187 trytes) and could include: <em>transaction signature</em> based on private key in case it is a spending TX or <em>piece of data (message)</em> in case it is non-value TX. Alternatively it can be also left blank (in case of non-value TXs)</li>
-<li><strong><code>tTrunkTransaction</code> / <code>branchTransaction</code>:</strong> Those two fields refer to some previous transactions in the Tangle (tips) that the given bundle is going to approve</li>
+<li><strong><code>TrunkTransaction</code> / <code>branchTransaction</code>:</strong> Those two fields refer to some previous transactions in the Tangle (tips) that the given bundle is going to approve</li>
 <li><strong><code>Timestamp</code>:</strong> TX timestamp. It is actually UNIX timestamp (UTC)
 <img src="https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/Creating_TX_in_5_steps.png" alt="Creating TX in 5 steps" title="By Petr Zizka"></li>
 </ul>
@@ -12526,7 +12525,7 @@ TryteString(b&#39;CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUI
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Non-value-transactions">Non-value transactions<a class="anchor-link" href="#Non-value-transactions"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Let's start with non-value transactions (meta transactions) first since they are a bit easier for starters.</p>
 <p><em>Please note, the chapter is divided in two separate sections. In the first section, examples are really close to bare metal (still not too close:) to illustrate the whole process and describing implementation details wherever possible. It is also useful when you want to experiment with different settings at each step (hey "non-existing tips", looking at you).</em></p>
-<p><em>In the second section, PyOTA library is fully levearged since it is capable to hide all implementation details behind a curtain. Needless to say, if you are not interested in such details then you probably would like to start with the second section.</em></p>
+<p><em>In the second section, IOTA-facing libraries are fully levearged since they are capable to hide all implementation details behind a curtain. Needless to say, if you are not interested in such details then you would probably like to start with the second section.</em></p>
 <h3 id="Creating-and-broadcasting-transaction-in-5-steps-(you-want-to-understand-the-process)">Creating and broadcasting transaction in 5 steps (you want to understand the process)<a class="anchor-link" href="#Creating-and-broadcasting-transaction-in-5-steps-(you-want-to-understand-the-process)"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h3><h4 id="Create-a-transaction">Create a transaction<a class="anchor-link" href="#Create-a-transaction"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h4><p>First of all let's create transactions (offline; in memory) and set main fields.</p>
 <p>BTW: <code>Timestamp</code> field is defined automatically by the IOTA-facing libraries in the process. It is important field while creating <code>bundle hash</code>.</p>
 <p>In the examples within this chapter we are going to broadcast meta transactions (data only) to two different IOTA addresses.</p>
@@ -12851,7 +12850,7 @@ List of all transactions in the bundle:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://field.carriota.com:443&quot;</span><span class="p">)</span> <span class="c1"># selecting IOTA node via Field service</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">)</span> <span class="c1"># selecting IOTA node via Field service</span>
 
 <span class="n">gta</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_transactions_to_approve</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># get tips to be approved by your bundle</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">gta</span><span class="p">)</span>
@@ -13185,7 +13184,7 @@ List of all transactions in the bundle:
 <span class="c1"># besides the given attributes, library also adds a transaction timestamp</span>
 
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://field.carriota.com:443&quot;</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Preparing/Broadcasting... Wait please...&quot;</span><span class="p">)</span>
 <span class="c1"># the whole process initiated in a single call</span>
@@ -13335,7 +13334,7 @@ List of all transactions in the bundle:
 <span class="c1"># besides the given attributes, library also adds a transaction timestamp</span>
 
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://field.carriota.com:443&quot;</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">)</span>
 
 <span class="c1"># Creating bundle, preparing inputs and finalizing bundle. It returns trytes of prepared TXs</span>
 <span class="n">Trytes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">prepare_transfer</span><span class="p">(</span><span class="n">transfers</span><span class="o">=</span><span class="p">[</span><span class="n">pt</span><span class="p">,</span><span class="n">pt2</span><span class="p">])</span> 
