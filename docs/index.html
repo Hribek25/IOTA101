@@ -11937,7 +11937,7 @@ $$3^3=27$$</p>
 <h1 id="IOTA-101:-Basic-network-interactions">IOTA 101: Basic network interactions<a class="anchor-link" href="#IOTA-101:-Basic-network-interactions"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h1><p>The tutorial is based on official IOTA libraries called <em>PyOTA</em> and <em>IOTA Javascript Library - iota.lib.js</em>. It encapsulates all official IRI API calls and it can be installed via <code>pip</code> in a Python environment or via <code>npm</code> in a NodeJS environment. Reader is also encouraged to try a ready-made environment via <em>IOTA Developer Lab</em> project where anyone can run a code directly in web browser. When viewing it interactively then just select a code snippet and hit <code>ctrl + enter</code> which executes it.</p>
 <p>Anyway, most of the information in the tutorial is language-agnostic and so only implementation details slightly differ across different programming languages. Top-level details are the same regardless programming language you are going to use for your project.</p>
 <h2 id="Conneting-to-IOTA-nodes">Conneting to IOTA nodes<a class="anchor-link" href="#Conneting-to-IOTA-nodes"><img src='https://img.shields.io/badge/link-python-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Before you can interact with the IOTA network you need an URL of the running IOTA node. There are dozen of directories of public nodes available, feel free to google them.</p>
-<p>For a sake of this tutorial I use a project called <em>Deviota Field</em>. It is a load ballancer and incentivizer that provides you an access to a pool of participanting nodes (thousands of nodes) effortlessly.</p>
+<p>For a sake of this tutorial I use a project <em>thetangle.org</em>. It is a load ballancer that provides you an access to a pool of participanting nodes effortlessly.</p>
 <ul>
 <li><em>Advantage:</em> you do not have to care about public nodes and whether they are running or not</li>
 <li><em>Disadvantage:</em> you do not know in advance which specific node will process your API call. So in some respect results of API calls may differ since some API calls depend on specific node, such as GetNodeInfo().</li>
@@ -11971,7 +11971,7 @@ $$3^3=27$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">iota</span> <span class="c1">#importing PyOTA library to interact with</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
 
-<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span>
+<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span>
 
 <span class="n">api</span><span class="o">=</span><span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="n">NodeURL</span><span class="p">)</span> <span class="c1"># ctor initialization of the PyOTA library</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_node_info</span><span class="p">()</span> <span class="c1"># basic API call to double check health conditions</span>
@@ -12000,26 +12000,25 @@ $$3^3=27$$</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{&#39;appName&#39;: &#39;IRI&#39;,
- &#39;appVersion&#39;: &#39;1.5.2&#39;,
- &#39;duration&#39;: 11,
- &#39;fieldName&#39;: &#39;NoahsArk&#39;,
- &#39;fieldPublicId&#39;: &#39;e70b86a26cb4b330&#39;,
- &#39;fieldVersion&#39;: &#39;0.1.6&#39;,
- &#39;jreAvailableProcessors&#39;: 2,
- &#39;jreFreeMemory&#39;: 67907760,
- &#39;jreMaxMemory&#39;: 3169320960,
- &#39;jreTotalMemory&#39;: 1843920896,
- &#39;jreVersion&#39;: &#39;1.8.0_171&#39;,
- &#39;latestMilestone&#39;: TransactionHash(b&#39;AHJXRWMGLR9WCSXQLLZVILYYSUFTPNZTGZFYEXDZDYHJYSXLXHKHRXHLYOJNODUDBNMYGBMEFDNZ99999&#39;),
- &#39;latestMilestoneIndex&#39;: 644683,
- &#39;latestSolidSubtangleMilestone&#39;: TransactionHash(b&#39;AHJXRWMGLR9WCSXQLLZVILYYSUFTPNZTGZFYEXDZDYHJYSXLXHKHRXHLYOJNODUDBNMYGBMEFDNZ99999&#39;),
- &#39;latestSolidSubtangleMilestoneIndex&#39;: 644683,
- &#39;milestoneStartIndex&#39;: 590000,
- &#39;neighbors&#39;: 4,
+ &#39;appVersion&#39;: &#39;1.5.6-RELEASE&#39;,
+ &#39;coordinatorAddress&#39;: &#39;KPWCHICGJZXKE9GSUDXZYUAPLHAKAHYHDXNPHENTERYMMBQOPSQIDENXKLKCEYCPVTZQLEEJVYJZV9BWU&#39;,
+ &#39;duration&#39;: 0,
+ &#39;features&#39;: [&#39;RemotePOW&#39;],
+ &#39;jreAvailableProcessors&#39;: 16,
+ &#39;jreFreeMemory&#39;: 2008953062,
+ &#39;jreMaxMemory&#39;: 20997734400,
+ &#39;jreTotalMemory&#39;: 4708976787,
+ &#39;jreVersion&#39;: &#39;1.8.0_181&#39;,
+ &#39;latestMilestone&#39;: TransactionHash(b&#39;PEFCRARDBILA9WJFSLPGDG9DLNOSDYLKLHEBNBPCHAOZALLXIUWYMZUBLOBRZFODVDTCTBENIWTU99999&#39;),
+ &#39;latestMilestoneIndex&#39;: 960602,
+ &#39;latestSolidSubtangleMilestone&#39;: TransactionHash(b&#39;PEFCRARDBILA9WJFSLPGDG9DLNOSDYLKLHEBNBPCHAOZALLXIUWYMZUBLOBRZFODVDTCTBENIWTU99999&#39;),
+ &#39;latestSolidSubtangleMilestoneIndex&#39;: 960602,
+ &#39;milestoneStartIndex&#39;: 937918,
+ &#39;neighbors&#39;: 24,
  &#39;packetsQueueSize&#39;: 0,
- &#39;time&#39;: 1533050174003,
- &#39;tips&#39;: 8207,
- &#39;transactionsToRequest&#39;: 1}
+ &#39;time&#39;: 1547129204626,
+ &#39;tips&#39;: 9150,
+ &#39;transactionsToRequest&#39;: 0}
 
 Node is probably synced!
 </pre>
@@ -12215,7 +12214,7 @@ $$PrivateKey/Address3 = fce(Seed, 3, 2)$$</p>
 
 <span class="c1"># For this particular task the Node URL is not important as it will not be contacted at all</span>
 <span class="c1"># However it has to be well-formatted URI</span>
-<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span>
+<span class="n">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span>
 <span class="n">MySeed</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;WKQDUZTGFKSSLACUCHHLZRKZBHSDSCEBHKUPDLKFBQALEBKDMFRPUQGZRXAADPG9TSRTZGGBZOFRJCFMM&quot;</span>
 
 <span class="n">api</span><span class="o">=</span><span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="n">NodeURL</span><span class="p">,</span>
@@ -12850,7 +12849,7 @@ List of all transactions in the bundle:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">)</span> <span class="c1"># selecting IOTA node via Field service</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">iota</span><span class="o">.</span><span class="n">Iota</span><span class="p">(</span><span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">)</span> <span class="c1"># selecting IOTA node</span>
 
 <span class="n">gta</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_transactions_to_approve</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># get tips to be approved by your bundle</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">gta</span><span class="p">)</span>

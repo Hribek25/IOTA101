@@ -11936,7 +11936,7 @@ Number of trits: 39
 <h1 id="IOTA-101:-Basic-network-interactions">IOTA 101: Basic network interactions<a class="anchor-link" href="#IOTA-101:-Basic-network-interactions"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h1><p>The tutorial is based on official IOTA libraries called <em>PyOTA</em> and <em>IOTA Javascript Library - iota.lib.js</em>. It encapsulates all official IRI API calls and it can be installed via <code>pip</code> in a Python environment or via <code>npm</code> in a NodeJS environment. Reader is also encouraged to try a ready-made environment via <em>IOTA Developer Lab</em> project where anyone can run a code directly in web browser. When viewing it interactively then just select a code snippet and hit <code>ctrl + enter</code> which executes it.</p>
 <p>Anyway, most of the information in the tutorial is language-agnostic and so only implementation details slightly differ across different programming languages. Top-level details are the same regardless programming language you are going to use for your project.</p>
 <h2 id="Conneting-to-IOTA-nodes">Conneting to IOTA nodes<a class="anchor-link" href="#Conneting-to-IOTA-nodes"><img src='https://img.shields.io/badge/link-javascript-lightgrey.svg' style='display:inline; height:18px' /></a></h2><p>Before you can interact with the IOTA network you need an URL of the running IOTA node. There are dozen of directories of public nodes available, feel free to google them.</p>
-<p>For a sake of this tutorial I use a project called <em>Deviota Field</em>. It is a load ballancer and incentivizer that provides you an access to a pool of participanting nodes (thousands of nodes) effortlessly.</p>
+<p>For a sake of this tutorial I use a project <em>thetangle.org</em>. It is a load ballancer that provides you an access to a pool of participanting nodes effortlessly.</p>
 <ul>
 <li><em>Advantage:</em> you do not have to care about public nodes and whether they are running or not</li>
 <li><em>Disadvantage:</em> you do not know in advance which specific node will process your API call. So in some respect results of API calls may differ since some API calls depend on specific node, such as GetNodeInfo().</li>
@@ -11971,7 +11971,7 @@ Number of trits: 39
 
 <span class="c1">// # ctor initialization of the iota.lib.js library</span>
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
-    <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="s1">&#39;https://field.deviota.com:443&#39;</span>
+    <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="s1">&#39;https://nodes.thetangle.org:443&#39;</span>
 <span class="p">});</span>
 
 <span class="c1">// basic API call to double check health conditions</span>
@@ -12009,26 +12009,25 @@ Number of trits: 39
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{ appName: &#39;IRI&#39;,
-  appVersion: &#39;1.5.2&#39;,
-  jreAvailableProcessors: 10,
-  jreFreeMemory: 1607998768,
-  jreVersion: &#39;1.8.0_172&#39;,
-  jreMaxMemory: 7874281472,
-  jreTotalMemory: 3249537024,
-  latestMilestone: &#39;ZETPSQANBJNDTHKUPZXOFRVPSEMXOIUEBWHFZVI9FFQHUWEGYLMYEFFQWGELAUZFWHYELAYBNTXOA9999&#39;,
-  latestMilestoneIndex: 644707,
-  latestSolidSubtangleMilestone: &#39;ZETPSQANBJNDTHKUPZXOFRVPSEMXOIUEBWHFZVI9FFQHUWEGYLMYEFFQWGELAUZFWHYELAYBNTXOA9999&#39;,
-  latestSolidSubtangleMilestoneIndex: 644707,
-  milestoneStartIndex: 590000,
-  neighbors: 9,
+  appVersion: &#39;1.5.6-RELEASE&#39;,
+  jreAvailableProcessors: 16,
+  jreFreeMemory: 1641066498,
+  jreVersion: &#39;1.8.0_181&#39;,
+  jreMaxMemory: 20997734400,
+  jreTotalMemory: 3880186415,
+  latestMilestone: &#39;DZEZPPQDXJ9TVHNRVKMKEZIBBRDTIRSZOPLTMZIEZWGXIRHCPYQOAMOYUVZFLLNSYFQRUKAIEKCFZ9999&#39;,
+  latestMilestoneIndex: 960617,
+  latestSolidSubtangleMilestone: &#39;DZEZPPQDXJ9TVHNRVKMKEZIBBRDTIRSZOPLTMZIEZWGXIRHCPYQOAMOYUVZFLLNSYFQRUKAIEKCFZ9999&#39;,
+  latestSolidSubtangleMilestoneIndex: 960617,
+  milestoneStartIndex: 937918,
+  neighbors: 24,
   packetsQueueSize: 0,
-  time: 1533050895397,
-  tips: 7684,
-  transactionsToRequest: 1,
-  duration: 13,
-  fieldPublicId: &#39;a92ed81c773eb6fe&#39;,
-  fieldName: &#39;fieldtrip&#39;,
-  fieldVersion: &#39;0.1.6&#39; }
+  time: 1547130073841,
+  tips: 9298,
+  transactionsToRequest: 0,
+  features: [ &#39;RemotePOW&#39; ],
+  coordinatorAddress: &#39;KPWCHICGJZXKE9GSUDXZYUAPLHAKAHYHDXNPHENTERYMMBQOPSQIDENXKLKCEYCPVTZQLEEJVYJZV9BWU&#39;,
+  duration: 0 }
 
 Node is probably synced!
 </pre>
@@ -12214,7 +12213,7 @@ $$PrivateKey/Address3 = fce(Seed, 3, 2)$$</p>
 
 <span class="c1">//For this particular task the Node URL is not important as it will not be contacted at all</span>
 <span class="c1">//However it has to be well - formatted URI</span>
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">MySeed</span> <span class="o">=</span> <span class="s2">&quot;WKQDUZTGFKSSLACUCHHLZRKZBHSDSCEBHKUPDLKFBQALEBKDMFRPUQGZRXAADPG9TSRTZGGBZOFRJCFMM&quot;</span><span class="p">;</span>
 
@@ -12297,7 +12296,7 @@ $$PrivateKey/Address3 = fce(Seed, 3, 2)$$</p>
     <div class="input_area">
 <div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">IOTA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../node_modules/iota.lib.js/lib/iota&#39;</span><span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">MySeed</span> <span class="o">=</span> <span class="s2">&quot;WKQDUZTGFKSSLACUCHHLZRKZBHSDSCEBHKUPDLKFBQALEBKDMFRPUQGZRXAADPG9TSRTZGGBZOFRJCFMM&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
@@ -12367,7 +12366,7 @@ KY9DLZCHET9ATLMADPXGDVDYMPHKRKQPJZ9MB9HEIMMFCRRTNJIJIHPKGZNKKDTFMYPZRRQYAQKVAHMY
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">IOTA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../node_modules/iota.lib.js/lib/iota&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
     <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="nx">NodeURL</span>
@@ -12450,7 +12449,7 @@ Length incl checksum: 90
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">IOTA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../node_modules/iota.lib.js/lib/iota&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
     <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="nx">NodeURL</span>
@@ -12567,7 +12566,7 @@ CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUICCESOIVZABA9LTMM9R
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">IOTA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../node_modules/iota.lib.js/lib/iota&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
     <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="nx">NodeURL</span>
@@ -12670,7 +12669,7 @@ CYJV9DRIE9NCQJYLOYOJOGKQGOOELTWXVWUYGQSWCNODHJAHACADUAAHQ9ODUICCESOIVZABA9LTMM9R
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">IOTA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../node_modules/iota.lib.js/lib/iota&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
     <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="nx">NodeURL</span>
@@ -13192,7 +13191,7 @@ List of all transactions in the bundle:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">IOTA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../node_modules/iota.lib.js/lib/iota&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
     <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="nx">NodeURL</span>
@@ -13341,7 +13340,7 @@ List of all transactions in the bundle:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-javascript"><pre><span></span><span class="kd">var</span> <span class="nx">IOTA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../node_modules/iota.lib.js/lib/iota&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://field.deviota.com:443&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">NodeURL</span> <span class="o">=</span> <span class="s2">&quot;https://nodes.thetangle.org:443&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">iota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IOTA</span><span class="p">({</span>
     <span class="s1">&#39;provider&#39;</span><span class="o">:</span> <span class="nx">NodeURL</span>
