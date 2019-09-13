@@ -26,8 +26,7 @@ class GistManager(object):
         self.GIST_URL = 'https://gist.github.com'
         self.header = { 'X-Github-Username': self.username,
 						'Content-Type': 'application/json',
-						'Authorization': 'token %s' % self.token
-					  }            
+						'Authorization': 'token ' + self.token}            
 
     def ListAllGists(self):
         r = requests.get('%s/users/%s/gists' % (self.BASE_URL, self.username),
