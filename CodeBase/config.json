@@ -5,6 +5,10 @@
     {
       "language": "javascript",
       "sourcefile": "codebase.nodejs.ipynb"
+    },
+    {
+      "language": "csharp",
+      "sourcefile": "codebase.csharp.ipynb"
     }
   ]
 }
