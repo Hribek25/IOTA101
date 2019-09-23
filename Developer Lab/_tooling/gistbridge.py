@@ -148,11 +148,16 @@ class GistBridgeManager(object):
             if language=="python":
                 commentline = "# %s"
                 extension = ".py"
+            if language=="csharp":
+                commentline = "// %s"
+                extension = ".cs"
 
             if commentline is None or extension is None:
                 print("Can't find a comment pattern / extension for the given language: " + NotebookLanguageMetaData["kernelspec"]["language"])
                 return 1
-        
+
+            #if language not in gistmap["content"]["languages"]: # language can be new and so checking whether it is already in gistmap or not
+            #    gistmap["content"]["languages"].append(language)
 
             for c in inputNtb.cells: #let's go thru the notebook code cells
                 # is it the correct code snippet? - only standalone ones of course
@@ -252,7 +257,7 @@ def main():
 
     # let's update gist_map.json file - it has been probably changed
     if os.path.exists(os.path.join(gistmap["dir"],"gist_map.json")):
-        open(os.path.join(gistmap["dir"],"gist_map.json"),"w").write(json.dumps(gistmap["content"]))
+        open(os.path.join(gistmap["dir"],"gist_map.json"),"w").write(json.dumps(gistmap["content"], indent=4, separators=(',', ': ')))
         print("gist_map.json file was updated...")
            
 

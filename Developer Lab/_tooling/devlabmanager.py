@@ -197,6 +197,8 @@ class TaskManager(object):
         commentline = ""
         if targetLanguageMetaData["kernelspec"]["language"]=="javascript":
             commentline = "//%s"
+        if targetLanguageMetaData["kernelspec"]["language"]=="csharp":
+            commentline = "//%s"
         
         inputBase={} # dictionary for fast acccess codebase based on codeid
         for c in inputNtb.cells:
