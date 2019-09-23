@@ -7,3 +7,4 @@
 CodeBase/.ipynb_checkpoints/*
 Developer Lab/_tooling/__pycache__/devlabmanager.cpython-36.pyc
 *.pyc
+/.vs

@@ -1,6 +1,6 @@
 ![IOTA Developer Essentials Banner](https://raw.githubusercontent.com/Hribek25/IOTA101/master/Graphics/IOTA-Developer-Essentials.png)
 # IOTA Developer Essentials
-[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
+[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS%20%7C%20C%23-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-green.svg "Home of the tutorial")](https://github.com/Hribek25/IOTA101)
 [![GitHub Gist](https://img.shields.io/badge/Gist-Integrated-orange.svg "View @ Gist")](https://gist.github.com/search?utf8=%E2%9C%93&q=IOTA101)
 [![Interactive Lab](https://img.shields.io/badge/Interactive-Lab-blue.svg "Interactive experience with code snippets")](https://hribek25.github.io/IOTA101/devlab.html)
