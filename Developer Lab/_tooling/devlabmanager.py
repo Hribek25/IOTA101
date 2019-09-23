@@ -10,6 +10,8 @@ from pprint import pprint
 from nbconvert import HTMLExporter
 import shutil
 import gistbridge
+from traitlets.config import Config
+
 
 class ConfigManager(object):
     TplntbFileName = "Allchapters_%s.ipynb"
@@ -136,7 +138,6 @@ class TaskManager(object):
     def __init__(self, Configuration):
         self._ConfFiles = Configuration
     
-    
     def MergeNotebooks(self, SourceNotebooks, Perex, TargetFile, ReadmeFile = None):
         if SourceNotebooks is None or len(SourceNotebooks)==0:
             raise ValueError("SourceNotebooks cannot be empty!")
@@ -166,12 +167,29 @@ class TaskManager(object):
         mergednotebook.metadata.title += "Complete IOTA Developer Essentials Textbook"
 
         with io.open(TargetFile, 'w', encoding='utf-8') as f:
-            nbformat.write(mergednotebook,f)
-        
+            nbformat.write(mergednotebook,f)        
 
-    def ConvertNotebookFromFile(self, FromNotebook, ToHTML):        
+    def ConvertNotebookFromFile(self, FromNotebook, ToHTML):
         htmlexporter = HTMLExporter() #default settings
-        htmlexporter.template_file="custom.tpl"
+        htmlexporter.template_file=os.path.join(os.path.dirname(os.path.realpath(__file__)), "custom.tpl")
+
+        c = Config({
+            'NbConvertBase': {
+                'display_data_priority' : ['application/vnd.jupyter.widget-state+json',
+                                           'application/vnd.jupyter.widget-view+json',
+                                           'application/javascript',
+                                           'text/plain', # changing order because of csharp codebase. I want text/plain to be rendered to HTML
+                                           'text/html',
+                                           'text/markdown',
+                                           'image/svg+xml',
+                                           'text/latex',
+                                           'image/png',
+                                           'image/jpeg'
+                                          ]
+                }
+            })
+
+        htmlexporter.update_config(c) 
 
         (body, resources) = htmlexporter.from_filename(FromNotebook)
         
@@ -180,7 +198,25 @@ class TaskManager(object):
 
     def ConvertNotebookFromNotebook(self, FromNotebook, ToHTML):        
         htmlexporter = HTMLExporter() #default settings
-        htmlexporter.template_file="custom.tpl"
+        htmlexporter.template_file=os.path.join(os.path.dirname(os.path.realpath(__file__)), "custom.tpl")
+
+        c = Config({
+            'NbConvertBase': {
+                'display_data_priority' : ['application/vnd.jupyter.widget-state+json',
+                                           'application/vnd.jupyter.widget-view+json',
+                                           'application/javascript',
+                                           'text/plain', # changing order because of csharp codebase. I want text/plain to be rendered to HTML
+                                           'text/html',
+                                           'text/markdown',
+                                           'image/svg+xml',
+                                           'text/latex',
+                                           'image/png',
+                                           'image/jpeg'
+                                          ]
+                }
+            })
+
+        htmlexporter.update_config(c)
 
         (body, resources) = htmlexporter.from_notebook_node(FromNotebook)
         
@@ -456,7 +492,7 @@ def main():
 
     # let's update gist_map.json file - it may be changed
     if os.path.exists(os.path.join(gistmap["dir"],"gist_map.json")):
-        open(os.path.join(gistmap["dir"],"gist_map.json"),"w").write(json.dumps(gistmap["content"]))
+        open(os.path.join(gistmap["dir"],"gist_map.json"),"w").write(json.dumps(gistmap["content"], indent=4))
         print("gist_map.json file was updated...")
 
     print("\nBUIDLING HTML FILES FROM NOTEBOOKS...")

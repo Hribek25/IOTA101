@@ -257,7 +257,7 @@ def main():
 
     # let's update gist_map.json file - it has been probably changed
     if os.path.exists(os.path.join(gistmap["dir"],"gist_map.json")):
-        open(os.path.join(gistmap["dir"],"gist_map.json"),"w").write(json.dumps(gistmap["content"], indent=4, separators=(',', ': ')))
+        open(os.path.join(gistmap["dir"],"gist_map.json"),"w").write(json.dumps(gistmap["content"], indent=4))
         print("gist_map.json file was updated...")
            
 
