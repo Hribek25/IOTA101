@@ -533,7 +533,7 @@ def main():
                                                 l,
                                                 {"link_me": r"<img src='https://img.shields.io/badge/link-{}-lightgrey.svg' style='display:inline; height:18px' />".format(l),
                                                 "language_ico": lang_ico_chunk,
-                                                "title": "IOTA Developer Essentials for Python and NodeJS"
+                                                "title": "IOTA Developer Essentials for Python, NodeJS and C#"
                                                 })
                     except Exception as e :
                         pprint(e)

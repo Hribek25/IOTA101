@@ -1,4 +1,4 @@
-{%- extends 'full.tpl' -%}
+﻿{%- extends 'full.tpl' -%}
 
 {% block in_prompt -%}
 <div class="prompt input_prompt">
@@ -16,8 +16,8 @@
 {%- block html_head -%}
 <meta charset="utf-8" />
 <title>%%%title%%%</title>
-<meta name="description" content="These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on the platform and be ready to build own solutions based on it. It is currently based on Python and NodeJS.">
-<meta name="keywords" content="IOTA, code snippets, python, NodeJS, interactive, developers, tech enthusiasts, github">
+<meta name="description" content="These notebooks provide a self-study introduction to IOTA protocol and are designed for developers and tech enthusiasts who would like to get quickly familiar with the IOTA. Technical-related information is accompanied with interactive code snippets to help you to quickly jump on the platform and be ready to build own solutions based on it. It is currently based on Python, NodeJS and C#.">
+<meta name="keywords" content="IOTA, code snippets, python, NodeJS, C#, interactive, developers, tech enthusiasts, github">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122669239-1"></script>
 <script>

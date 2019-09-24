@@ -22,7 +22,7 @@ Code snippets are currently based on Python and NodeJs. Since Python is very des
 
 Interested to see what is the overall code base coverage breaked down to a specific language? The following page provides you such an info. Needless to say, we are working hard to be sure there is no language that would be a second-class citizen.
 
-[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
+[![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS%20%7C%20C%23-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 
 IOTA Developer Essentials are accompanied by *IOTA Developer Lab* and so you can play with all code snippets directly in your web browser, please see the next chapter. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.
 
