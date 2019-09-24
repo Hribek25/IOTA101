@@ -28,61 +28,61 @@
             "snippets": {
                 "3BB8C879CCAE": {
                     "gistid": "e56f314a5bfa5d669bc092d185ff01a0",
-                    "checksum": "555697990",
+                    "checksum": "2862319927",
                     "html_url": "https://gist.github.com/e56f314a5bfa5d669bc092d185ff01a0",
                     "description": "Conversion: trytes and trits"
                 },
                 "696A395DC61B": {
                     "gistid": "4f8ed43eb14b79d8a4cda304e9817a74",
-                    "checksum": "2847141580",
+                    "checksum": "177998368",
                     "html_url": "https://gist.github.com/4f8ed43eb14b79d8a4cda304e9817a74",
                     "description": "Basic node interaction: API call Get_node_info()"
                 },
                 "67D98D069B61": {
                     "gistid": "691daf0a2b808cfba7963db0d80f7db9",
-                    "checksum": "1189360482",
+                    "checksum": "2232910260",
                     "html_url": "https://gist.github.com/691daf0a2b808cfba7963db0d80f7db9",
                     "description": "Generating a seed: a general approach"
                 },
                 "0FF479CB6C0A": {
                     "gistid": "182dcb33c03b2c38cd3f2c24f456eaf4",
-                    "checksum": "3377413470",
+                    "checksum": "325880208",
                     "html_url": "https://gist.github.com/182dcb33c03b2c38cd3f2c24f456eaf4",
                     "description": "Generating IOTA addresses from a seed: API call Get_new_addresses()"
                 },
                 "2508A6FF9241": {
                     "gistid": "e4db233bab239e19ab9c759bd89e94ff",
-                    "checksum": "3786584636",
+                    "checksum": "2668739069",
                     "html_url": "https://gist.github.com/e4db233bab239e19ab9c759bd89e94ff",
                     "description": "Generating IOTA addresses from a seed (#2)"
                 },
                 "39B011574CF0": {
                     "gistid": "a8568d529d17bdd2a86f8ca1340d32e8",
-                    "checksum": "1581980435",
+                    "checksum": "3815537658",
                     "html_url": "https://gist.github.com/a8568d529d17bdd2a86f8ca1340d32e8",
                     "description": "IOTA address and checksum"
                 },
                 "C65223B0864A": {
                     "gistid": "0264eed24a54a26047aefa3154813101",
-                    "checksum": "2071797816",
+                    "checksum": "2739049731",
                     "html_url": "https://gist.github.com/0264eed24a54a26047aefa3154813101",
                     "description": "Validating IOTA address"
                 },
                 "445C2B9485C6": {
                     "gistid": "362f446c9d551ca61143ddb1d4d67d2f",
-                    "checksum": "1031591767",
+                    "checksum": "2719308268",
                     "html_url": "https://gist.github.com/362f446c9d551ca61143ddb1d4d67d2f",
                     "description": "Preparing IOTA transactions to be broadcasted"
                 },
                 "00663E550ADF": {
                     "gistid": "0efae237ddd276fc92e57d5813bba1c0",
-                    "checksum": "201408761",
+                    "checksum": "1856866956",
                     "html_url": "https://gist.github.com/0efae237ddd276fc92e57d5813bba1c0",
                     "description": "Sending IOTA transaction in a single call: API call Send_transfer()"
                 },
                 "07CFD43B146C": {
                     "gistid": "32a8bc8bc8e27cb1211fd42b2562bf92",
-                    "checksum": "2246504353",
+                    "checksum": "908569962",
                     "html_url": "https://gist.github.com/32a8bc8bc8e27cb1211fd42b2562bf92",
                     "description": "Sending IOTA transaction in more granular way: API calls Prepare_transfer() and Send_transfer()"
                 }
@@ -102,67 +102,67 @@
             "snippets": {
                 "3BB8C879CCAE": {
                     "gistid": "35e68d89e9affe8d5ac1a69c30b14809",
-                    "checksum": "822638075",
+                    "checksum": "2309129590",
                     "html_url": "https://gist.github.com/35e68d89e9affe8d5ac1a69c30b14809",
                     "description": "Conversion: trytes and trits"
                 },
                 "696A395DC61B": {
                     "gistid": "f9d9df97a46a05967c10aa5b9640394b",
-                    "checksum": "2917848060",
+                    "checksum": "3930958691",
                     "html_url": "https://gist.github.com/f9d9df97a46a05967c10aa5b9640394b",
                     "description": "Basic node interaction: API call Get_node_info()"
                 },
                 "67D98D069B61": {
                     "gistid": "d82ad10993e31f085f9b37271107d582",
-                    "checksum": "3811575639",
+                    "checksum": "886415436",
                     "html_url": "https://gist.github.com/d82ad10993e31f085f9b37271107d582",
                     "description": "Generating a seed: a general approach"
                 },
                 "65788F1C3FCB": {
                     "gistid": "d8b46334b5db2f1d99282c8c8448faf4",
-                    "checksum": "579382089",
+                    "checksum": "1873411938",
                     "html_url": "https://gist.github.com/d8b46334b5db2f1d99282c8c8448faf4",
                     "description": "Generating a seed: IOTA-facing-library-based approach"
                 },
                 "0FF479CB6C0A": {
                     "gistid": "53531e0fd3fbc8ddda0acc8bf0fbd11e",
-                    "checksum": "615851236",
+                    "checksum": "128799886",
                     "html_url": "https://gist.github.com/53531e0fd3fbc8ddda0acc8bf0fbd11e",
                     "description": "Generating IOTA addresses from a seed: API call Get_new_addresses()"
                 },
                 "2508A6FF9241": {
                     "gistid": "243fe16933ece0af4e4cee63c5632bb0",
-                    "checksum": "3147844258",
+                    "checksum": "4098613698",
                     "html_url": "https://gist.github.com/243fe16933ece0af4e4cee63c5632bb0",
                     "description": "Generating IOTA addresses from a seed (#2)"
                 },
                 "39B011574CF0": {
                     "gistid": "a0277aef161d2f2dcfbb021692be433d",
-                    "checksum": "2351922924",
+                    "checksum": "3292770942",
                     "html_url": "https://gist.github.com/a0277aef161d2f2dcfbb021692be433d",
                     "description": "IOTA address and checksum"
                 },
                 "C65223B0864A": {
                     "gistid": "787ab8f331d2e0f1e808577981dceaac",
-                    "checksum": "229046865",
+                    "checksum": "2639631792",
                     "html_url": "https://gist.github.com/787ab8f331d2e0f1e808577981dceaac",
                     "description": "Validating IOTA address"
                 },
                 "445C2B9485C6": {
                     "gistid": "f8277acb9b6fde26a758c2e7f9dcac95",
-                    "checksum": "3429994937",
+                    "checksum": "4134876586",
                     "html_url": "https://gist.github.com/f8277acb9b6fde26a758c2e7f9dcac95",
                     "description": "Preparing IOTA transactions to be broadcasted"
                 },
                 "00663E550ADF": {
                     "gistid": "abf3e51864c32d2e0df5e20785d0cb36",
-                    "checksum": "4164751869",
+                    "checksum": "3716755836",
                     "html_url": "https://gist.github.com/abf3e51864c32d2e0df5e20785d0cb36",
                     "description": "Sending IOTA transaction in a single call: API call Send_transfer()"
                 },
                 "07CFD43B146C": {
                     "gistid": "de919df95413205f1c7d03863be85273",
-                    "checksum": "3530664987",
+                    "checksum": "4160773803",
                     "html_url": "https://gist.github.com/de919df95413205f1c7d03863be85273",
                     "description": "Sending IOTA transaction in more granular way: API calls Prepare_transfer() and Send_transfer()"
                 }
@@ -186,61 +186,61 @@
             "snippets": {
                 "3BB8C879CCAE": {
                     "gistid": "6e10c9836815a4b00a1c3a0bc5e5125a",
-                    "checksum": "4133033768",
+                    "checksum": "216913859",
                     "html_url": "https://gist.github.com/6e10c9836815a4b00a1c3a0bc5e5125a",
                     "description": "Conversion: trytes and trits"
                 },
                 "696A395DC61B": {
                     "gistid": "90c13e2017244c86360729c1325b5b32",
-                    "checksum": "628385657",
+                    "checksum": "2738099225",
                     "html_url": "https://gist.github.com/90c13e2017244c86360729c1325b5b32",
                     "description": "Basic node interaction: API call Get_node_info()"
                 },
                 "67D98D069B61": {
                     "gistid": "c430cd8e7d9fe2c7be4ef996e6cb9065",
-                    "checksum": "1038078060",
+                    "checksum": "1388590069",
                     "html_url": "https://gist.github.com/c430cd8e7d9fe2c7be4ef996e6cb9065",
                     "description": "Generating a seed: a general approach"
                 },
                 "65788F1C3FCB": {
                     "gistid": "b7f869010df00b7fe929e9a50b9c5a34",
-                    "checksum": "872907184",
+                    "checksum": "2205528464",
                     "html_url": "https://gist.github.com/b7f869010df00b7fe929e9a50b9c5a34",
                     "description": "Generating a seed: IOTA-facing-library-based approach"
                 },
                 "2508A6FF9241": {
                     "gistid": "d3e0d80e5dc106f28c72e6f3d448e008",
-                    "checksum": "2223899096",
+                    "checksum": "2143251628",
                     "html_url": "https://gist.github.com/d3e0d80e5dc106f28c72e6f3d448e008",
                     "description": "Generating IOTA addresses from a seed (#2)"
                 },
                 "39B011574CF0": {
                     "gistid": "df03004717cfc6b7b8d46d91beb58f89",
-                    "checksum": "2517662479",
+                    "checksum": "2178496546",
                     "html_url": "https://gist.github.com/df03004717cfc6b7b8d46d91beb58f89",
                     "description": "IOTA address and checksum"
                 },
                 "C65223B0864A": {
                     "gistid": "5216c16c21ae7fa5a523c83a5ab107f8",
-                    "checksum": "260550846",
+                    "checksum": "3228059542",
                     "html_url": "https://gist.github.com/5216c16c21ae7fa5a523c83a5ab107f8",
                     "description": "Validating IOTA address"
                 },
                 "445C2B9485C6": {
                     "gistid": "6694be45719d1809c96188fa9e4f0927",
-                    "checksum": "2154015496",
+                    "checksum": "3560349906",
                     "html_url": "https://gist.github.com/6694be45719d1809c96188fa9e4f0927",
                     "description": "Preparing IOTA transactions to be broadcasted"
                 },
                 "00663E550ADF": {
                     "gistid": "c19ac43192dd1d6228996e94caa2c9d0",
-                    "checksum": "3733978609",
+                    "checksum": "2746946286",
                     "html_url": "https://gist.github.com/c19ac43192dd1d6228996e94caa2c9d0",
                     "description": "Sending IOTA transaction in a single call: API call Send_transfer()"
                 },
                 "07CFD43B146C": {
                     "gistid": "003f8113be6152319ca75c71ef394b92",
-                    "checksum": "2402073566",
+                    "checksum": "827417826",
                     "html_url": "https://gist.github.com/003f8113be6152319ca75c71ef394b92",
                     "description": "Sending IOTA transaction in more granular way: API calls Prepare_transfer() and Send_transfer()"
                 }
