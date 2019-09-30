@@ -18,13 +18,13 @@ Main goal of this guide is to provide a comprehensive yet well-balanced proporti
 There are several chapters available. If you are not familiar with IOTA then it is highly recommended to follow them in the particular order to understand all important IOTA concepts properly. Otherwise you may get quickly confused later.
 
 ## Code Snippets
-Code snippets are currently based on Python and NodeJs. Since Python is very descriptive language and easy to understand, I believe the tutorial is basically understandable to anyone. Anyway, all important IOTA concepts are described in language-agnostic way and so you would be able to use any language of your choice.
+Code snippets are currently based on Python, NodeJs and C#. Since Python is very descriptive language and easy to understand, I believe the tutorial is basically understandable to anyone. Anyway, all important IOTA concepts are described in language-agnostic way and so you would be able to use any language of your choice.
 
 Interested to see what is the overall code base coverage breaked down to a specific language? The following page provides you such an info. Needless to say, we are working hard to be sure there is no language that would be a second-class citizen.
 
 [![Languages Covered](https://img.shields.io/badge/Coverage-Python%20%7C%20NodeJS%20%7C%20C%23-brightgreen.svg "Languages covered")](https://hribek25.github.io/IOTA101/devlab.html#Language-Coverage)
 
-IOTA Developer Essentials are accompanied by *IOTA Developer Lab* and so you can play with all code snippets directly in your web browser, please see the next chapter. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.
+IOTA Developer Essentials are accompanied by *IOTA Developer Lab* and so you can play with all code snippets directly in your web browser. Feel free to experiment with the prepared code snippets and get your hands dirty. It is a best way how to get familiar quickly.
 
 [![Interactive Lab](https://img.shields.io/badge/Interactive-Lab-blue.svg "Interactive experience with code snippets")](https://hribek25.github.io/IOTA101/devlab.html)
 
@@ -51,7 +51,7 @@ These notebooks are maintained at [GitHub](https://github.com/Hribek25/IOTA101).
 Issues can be submited via [issue tracker](https://github.com/Hribek25/IOTA101/issues).
 
 ## About
-These notebooks are developed and maintained by Petr Zizka (petr@zizkovi.name).
+These notebooks are developed and maintained by Petr Zizka (petr@zizkovi.name). It has been supported by the EDF Grant (https://blog.iota.org/the-5th-cohort-of-iota-ecosystem-development-fund-grantees-5cbf05227525).
 
 It is ongoing process since IOTA is still under heavy development and rapidly emerging every day. So stay tuned - the plan is to keep adding fresh content on regular basis.
 
@@ -63,7 +63,7 @@ Disclaimer: I am not associated with the IOTA foundation. I am IOTA supporter.
 ----
 ![Thank You](https://img.shields.io/badge/thank-you-lightgrey.svg "Your support is deeply appreciated")
 
-The IOTA Developer Essentials and IOTA Developer Lab are long-term projects. The main goal is to provide a comprehensive onboarding information to anybody interested in the IOTA protocol. It will cover much more chapters, more code snippets and it will also cover more languages. There is a [roadmap](https://github.com/Hribek25/IOTA101/projects/1) available. Your kind donations will support the vision pushing forward. Thank you.
+The IOTA Developer Essentials and IOTA Developer Lab are long-term projects. The main goal is to provide a comprehensive onboarding information to anybody interested in the IOTA protocol. It will cover much more chapters, more code snippets and it will also cover more languages. Your kind donations will support the vision pushing forward. Thank you.
 
 Donations (IOTA):
 DSZRO9TCIJIKZOKUPVNOJFKVAHFCKL9YMLPVZUAEVZPOFXLIUWLPRQWBMVVSFTKGMGPPHXCYE9MIZEVBXQNFYKYUA9
