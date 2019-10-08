@@ -156,13 +156,13 @@
                 },
                 "00663E550ADF": {
                     "gistid": "abf3e51864c32d2e0df5e20785d0cb36",
-                    "checksum": "3716755836",
+                    "checksum": "926698748",
                     "html_url": "https://gist.github.com/abf3e51864c32d2e0df5e20785d0cb36",
                     "description": "Sending IOTA transaction in a single call: API call Send_transfer()"
                 },
                 "07CFD43B146C": {
                     "gistid": "de919df95413205f1c7d03863be85273",
-                    "checksum": "4160773803",
+                    "checksum": "3337368625",
                     "html_url": "https://gist.github.com/de919df95413205f1c7d03863be85273",
                     "description": "Sending IOTA transaction in more granular way: API calls Prepare_transfer() and Send_transfer()"
                 }
